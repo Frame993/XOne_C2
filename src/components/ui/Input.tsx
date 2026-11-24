@@ -10,7 +10,7 @@ export function Input({ label, hint, error, icon, className, id, disabled, ...re
   const describedBy = error ? `${inputId}-error` : hint ? `${inputId}-hint` : undefined;
   return (
     <div className={cn("flex flex-col gap-1.5", className)}>
-      {label && <label htmlFor={inputId} className="text-md font-book text-fg">{label}</label>}
+      {label && <label htmlFor={inputId} className="type-label text-fg">{label}</label>}
       <div
         className={cn(
           "group flex h-(--xo-input-height) items-center gap-2 rounded-(--xo-input-radius) border bg-(--xo-input-bg) px-(--xo-input-padding-x) transition-colors duration-(--xo-duration-base)",
@@ -30,9 +30,9 @@ export function Input({ label, hint, error, icon, className, id, disabled, ...re
         />
       </div>
       {error ? (
-        <p id={`${inputId}-error`} className="text-sm text-danger">{error}</p>
+        <p id={`${inputId}-error`} className="type-body-sm text-danger">{error}</p>
       ) : hint ? (
-        <p id={`${inputId}-hint`} className="text-sm text-fg-muted">{hint}</p>
+        <p id={`${inputId}-hint`} className="type-body-sm text-fg-muted">{hint}</p>
       ) : null}
     </div>
   );

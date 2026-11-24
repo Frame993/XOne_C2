@@ -60,7 +60,7 @@ export function Tabs({ items, defaultId, variant = "pill", className, label }: {
               onClick={() => setActive(t.id)}
               onKeyDown={(e) => onKey(e, i)}
               className={cn(
-                "relative inline-flex shrink-0 items-center gap-1.5 text-md font-book whitespace-nowrap transition-colors duration-(--xo-duration-base)",
+                "relative inline-flex shrink-0 items-center gap-1.5 type-label whitespace-nowrap transition-colors duration-(--xo-duration-base)",
                 variant === "pill" ? "h-(--xo-tabs-height) rounded-(--xo-tabs-radius) px-4" : "h-10",
                 selected ? "text-(--xo-tabs-trigger-fg-active)" : "text-(--xo-tabs-trigger-fg) hover:text-fg",
               )}

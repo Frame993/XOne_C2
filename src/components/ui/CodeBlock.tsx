@@ -32,14 +32,14 @@ export function CodeBlock({ code, title, language, className, showLineNumbers = 
         <span className="flex items-center gap-2 font-mono text-xs text-fg-muted">
           <span aria-hidden className="flex gap-1"><i className="size-2 rounded-pill bg-line-loud" /><i className="size-2 rounded-pill bg-line-loud" /><i className="size-2 rounded-pill bg-line-loud" /></span>
           {title}
-          {language && <span className="uppercase tracking-caps">[ .{language} ]</span>}
+          {language && <span className="flex items-center gap-1.5 uppercase tracking-caps"><i className="size-1 bg-accent" />.{language}</span>}
         </span>
         <button type="button" onClick={copy} className="inline-flex h-7 items-center gap-1 rounded-sm px-2 text-xs text-fg-muted hover:bg-hover hover:text-fg" aria-live="polite">
           <Icon name={copied ? "check" : "copy"} size={14} />
           {copied ? "Copiado" : "Copiar"}
         </button>
       </figcaption>
-      <pre tabIndex={0} aria-label={title ? `Código: ${title}` : "Bloque de código"} className="overflow-x-auto p-4 focus-visible:outline-2 focus-visible:outline-ring font-mono text-(length:--xo-codeblock-font-size) leading-(--xo-codeblock-line-height)">
+      <pre tabIndex={0} aria-label={title ? `Código: ${title}` : "Bloque de código"} className="overflow-x-auto p-4 focus-visible:outline-2 focus-visible:outline-ring type-code">
         <code>
           {lines.map((l, i) => (
             <span key={i} className="flex">

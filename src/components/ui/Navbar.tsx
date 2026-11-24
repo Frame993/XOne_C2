@@ -3,6 +3,7 @@ import { cn } from "./utils";
 import { Logo } from "./Logo";
 import { Button } from "./Button";
 import { Icon } from "./Icon";
+import { Connector } from "../fx/GridLines";
 
 export type NavLink = { label: string; href: string };
 
@@ -28,13 +29,14 @@ export function Navbar({ links, cta, secondary }: { links: NavLink[]; cta: NavLi
   }, []);
   return (
     <header className="sticky top-0 z-40 border-b border-(--xo-navbar-border) bg-(--xo-navbar-bg)/90 backdrop-blur-md">
-      <div className="xo-container flex h-(--xo-navbar-height) items-center justify-between gap-6">
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0"><Connector style={{ left: "max(var(--xo-size-gutter), calc(50% - var(--xo-size-container) / 2))", top: 0 }} /><Connector style={{ left: "calc(100% - max(var(--xo-size-gutter), calc(50% - var(--xo-size-container) / 2)))", top: 0 }} /></div>
+      <div className="xo-container xo-rails flex h-(--xo-navbar-height) items-center justify-between gap-6 px-4">
         <a href="/" className="shrink-0 rounded-sm" aria-label="XOne, inicio"><Logo /></a>
         <nav aria-label="Principal" className="hidden lg:block">
           <ul className="flex items-center gap-1">
             {links.map((l) => (
               <li key={l.href}>
-                <a href={l.href} className="inline-flex h-8 items-center rounded-md px-2.5 text-md text-(--xo-navbar-link-fg) transition-colors duration-(--xo-duration-instant) hover:bg-(--xo-navbar-link-bg-hover)">{l.label}</a>
+                <a href={l.href} className="inline-flex h-8 items-center rounded-md px-2.5 type-label text-(--xo-navbar-link-fg) transition-colors duration-(--xo-duration-instant) hover:bg-(--xo-navbar-link-bg-hover)">{l.label}</a>
               </li>
             ))}
           </ul>
@@ -51,7 +53,7 @@ export function Navbar({ links, cta, secondary }: { links: NavLink[]; cta: NavLi
       <nav id="xo-mobile-nav" aria-label="Principal móvil" hidden={!open} className={cn("border-t border-line-faint bg-bg lg:hidden")}>
         <ul className="xo-container flex flex-col py-2">
           {links.map((l) => (
-            <li key={l.href}><a href={l.href} onClick={() => setOpen(false)} className="flex h-12 items-center justify-between border-b border-line-faint text-base">{l.label}<Icon name="chevron" className="text-fg-muted" /></a></li>
+            <li key={l.href}><a href={l.href} onClick={() => setOpen(false)} className="flex h-12 items-center justify-between border-b border-line-faint type-body font-medium">{l.label}<Icon name="chevron" className="text-fg-muted" /></a></li>
           ))}
           <li className="flex gap-2 py-4">
             {secondary && <Button href={secondary.href} variant="ghost" className="flex-1">{secondary.label}</Button>}

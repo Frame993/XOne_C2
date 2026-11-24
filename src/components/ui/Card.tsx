@@ -17,13 +17,13 @@ export function Card({ variant = "default", padded = true, className, ...rest }:
 }
 
 export function CardTitle({ className, ...rest }: HTMLAttributes<HTMLHeadingElement>) {
-  return <h3 className={cn("text-lg font-semibold tracking-snug text-fg", className)} {...rest} />;
+  return <h3 className={cn("type-heading text-fg", className)} {...rest} />;
 }
 
 /** Texto de card al estilo firecrawl: arranque en negrita + resto en tono atenuado. */
 export function CardLead({ lead, children, className }: { lead: string; children: React.ReactNode; className?: string }) {
   return (
-    <p className={cn("text-lg tracking-snug text-fg-muted", className)}>
+    <p className={cn("type-lead text-fg-muted", className)}>
       <strong className="font-semibold text-fg">{lead} </strong>
       {children}
     </p>
