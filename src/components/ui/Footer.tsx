@@ -1,13 +1,13 @@
 import type { ReactNode } from "react";
 import { Logo } from "./Logo";
-import { Connector } from "../fx/GridLines";
+import { Connector, RAILS } from "../fx/GridLines";
 
 export type FooterColumn = { title: string; links: { label: string; href: string }[] };
 
 export function Footer({ tagline, columns, aside, legal }: { tagline: string; columns: FooterColumn[]; aside?: ReactNode; legal: ReactNode }) {
   return (
-    <footer className="relative border-t border-(--xo-footer-border) bg-(--xo-footer-bg)">
-      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0"><Connector style={{ left: "max(var(--xo-size-gutter), calc(50% - var(--xo-size-container) / 2))", top: -1 }} /><Connector style={{ left: "calc(100% - max(var(--xo-size-gutter), calc(50% - var(--xo-size-container) / 2)))", top: -1 }} /></div>
+    <footer className="relative bg-(--xo-footer-bg)">{/* sin border-t: la línea de frontera la pone la sección anterior (evita la línea doble) */}
+      <div aria-hidden className="pointer-events-none absolute inset-x-0 top-0"><Connector style={{ left: RAILS.left, top: -0.5 }} /><Connector style={{ left: RAILS.right, top: -0.5 }} /></div>
       <div className="xo-container xo-rails">
         <div className="grid gap-0 lg:grid-cols-[1fr_2fr]">
           <div className="xo-curvy flex flex-col gap-6 border-b border-line-faint p-7 lg:border-r lg:border-b-0">

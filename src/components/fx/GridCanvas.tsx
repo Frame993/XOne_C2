@@ -58,7 +58,7 @@ export function GridCanvas({ cols = 13, centerCols = 7, topRows = 1, lit: litCou
     if (!canvas || !colors) return;
     let raf = 0;
     let { ctx, w, h } = setupCanvas(canvas);
-    let R = Math.max(1, Math.floor((h - 1) / GRID_STEP));
+    let R = Math.max(1, Math.floor(h / GRID_STEP));
     let rects = layout(cols, R, centerCols, topRows);
     const lits: Lit[] = [];
     const candidates = () => rects.map((r, i) => (r.side ? i : -1)).filter((i) => i >= 0);
@@ -75,12 +75,15 @@ export function GridCanvas({ cols = 13, centerCols = 7, topRows = 1, lit: litCou
       }
     };
     const rr = (x: number, y: number, cw: number, ch: number) => { ctx.beginPath(); ctx.roundRect(x, y, cw, ch, 8); };
-    const box = (q: Rect) => ({ x: q.c * GRID_STEP + 1, y: q.r * GRID_STEP + 1, cw: q.w * GRID_STEP - 1, ch: q.h * GRID_STEP - 1 });
+    // Sin contorno exterior: las celdas llegan a los bordes del lienzo, porque el borde del marco (izq./der.) y las líneas de
+    // frontera (arriba/abajo) ya pintan esas líneas; si el lienzo dibujara las suyas quedarían dos líneas de 1px pegadas (2px).
+    // La última fila se alarga hasta la penúltima fila de píxeles: la última es la línea inferior de la sección.
+    const box = (q: Rect) => { const y = q.r * GRID_STEP; return { x: q.c * GRID_STEP, y, cw: q.w * GRID_STEP - 1, ch: (q.r + q.h >= R ? h - 1 : (q.r + q.h) * GRID_STEP - 1) - y }; };
 
     const draw = (now: number) => {
       ctx.clearRect(0, 0, w, h);
       ctx.fillStyle = colors.line;
-      ctx.fillRect(0, 0, cols * GRID_STEP + 1, R * GRID_STEP + 1);
+      ctx.fillRect(0, 0, w, h);
       for (const q of rects) {
         const { x, y, cw, ch } = box(q);
         ctx.fillStyle = colors.bg; rr(x, y, cw, ch); ctx.fill();
@@ -102,10 +105,10 @@ export function GridCanvas({ cols = 13, centerCols = 7, topRows = 1, lit: litCou
     const now = performance.now();
     for (let i = 0; i < Math.ceil(litCount * 0.7); i++) spawn(now, Math.random() * 3000);
     if (reduced) draw(now); else raf = requestAnimationFrame(tick);
-    const ro = new ResizeObserver(() => { ({ ctx, w, h } = setupCanvas(canvas)); R = Math.max(1, Math.floor((h - 1) / GRID_STEP)); rects = layout(cols, R, centerCols, topRows); lits.length = 0; draw(performance.now()); });
+    const ro = new ResizeObserver(() => { ({ ctx, w, h } = setupCanvas(canvas)); R = Math.max(1, Math.floor(h / GRID_STEP)); rects = layout(cols, R, centerCols, topRows); lits.length = 0; draw(performance.now()); });
     ro.observe(canvas);
     return () => { cancelAnimationFrame(raf); ro.disconnect(); };
   }, [colors, reduced, cols, centerCols, topRows, litCount, mirror]);
 
-  return <canvas ref={ref} aria-hidden className={cn("pointer-events-none block", className)} style={{ width: cols * GRID_STEP + 1 }} />;
+  return <canvas ref={ref} aria-hidden className={cn("pointer-events-none block", className)} style={{ width: cols * GRID_STEP - 1 }} />;
 }

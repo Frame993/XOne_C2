@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { Badge, Button, Card, CardLead, CodeBlock, Eyebrow, Footer, Icon, Navbar, Section, SectionHeading, SectionIndex, Tabs, cn } from "../components/ui";
 import * as C from "../content/xone";
-import { AIShowcase, AutoSteps, CountUp, DotMatrix, FrameSection, FullLine, GRID_STEP, GridCanvas, PageRails, useReducedMotion, GridSpacer, IntegrationIllo, Marquee, OfflineIllo, PlatformsIllo, Reveal, Scramble, SecurityIllo } from "../components/fx";
+import { AIShowcase, AutoSteps, CountUp, DotMatrix, FrameRails, FrameSection, FullLine, GRID_STEP, GridCanvas, PageRails, useReducedMotion, GridSpacer, IntegrationIllo, Marquee, OfflineIllo, PlatformsIllo, Reveal, Scramble, SecurityIllo } from "../components/fx";
 
 const TOTAL = 7;
 
@@ -19,7 +19,8 @@ function ImgOrPlaceholder({ src, alt, className, note }: { src: string; alt: str
 function Announcement() {
   return (
     <div className="relative">
-      <FullLine position="bottom" />
+      <FrameRails />
+      <FullLine position="bottom" frame />
       <div className="xo-container xo-rails px-3 py-3">
       <a href={C.announcement.href} className="flex min-h-10 flex-wrap items-center justify-center gap-x-2 rounded-md bg-(--xo-color-accent-solid) px-4 py-2 text-center type-body-sm text-(--xo-color-accent-solid-fg) transition-colors duration-(--xo-duration-base) hover:bg-(--xo-color-accent-solid-hover)">
         <span className="inline-flex h-5 items-center rounded-pill bg-(--xo-color-ink-alpha-40) px-2 type-label-sm">Nuevo</span>

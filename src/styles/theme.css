@@ -237,7 +237,7 @@
 
 @layer components {
   /* contenedor con líneas guía verticales (patrón firecrawl) */
-  .xo-container { width: min(100% - 2 * var(--xo-size-gutter), var(--xo-size-container)); margin-inline: auto; }
+  .xo-container { width: min(100% - 2 * var(--xo-size-gutter), var(--xo-size-container)); margin-left: round(down, max(var(--xo-size-gutter), (100% - var(--xo-size-container)) / 2), 1px); margin-right: auto; } /* margen a píxel entero: los bordes de 1px nunca caen en medio píxel */
   .xo-rails { border-inline: 1px solid var(--xo-section-grid-line); }
   /*
    * Esquinas "curvy": cada bloque delimitado por líneas muestra en sus 4 esquinas una cuña del color de

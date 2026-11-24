@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { cn } from "./utils";
-import { Connector, FullLine } from "../fx/GridLines";
+import { Connector, FullLine, RAILS } from "../fx/GridLines";
 
 /** Índice de sección: 01 / 07 » ETIQUETA. Decorativo: aria-hidden. */
 export function SectionIndex({ n, total, label }: { n: number; total: number; label: string }) {
@@ -8,7 +8,7 @@ export function SectionIndex({ n, total, label }: { n: number; total: number; la
   return (
     <div className="relative" aria-hidden="true">
       <FullLine position="bottom" center centerHalf="top" />
-      <span className="pointer-events-none absolute top-0 left-1/2 z-[3] hidden lg:block"><Connector half="bottom" style={{ top: -0.5, left: 0 }} /></span>
+      <span className="pointer-events-none absolute inset-x-0 top-0 z-[3] hidden lg:block"><Connector half="bottom" style={{ top: -0.5, left: RAILS.mid }} /></span>
       <div className="xo-container xo-rails grid lg:grid-cols-2">
         <div className="xo-curvy flex items-center gap-3 py-6 pr-7 pl-7 type-overline lg:py-[45px] lg:border-r lg:border-line-faint">
           <span className="absolute top-1/2 left-0 h-4 w-0.5 -translate-x-1/2 -translate-y-1/2 bg-accent" />
