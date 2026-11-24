@@ -7,6 +7,8 @@ Mínimo AA: 4.5 texto normal · 3.0 texto grande/UI. `decorative` y bordes son n
 | text.primary | bg.base | 14.37 | 18.80 | 4.5 | ✅ |
 | text.primary | surface.default | 15.13 | 17.03 | 4.5 | ✅ |
 | text.primary | surface.raised | 15.13 | 15.66 | 4.5 | ✅ |
+| text.primary | menu.bg | 14.37 | 17.03 | 4.5 | ✅ |
+| text.muted | menu.bg | 5.06 | 7.11 | 4.5 | ✅ |
 | text.secondary | bg.base | 5.88 | 11.11 | 4.5 | ✅ |
 | text.secondary | surface.default | 6.19 | 10.06 | 4.5 | ✅ |
 | text.muted | bg.base | 5.06 | 7.85 | 4.5 | ✅ |

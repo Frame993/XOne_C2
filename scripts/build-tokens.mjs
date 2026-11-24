@@ -53,8 +53,9 @@ const ALPHAS = [4, 8, 12, 16, 24, 40, 64, 72];
 const cyanAlpha = Object.fromEntries(ALPHAS.map((a) => [a, hexA("#00aed9", a / 100)]));
 const inkAlpha = Object.fromEntries(ALPHAS.map((a) => [a, hexA("#262626", a / 100)]));
 const whiteAlpha = Object.fromEntries(ALPHAS.map((a) => [a, hexA("#ffffff", a / 100)]));
+const blackAlpha = Object.fromEntries(ALPHAS.map((a) => [a, hexA("#000000", a / 100)]));
 const primitive = {
-  color: { cyan: brand.cyan, "cyan-alpha": cyanAlpha, "ink-alpha": inkAlpha, "white-alpha": whiteAlpha, petrol: brand.petrol, neutral: neutralSorted, green: status.green, amber: status.amber, red: status.red },
+  color: { cyan: brand.cyan, "cyan-alpha": cyanAlpha, "ink-alpha": inkAlpha, "white-alpha": whiteAlpha, "black-alpha": blackAlpha, petrol: brand.petrol, neutral: neutralSorted, green: status.green, amber: status.amber, red: status.red },
   font: {
     family: { sans: "'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif", mono: "'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" },
     // 3 pesos: 400 lectura · 500 interfaz (botones, nav, badges) · 600 titulares y énfasis
@@ -115,6 +116,12 @@ const semanticColor = {
   "brand.secondary": ["color.neutral.900", "color.neutral.50"],
   "brand.secondary-hover": ["color.neutral.800", "color.neutral.200"],
   "brand.secondary-fg": ["color.neutral.0", "color.neutral.975"],
+  // menús desplegables (patrón de la referencia): en claro la lámina es el mismo fondo de la página y la separación la da el velo;
+  // en oscuro la lámina sube un escalón y el velo es negro denso para que se lea como capa
+  "menu.bg": ["color.neutral.50", "color.neutral.950"],
+  "menu.border": ["color.neutral.100", "color.neutral.850"],
+  "menu.hover": ["color.ink-alpha.4", "color.neutral.900"],
+  "menu.scrim": ["color.ink-alpha.40", "color.black-alpha.72"],
   "overlay.hover": ["color.neutral.100", "color.neutral.925"],
   "overlay.press": ["color.neutral.150", "color.neutral.850"],
   "focus.ring": ["color.cyan.600", "color.cyan.400"],
@@ -298,7 +305,7 @@ const walk = (o, p = "") => Object.entries(o).forEach(([k, v]) => (typeof v === 
 walk(primitive.color, "color");
 const sem = (k, mode) => flat[semanticColor[k][mode === "light" ? 0 : 1]];
 const PAIRS = [
-  ["text.primary", "bg.base"], ["text.primary", "surface.default"], ["text.primary", "surface.raised"],
+  ["text.primary", "bg.base"], ["text.primary", "surface.default"], ["text.primary", "surface.raised"], ["text.primary", "menu.bg"], ["text.muted", "menu.bg"],
   ["text.secondary", "bg.base"], ["text.secondary", "surface.default"],
   ["text.muted", "bg.base"], ["text.muted", "surface.default"], ["text.muted", "bg.subtle"],
   ["text.accent", "bg.base"], ["text.accent", "surface.default"], ["text.accent-display", "bg.base", 3], ["text.accent-display", "surface.default", 3], ["text.link", "bg.base"], ["text.link", "surface.default"],

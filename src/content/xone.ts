@@ -5,15 +5,61 @@ const X = "https://xone.es";
 
 export const announcement = { text: "XOne obtiene la certificación ISO/IEC 27001", cta: "Leer la noticia", href: `${X}/certificacion-iso-27001/` };
 
+/** Menús del header: los 6 grupos reales de xone.es (mismos enlaces). Las descripciones cortas son reescritura propia. */
 export const nav = {
-  links: [
-    { label: "Plataforma", href: `${X}/que-es-xone/` },
-    { label: "Productos", href: "#productos" },
-    { label: "Soluciones", href: `${X}/soluciones-xone/` },
-    { label: "Casos de éxito", href: "#casos" },
-    { label: "Noticias", href: `${X}/noticias/` },
-    { label: "Empresa", href: `${X}/sobre-nosotros/` },
+  menus: [
+    { label: "Plataforma", caseIndex: 1, items: [
+      { label: "Plataforma XOne", desc: "Qué es XOne y cómo funciona", href: `${X}/que-es-xone/`, icon: "layers" },
+      { label: "Marketectura", desc: "La plataforma completa, de un vistazo", href: `${X}/marketectura/`, icon: "grid" },
+      { label: "Herramientas de desarrollo", desc: "Cómo asiste XOne a los desarrolladores", href: `${X}/como-asiste-xone-desarolladores/`, icon: "code" },
+      { label: "Servicios y soporte", desc: "Formación, consultoría, hosting y soporte", href: `${X}/servicios-y-soporte/`, icon: "headset" },
+      { label: "Características XOne", desc: "Lo que nos hace únicos", href: `${X}/que-nos-hace-unicos-xone/`, icon: "badge" },
+      { label: "Movilidad XOne", desc: "Cómo resolvemos la movilidad empresarial", href: `${X}/como-resolvemos-la-movilidad/`, icon: "phone" },
+      { label: "DevOps", desc: "Integración y despliegue continuos", href: `${X}/devops/`, icon: "loop" },
+    ] },
+    { label: "Productos", caseIndex: 4, items: [
+      { label: "XOneCode", tag: "IA", desc: "Agente de programación con IA", href: `${X}/xonecode/`, icon: "cpu" },
+      { label: "MXDP", desc: "Plataforma de desarrollo multiexperiencia", href: `${X}/nueva-mxdp/`, icon: "layers" },
+      { label: "Desarrollo XOneCloud", desc: "Herramientas de desarrollo rápido", href: `${X}/herramientas-rapidas-de-desarrollo-xonecloud/`, icon: "cloud" },
+      { label: "Réplica de datos y documental", desc: "Apps que funcionan sin cobertura", href: `${X}/replica-de-datos-y-documentacion-xone/`, icon: "refresh" },
+      { label: "Seguridad", desc: "Protección de extremo a extremo", href: `${X}/ciberseguridad/`, icon: "shield" },
+      { label: "Bus de integración", desc: "Microservicios para conectar tus sistemas", href: `${X}/bus-integracion-esb-enterprise-service-bus/`, icon: "plug" },
+      { label: "Cloud – On premise", desc: "Despliega donde lo necesites", href: `${X}/cloud-vs-on-premise-xone/`, icon: "server" },
+      { label: "Sistema de actualizaciones", desc: "Actualiza las apps desde el servidor", href: `${X}/sistema-de-actualizaciones-xone/`, icon: "download" },
+      { label: "Multiplataforma", desc: "Android, iOS, Windows y web", href: `${X}/multiplataforma-xone/`, icon: "device" },
+      { label: "Monitorización con IA", desc: "Anticipa caídas y fallos del servicio", href: `${X}/sistema-de-monitorizacion-con-ia/`, icon: "activity" },
+      { label: "Notificaciones push", desc: "Avisos al instante en cada dispositivo", href: `${X}/notificaciones-push-xone/`, icon: "bell" },
+      { label: "XOneAssist", desc: "Tutor virtual para desarrolladores", href: `${X}/xoneassist/`, icon: "chat" },
+      { label: "EMM / MAM / MDM / BYOD", desc: "Gestión de la movilidad empresarial", href: `${X}/gestion-de-movilidad-empresarial-xone/`, icon: "lock" },
+    ] },
+    { label: "Soluciones", caseIndex: 2, items: [
+      { label: "Soluciones XOne", desc: "Apps para cada proceso de negocio", href: `${X}/soluciones-xone/`, icon: "briefcase" },
+      { label: "Sectores", desc: "Los sectores en los que trabajamos", href: `${X}/soluciones-xone/#sectores`, icon: "map" },
+      { label: "Casos de uso", desc: "Qué puedes movilizar con XOne", href: `${X}/casos-de-uso-home/`, icon: "doc" },
+      { label: "Casos de éxito", desc: "Proyectos reales de nuestros clientes", href: `${X}/casos-de-exito-xone/`, icon: "award" },
+      { label: "Kit Digital", desc: "Digitaliza tu empresa con el Kit Digital", href: `${X}/kit-digital/`, icon: "euro" },
+    ] },
+    { label: "Comunidad", caseIndex: 6, items: [
+      { label: "Clientes", desc: "Empresas que confían en XOne", href: `${X}/nuestros-clientes-xone/`, icon: "users" },
+      { label: "Socios estratégicos", desc: "Nuestras alianzas tecnológicas", href: `${X}/socios-estrategicos-xone/`, icon: "handshake" },
+      { label: "Hazte partner", desc: "Únete a la red de partners XOne", href: `${X}/hazte-partner-xone/`, icon: "user-plus" },
+      { label: "Programa de partners", desc: "Cómo funciona el programa", href: `${X}/programadepartners/`, icon: "badge" },
+    ] },
+    { label: "Recursos", caseIndex: 9, items: [
+      { label: "Noticias", desc: "Novedades de XOne", href: `${X}/noticias/`, icon: "news" },
+      { label: "Documentación XOne", desc: "Guías y documentación técnica", href: `${X}/documentacionxone/`, icon: "book" },
+      { label: "Premios y reconocimientos", desc: "Gartner y otros reconocimientos", href: `${X}/premios-y-reconocimientos/`, icon: "award" },
+      { label: "Colaboraciones I+D+i", desc: "Investigación e innovación", href: `${X}/colaboraciones-id/`, icon: "flask" },
+    ] },
+    { label: "Empresa", caseIndex: 0, items: [
+      { label: "Sobre nosotros", desc: "Más de 20 años creando apps empresariales", href: `${X}/sobre-nosotros/`, icon: "building" },
+      { label: "Certificaciones", desc: "ENS e ISO/IEC 27001", href: `${X}/certificaciones/`, icon: "shield" },
+      { label: "Financiación europea", desc: "Proyectos cofinanciados por la UE", href: `${X}/financiacion-europea/`, icon: "euro" },
+    ] },
   ],
+  featured: { overline: "XOneCode · IA", title: "Tu agente de programación especializado en XOne.", href: `${X}/xonecode/` },
+  stories: { label: "Casos de éxito", desc: "Proyectos reales de nuestros clientes", href: `${X}/casos-de-exito-xone/` },
+  wiki: { label: "Wiki", href: "https://xoneisp.com/xonedocs/" },
   secondary: { label: "EN", href: `${X}/en/` },
   cta: { label: "Contacto", href: `${X}/contacto/` },
 };

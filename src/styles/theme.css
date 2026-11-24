@@ -260,6 +260,12 @@
   [data-reveal] { transition: opacity var(--xo-duration-slower) var(--xo-easing-out) var(--xo-reveal-delay, 0ms), translate var(--xo-duration-slower) var(--xo-easing-out) var(--xo-reveal-delay, 0ms); }
   [data-reveal="out"] { opacity: 0; translate: 0 16px; }
   @media (prefers-reduced-motion: reduce) { [data-reveal="out"] { opacity: 1; translate: none; } }
+  /* menús del header: el panel cae 6px con fundido; el velo sólo funde */
+  .xo-menu-in { animation: xo-menu-in var(--xo-duration-base) var(--xo-easing-out) both; }
+  @keyframes xo-menu-in { from { opacity: 0; translate: 0 -6px; } }
+  .xo-fade-in { animation: xo-fade-in var(--xo-duration-base) var(--xo-easing-out) both; }
+  @keyframes xo-fade-in { from { opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .xo-menu-in, .xo-fade-in { animation: none; } }
   /* líneas discontinuas que fluyen (conectores) */
   .xo-flow { animation: xo-dash 1.2s linear infinite; }
   @keyframes xo-dash { to { stroke-dashoffset: -16; } }

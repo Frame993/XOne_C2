@@ -37,6 +37,14 @@
   --xo-color-white-alpha-40: #ffffff66;
   --xo-color-white-alpha-64: #ffffffa3;
   --xo-color-white-alpha-72: #ffffffb8;
+  --xo-color-black-alpha-4: #0000000a;
+  --xo-color-black-alpha-8: #00000014;
+  --xo-color-black-alpha-12: #0000001f;
+  --xo-color-black-alpha-16: #00000029;
+  --xo-color-black-alpha-24: #0000003d;
+  --xo-color-black-alpha-40: #00000066;
+  --xo-color-black-alpha-64: #000000a3;
+  --xo-color-black-alpha-72: #000000b8;
   --xo-color-petrol-50: #f0f8fd;
   --xo-color-petrol-100: #e0effa;
   --xo-color-petrol-200: #c2e0f3;
@@ -219,6 +227,10 @@
   --xo-color-brand-secondary: var(--xo-color-neutral-900);
   --xo-color-brand-secondary-hover: var(--xo-color-neutral-800);
   --xo-color-brand-secondary-fg: var(--xo-color-neutral-0);
+  --xo-color-menu-bg: var(--xo-color-neutral-50);
+  --xo-color-menu-border: var(--xo-color-neutral-100);
+  --xo-color-menu-hover: var(--xo-color-ink-alpha-4);
+  --xo-color-menu-scrim: var(--xo-color-ink-alpha-40);
   --xo-color-overlay-hover: var(--xo-color-neutral-100);
   --xo-color-overlay-press: var(--xo-color-neutral-150);
   --xo-color-focus-ring: var(--xo-color-cyan-600);
@@ -285,6 +297,10 @@
   --xo-color-brand-secondary: var(--xo-color-neutral-50);
   --xo-color-brand-secondary-hover: var(--xo-color-neutral-200);
   --xo-color-brand-secondary-fg: var(--xo-color-neutral-975);
+  --xo-color-menu-bg: var(--xo-color-neutral-950);
+  --xo-color-menu-border: var(--xo-color-neutral-850);
+  --xo-color-menu-hover: var(--xo-color-neutral-900);
+  --xo-color-menu-scrim: var(--xo-color-black-alpha-72);
   --xo-color-overlay-hover: var(--xo-color-neutral-925);
   --xo-color-overlay-press: var(--xo-color-neutral-850);
   --xo-color-focus-ring: var(--xo-color-cyan-400);
@@ -351,6 +367,10 @@
     --xo-color-brand-secondary: var(--xo-color-neutral-50);
     --xo-color-brand-secondary-hover: var(--xo-color-neutral-200);
     --xo-color-brand-secondary-fg: var(--xo-color-neutral-975);
+    --xo-color-menu-bg: var(--xo-color-neutral-950);
+    --xo-color-menu-border: var(--xo-color-neutral-850);
+    --xo-color-menu-hover: var(--xo-color-neutral-900);
+    --xo-color-menu-scrim: var(--xo-color-black-alpha-72);
     --xo-color-overlay-hover: var(--xo-color-neutral-925);
     --xo-color-overlay-press: var(--xo-color-neutral-850);
     --xo-color-focus-ring: var(--xo-color-cyan-400);

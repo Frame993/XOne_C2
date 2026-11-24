@@ -419,7 +419,7 @@ export function Home() {
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-surface focus:p-3">Saltar al contenido</a>
       <PageRails />
       <Announcement />
-      <Navbar links={C.nav.links} cta={C.nav.cta} secondary={C.nav.secondary} />
+      <Navbar menus={C.nav.menus} cta={C.nav.cta} secondary={C.nav.secondary} wiki={C.nav.wiki} featured={C.nav.featured} stories={C.nav.stories} cases={C.cases} />
       <main id="main">
         <Hero />
         <Logos />
