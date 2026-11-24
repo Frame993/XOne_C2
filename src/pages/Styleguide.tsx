@@ -1,6 +1,12 @@
 import type { ReactNode } from "react";
 import tokens from "../../tokens/tokens.json";
-import { AutoSteps, CountUp, DotMatrix, GridCanvas, GridSpacer, IntegrationIllo, Marquee, OfflineIllo, PlatformsIllo, Scramble, SecurityIllo, Spark } from "../components/fx";
+import typeRolesJson from "../../tokens/type-roles.json";
+
+type Role = { family: string; size: string; lh: string; weight: string; tracking: string; use: string; upper?: boolean };
+type Mk = { unit: string; note: string; margin: number } & Record<"display" | "title" | "heading" | "lead" | "body" | "overline", [number, number]>;
+const typeRoles = typeRolesJson as unknown as { roles: Record<string, Role>; marketing: Record<string, Mk> };
+const ROLE: Record<string, string> = { hero: "type-hero", title: "type-title", "title-md": "type-title-md", "title-sm": "type-title-sm", heading: "type-heading", item: "type-item", lead: "type-lead", body: "type-body", "body-sm": "type-body-sm", label: "type-label", "label-sm": "type-label-sm", overline: "type-overline", micro: "type-micro", code: "type-code" };
+import { AutoSteps, CountUp, DotMatrix, GridCanvas, GridSpacer, IntegrationIllo, Marquee, OfflineIllo, PlatformsIllo, Scramble, SecurityIllo } from "../components/fx";
 import { Badge, Button, Card, CardLead, CardTitle, CodeBlock, Eyebrow, Footer, Icon, Input, Logo, Navbar, SectionHeading, SectionIndex, Tabs, ThemeToggle, cn } from "../components/ui";
 
 type Tok = { $value: string | number; $type: string; $extensions?: { "es.xone.modes"?: { dark: string } } };
@@ -17,7 +23,7 @@ const ratio = (a: string, b: string) => { const [x, y] = [lum(a), lum(b)].sort((
 function Block({ id, title, kicker, children }: { id: string; title: string; kicker: string; children: ReactNode }) {
   return (
     <section id={id} className="scroll-mt-20 border-b border-line-faint py-16">
-      <p className="font-mono text-xs uppercase tracking-caps text-fg-accent">{kicker}</p>
+      <p className="type-overline text-fg-accent">{kicker}</p>
       <h2 className="mt-2 mb-8 text-2xl font-semibold tracking-tight">{title}</h2>
       {children}
     </section>
@@ -44,14 +50,14 @@ const space = prim.space as Record<string, Tok>;
 const radius = prim.radius as Record<string, Tok>;
 const durations = prim.duration as Record<string, Tok>;
 const easings = prim.easing as Record<string, Tok>;
-const TXT: Record<string, string> = { "2xs": "text-2xs", xs: "text-xs", sm: "text-sm", md: "text-md", base: "text-base", lg: "text-lg", xl: "text-xl", "2xl": "text-2xl", "3xl": "text-3xl", "4xl": "text-4xl" };
+const TXT: Record<string, string> = { "2xs": "text-2xs", xs: "text-xs", sm: "type-body-sm", md: "text-md", base: "text-base", lg: "text-lg", xl: "text-xl", "2xl": "text-2xl", "3xl": "text-3xl", "4xl": "text-4xl" };
 const shadows = ["xs", "card", "float", "accent", "inset"];
 
 function ComponentsGallery() {
   return (
     <div className="flex flex-col gap-10">
       <div>
-        <h3 className="mb-4 font-mono text-xs uppercase tracking-caps text-fg-muted">Button · variantes × tamaños × estados</h3>
+        <h3 className="mb-4 type-overline text-fg-muted">Button · variantes × tamaños × estados</h3>
         <div className="flex flex-wrap items-center gap-3">
           <Button>Primary</Button><Button variant="secondary">Secondary</Button><Button variant="ghost">Ghost</Button><Button variant="outline">Outline</Button><Button variant="link" iconRight="chevron">Link</Button>
         </div>
@@ -61,13 +67,13 @@ function ComponentsGallery() {
         </div>
       </div>
       <div>
-        <h3 className="mb-4 font-mono text-xs uppercase tracking-caps text-fg-muted">Badge</h3>
+        <h3 className="mb-4 type-overline text-fg-muted">Badge</h3>
         <div className="flex flex-wrap items-center gap-3">
           <Badge>Neutral</Badge><Badge variant="brand" dot>Brand</Badge><Badge variant="success" dot>Operativo</Badge><Badge variant="warning">Aviso</Badge><Badge variant="danger">Error</Badge><Badge variant="mono">ENS · ISO 27001</Badge><Eyebrow>Eyebrow</Eyebrow>
         </div>
       </div>
       <div>
-        <h3 className="mb-4 font-mono text-xs uppercase tracking-caps text-fg-muted">Card</h3>
+        <h3 className="mb-4 type-overline text-fg-muted">Card</h3>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <Card><CardTitle>Default</CardTitle><p className="mt-2 text-md text-fg-muted">Borde sutil, sin sombra.</p></Card>
           <Card variant="raised"><CardTitle>Raised</CardTitle><p className="mt-2 text-md text-fg-muted">Sombra multicapa.</p></Card>
@@ -76,7 +82,7 @@ function ComponentsGallery() {
         </div>
       </div>
       <div>
-        <h3 className="mb-4 font-mono text-xs uppercase tracking-caps text-fg-muted">Input · estados</h3>
+        <h3 className="mb-4 type-overline text-fg-muted">Input · estados</h3>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <Input label="Default" placeholder="tu@empresa.com" icon="mail" />
           <Input label="Con ayuda" placeholder="Nombre" hint="Texto de ayuda" />
@@ -86,13 +92,13 @@ function ComponentsGallery() {
       </div>
       <div className="grid gap-8 lg:grid-cols-2">
         <div>
-          <h3 className="mb-4 font-mono text-xs uppercase tracking-caps text-fg-muted">Tabs · pill</h3>
+          <h3 className="mb-4 type-overline text-fg-muted">Tabs · pill</h3>
           <Tabs label="Ejemplo pill" items={[{ id: "a", label: "Android", content: <p className="text-fg-secondary">Panel Android</p> }, { id: "b", label: "iOS", content: <p className="text-fg-secondary">Panel iOS</p> }, { id: "c", label: "Web / PWA", content: <p className="text-fg-secondary">Panel Web</p> }]} />
-          <h3 className="mt-8 mb-4 font-mono text-xs uppercase tracking-caps text-fg-muted">Tabs · underline</h3>
+          <h3 className="mt-8 mb-4 type-overline text-fg-muted">Tabs · underline</h3>
           <Tabs variant="underline" label="Ejemplo underline" items={[{ id: "a", label: "Diseño", content: <p className="text-fg-secondary">Panel Diseño</p> }, { id: "b", label: "Análisis", content: <p className="text-fg-secondary">Panel Análisis</p> }, { id: "c", label: "Desarrollo", content: <p className="text-fg-secondary">Panel Desarrollo</p> }]} />
         </div>
         <div>
-          <h3 className="mb-4 font-mono text-xs uppercase tracking-caps text-fg-muted">CodeBlock</h3>
+          <h3 className="mb-4 type-overline text-fg-muted">CodeBlock</h3>
           <CodeBlock title="ejemplo" language="ts" code={'// Demostración del componente (no es código de XOne)\nimport { Button } from "@/components/ui";\n\nexport const cta = <Button size="lg">Contacto</Button>;'} />
         </div>
       </div>
@@ -120,7 +126,7 @@ export function Styleguide() {
           <Block id="color" kicker="Primitives" title="Escalas de color 50–950">
             {Object.entries(colors).map(([g, steps]) => (
               <div key={g} className="mb-6">
-                <h3 className="mb-2 font-mono text-xs uppercase tracking-caps text-fg-muted">{g}{g === "cyan" && " · logo #00AED9 = 500"}{g === "petrol" && " · logo #155D82 = 700"}{g === "neutral" && " · 900 = #18293E (xone.es)"}</h3>
+                <h3 className="mb-2 type-overline text-fg-muted">{g}{g === "cyan" && " · logo #00AED9 = 500"}{g === "petrol" && " · logo #155D82 = 700"}{g === "neutral" && " · 900 = #18293E (xone.es)"}</h3>
                 <div className="grid grid-cols-[repeat(auto-fill,minmax(64px,1fr))] gap-2">
                   {Object.entries(steps).map(([s, t]) => <Swatch key={s} name={`${g}-${s}`} hex={String(t.$value)} />)}
                 </div>
@@ -131,7 +137,7 @@ export function Styleguide() {
           <Block id="semantic" kicker="Semantic" title="Tokens semánticos (claro / oscuro)">
             <div className="overflow-x-auto rounded-lg border border-line-faint bg-surface">
               <table className="w-full text-left text-md">
-                <thead className="bg-surface-sunken font-mono text-xs uppercase tracking-caps text-fg-muted"><tr><th className="p-3">Token</th><th className="p-3">CSS</th><th className="p-3">Claro</th><th className="p-3">Oscuro</th></tr></thead>
+                <thead className="bg-surface-sunken type-overline text-fg-muted"><tr><th className="p-3">Token</th><th className="p-3">CSS</th><th className="p-3">Claro</th><th className="p-3">Oscuro</th></tr></thead>
                 <tbody>
                   {Object.entries(sem).flatMap(([g, items]) => Object.entries(items).map(([n, t]) => {
                     const light = resolve(String(t.$value)); const dark = resolve(t.$extensions?.["es.xone.modes"]?.dark ?? "");
@@ -149,16 +155,35 @@ export function Styleguide() {
             </div>
           </Block>
 
-          <Block id="type" kicker="Typography" title="Plus Jakarta Sans + Geist Mono">
+          <Block id="type" kicker="Typography" title="Roles tipográficos · Plus Jakarta Sans + Geist Mono">
+            <p className="mb-6 max-w-prose type-body text-fg-secondary">Usa siempre un rol (<code className="type-code">type-*</code>), nunca tamaños o pesos sueltos. 3 pesos: 400 lectura · 500 interfaz · 600 titulares y énfasis.</p>
             <div className="flex flex-col divide-y divide-line-faint rounded-lg border border-line-faint bg-surface">
-              {[...typeScale].reverse().map((k) => (
-                <div key={k} className="flex flex-col gap-1 p-4 md:flex-row md:items-baseline md:gap-6">
-                  <span className="w-40 shrink-0 font-mono text-xs text-fg-muted">{k} · {String((prim.font as Record<string, Record<string, Tok>>).size[k].$value)}/{String((prim.font as Record<string, Record<string, Tok>>).lineHeight[k].$value)}</span>
-                  <span className={cn(TXT[k], ["2xl", "3xl", "4xl", "xl"].includes(k) ? "font-semibold tracking-tight" : "")}>Acelera el desarrollo de apps</span>
+              {Object.entries(typeRoles.roles).map(([k, r]) => (
+                <div key={k} className="grid gap-2 p-5 md:grid-cols-[200px_1fr] md:items-baseline md:gap-6">
+                  <div className="flex flex-col gap-1">
+                    <span className="type-overline text-fg-accent">type-{k}</span>
+                    <span className="font-mono text-xs text-fg-muted">{String((prim.font as Record<string, Record<string, Tok>>).size[r.size].$value)} / {String((prim.font as Record<string, Record<string, Tok>>).lineHeight[r.lh].$value)} · {String((prim.font as Record<string, Record<string, Tok>>).weight[r.weight].$value)}</span>
+                    <span className="type-body-sm text-fg-muted">{r.use}</span>
+                  </div>
+                  <span className={cn("text-fg", ROLE[k])}>{k === "code" ? "const orden = crearOrden(cliente)" : k.startsWith("title") || k === "hero" ? "Acelera el desarrollo" : "Acelera el desarrollo de aplicaciones empresariales"}</span>
                 </div>
               ))}
-              <div className="flex flex-col gap-1 p-4 md:flex-row md:items-baseline md:gap-6"><span className="w-40 shrink-0 font-mono text-xs text-fg-muted">mono · xs caps</span><span className="font-mono text-xs uppercase tracking-caps">[ 01 / 07 ] » Plataforma</span></div>
-              <div className="flex flex-wrap gap-6 p-4">{[400, 450, 500, 600, 700].map((w) => <span key={w} style={{ fontWeight: `var(--xo-font-weight-${{ 400: "regular", 450: "book", 500: "medium", 600: "semibold", 700: "bold" }[w]})` }} className="text-xl">{w} Aa</span>)}</div>
+            </div>
+            <h3 className="mt-12 mb-4 type-heading text-fg">Escalas para marketing</h3>
+            <p className="mb-4 max-w-prose type-body-sm text-fg-muted">Mismos roles y pesos, tamaños por formato (tamaño / interlineado). Fuente: <code className="type-code">tokens/type-roles.json</code> y <code className="type-code">tokens.json → marketing</code>.</p>
+            <div className="overflow-x-auto rounded-lg border border-line-faint bg-surface">
+              <table className="w-full text-left type-body-sm">
+                <thead className="bg-surface-sunken type-overline text-fg-muted"><tr>{["Formato", "Display", "Title", "Heading", "Lead", "Body", "Overline", "Margen"].map((h) => <th key={h} className="p-3">{h}</th>)}</tr></thead>
+                <tbody>
+                  {Object.entries(typeRoles.marketing).map(([k, m]) => (
+                    <tr key={k} className="border-t border-line-faint">
+                      <td className="p-3"><span className="type-label text-fg">{k}</span><br /><span className="text-fg-muted">{m.note}</span></td>
+                      {(["display", "title", "heading", "lead", "body", "overline"] as const).map((r) => <td key={r} className="p-3 font-mono text-xs">{m[r][0]}/{m[r][1]}{m.unit}</td>)}
+                      <td className="p-3 font-mono text-xs">{m.margin}{m.unit}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </Block>
 
@@ -209,18 +234,18 @@ export function Styleguide() {
           <Block id="fx" kicker="FX" title="Rejillas, animaciones e ilustraciones">
             <div className="flex flex-col gap-8">
               <div>
-                <h3 className="mb-3 font-mono text-xs uppercase tracking-caps text-fg-muted">GridCanvas · contenida, filas completas, bloque central fusionado</h3>
-                <div className="relative flex h-[304px] justify-center overflow-hidden rounded-lg border border-line-faint"><div className="relative h-full"><GridCanvas cols={7} centerCols={3} className="h-full" /><Spark style={{ left: 2 * 101, top: 101 }} /><Spark style={{ left: 5 * 101, top: 101 }} /></div></div>
+                <h3 className="mb-3 type-overline text-fg-muted">GridCanvas · contenida, filas completas, bloque central fusionado</h3>
+                <div className="relative flex h-[304px] justify-center overflow-hidden rounded-lg border border-line-faint"><div className="relative h-full"><GridCanvas cols={7} centerCols={3} className="h-full" /></div></div>
               </div>
               <div className="grid gap-4 md:grid-cols-3">
                 {(["blob", "field", "fountain"] as const).map((m) => (
-                  <div key={m}><h3 className="mb-3 font-mono text-xs uppercase tracking-caps text-fg-muted">DotMatrix · {m}</h3><div className="relative h-48 overflow-hidden rounded-lg border border-line-faint bg-surface"><DotMatrix mode={m} className="inset-2" colorVar={m === "fountain" ? "--xo-color-fx-glyph" : undefined} cellW={m === "fountain" ? 7 : 9} cellH={m === "fountain" ? 7 : 12} /></div></div>
+                  <div key={m}><h3 className="mb-3 type-overline text-fg-muted">DotMatrix · {m}</h3><div className="relative h-48 overflow-hidden rounded-lg border border-line-faint bg-surface"><DotMatrix mode={m} className="inset-2" colorVar={m === "fountain" ? "--xo-color-fx-glyph" : undefined} cellW={m === "fountain" ? 7 : 9} cellH={m === "fountain" ? 7 : 12} /></div></div>
                 ))}
               </div>
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4"><PlatformsIllo /><SecurityIllo /><OfflineIllo /><IntegrationIllo /></div>
               <div className="overflow-hidden rounded-lg border border-line-faint"><AutoSteps steps={[{ title: "Diseño", text: "Paso activo con barra de progreso." }, { title: "Análisis", text: "Avanza solo cada 4 s." }, { title: "Desarrollo", text: "Hover o foco lo fija." }, { title: "Documentación", text: "Se para con reduced-motion." }, { title: "Soporte", text: "Teclado accesible." }]} /></div>
               <div className="flex flex-wrap items-center gap-8">
-                <span className="font-mono text-xs text-fg-muted">[ <Scramble words={["ANDROID", "IOS", "WINDOWS", "WEB / PWA"]} className="text-fg-accent" /> ]</span>
+                <span className="flex items-center gap-1.5 font-mono text-xs text-fg-muted"><i className="size-1 bg-accent" /><Scramble words={["ANDROID", "IOS", "WINDOWS", "WEB / PWA"]} className="text-fg-accent" /></span>
                 <span className="text-3xl font-semibold tracking-tight"><CountUp value="70 %" /></span>
                 <span className="text-3xl font-semibold tracking-tight"><CountUp value="+20" /></span>
               </div>
