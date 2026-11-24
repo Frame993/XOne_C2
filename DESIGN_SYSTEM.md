@@ -206,7 +206,7 @@ Todo respeta `prefers-reduced-motion` (dibujo estático, sin rotación ni auto-a
 | `Input` | con icono, label, hint | hover, focus (borde + halo), error (`aria-invalid`), disabled | `input.*` |
 | `Tabs` | pill · underline | seleccionado, hover, foco; teclado ←/→/Home/End | `tabs.*` |
 | `CodeBlock` | título, `[ .lang ]`, números de línea | copiar → "Copiado", foco en `<pre>` | `codeblock.*`, `code.*` |
-| `Navbar` | enlaces, CTA, secundario, toggle de tema | menú móvil (<996px), Esc cierra | `navbar.*` |
+| `Navbar` | `menus` (grupos con icono, título y descripción), `featured` (XOneCode), `stories` + `cases` (caso de éxito por menú), `wiki`, `secondary` (EN), `cta`, toggle de tema | Escritorio: panel a ancho de contenedor en 3 columnas (2 de enlaces + «Destacado»), se abre al pasar el ratón (90 ms) o con clic/Enter, Esc cierra y devuelve el foco al disparador, velo sobre la página. Móvil (<996px): acordeón a pantalla completa con bloqueo de scroll | `navbar.*`, `signal.*` |
 | `Footer` | tagline, 4 columnas, aside, legal | hover enlaces | `footer.*` |
 | extra: `SectionIndex`, `Eyebrow`, `SectionHeading`, `Section`, `Icon`, `Logo`, `ThemeToggle` | | | |
 
@@ -251,3 +251,22 @@ npm run build
 - Transiciones 0.2s ease (240 usos), 0.15s, 0.4s; botón: `0.2s, scale 0.1s, box-shadow 0.1s`.
 - Breakpoints 390 / 576 / 768 / 996 / 1200; `prefers-reduced-motion` respetado.
 - Capturas: `docs/reference/`.
+
+
+### Header y menús
+
+- **Estructura**: los 6 grupos reales de xone.es (Plataforma, Productos, Soluciones, Comunidad, Recursos, Empresa) con los mismos enlaces. A la derecha: Wiki (enlace externo, desde `xl`), EN, tema y Contacto.
+- **Panel**: ocupa el ancho del contenedor, bajo el header. Columna 1–2: etiqueta del grupo y filas de enlaces en 2 columnas (icono 18px `fg-muted` → `fg-accent` al pasar, título `type-label`, descripción `type-body-sm fg-muted`, padding 16/28). Columna 3 «Destacado»: tarjeta de señal (cian, texto blanco) para XOneCode, un caso de éxito distinto en cada menú y el enlace a todos los casos.
+- **Lámina**: el panel es una lámina a todo el ancho de la ventana que prolonga la retícula de la página (mismas columnas y líneas, sin sombra ni tarjeta flotante) y termina con una fila vacía de 48px. Tokens: `menu.bg` (en claro el mismo fondo que la página, neutral-50; en oscuro un escalón por encima, neutral-950), `menu.border`, `menu.hover` (tinta al 4 % / neutral-900) y `menu.scrim` (tinta al 40 % / negro al 72 %). En claro la separación la da el velo; en oscuro, la lámina más clara y el velo denso. El disparador activo usa `overlay.press`.
+- **Dinámica** (medida en la referencia con Playwright): intención de hover ~90 ms; la lámina se despliega como una cortina (altura 0 → contenido) en 480 ms `cubic-bezier(0.22,1,0.36,1)` mientras el velo funde en 250 ms; al pasar a otro menú la lámina sigue abierta, el contenido cambia al instante y sólo se anima la altura; al salir se recoge en 200 ms (ease-in) tras 180 ms de margen. Filas: fondo y color del icono en 200 ms. Con `prefers-reduced-motion` no hay transiciones, y la lámina cerrada es `inert` (sus enlaces no reciben foco).
+- **Regla técnica**: el fondo translúcido con `backdrop-filter` va en una capa hija del header, nunca en el `<header>`, porque convertiría al header en bloque contenedor de los hijos `fixed` (velo y menú móvil).
+
+
+### Precisión de la rejilla (líneas de 1px)
+
+- **Nada centrado con 50 % / translate(-50%)**: contenedor, raíles, marco y nodos se colocan con `round(down, …, 1px)`. Si el ancho libre es impar (p. ej. con barra de scroll visible), un centrado al 50 % deja la línea en medio píxel y se ve de 2px gris. `.xo-container` usa ese margen redondeado y `RAILS` (GridLines) expone las posiciones: `left`, `right`, `mid`, `frameLeft`, `frameRight`.
+- **Nodos centrados en el medio de la línea** (borde + 0,5px), no en su borde.
+- **Una sola fila de píxel por frontera**: toda línea de frontera (`FullLine`) ocupa la fila justo encima del límite, así la línea inferior de una sección y la superior de la siguiente coinciden. Ningún bloque añade un `border-t` donde la sección anterior ya traza la línea (por eso el footer no lleva borde superior).
+- **El lienzo de la rejilla (`GridCanvas`) no dibuja contorno exterior**: los bordes del marco y las líneas de frontera ya lo hacen.
+- **Header**: igual que en la referencia, la rejilla cruza el anuncio y el header: línea a todo el ancho bajo el anuncio y bajo el header, raíles del contenedor y columnas exteriores del marco (`FrameRails`), con nodos en cada cruce.
+- **Verificación**: auditoría con Playwright a 1425 px y 1440 px. Comprueba que no haya líneas paralelas a 1px de distancia (dobles), que no haya bordes en medio píxel y que cada nodo caiga exactamente en el centro de sus dos líneas. Resultado: 0 dobles y 84/84 nodos alineados.

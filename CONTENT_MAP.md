@@ -7,7 +7,7 @@ Todo el contenido sale de xone.es (consultado el 24-nov-2026). Imágenes y logos
 | # | Sección (estructura firecrawl) | Contenido | Origen en xone.es |
 |---|---|---|---|
 | — | Banner de anuncio | "XOne obtiene la certificación ISO/IEC 27001" | Home → Últimas noticias (30-jun-2026) · /certificacion-iso-27001/ |
-| — | Navbar | Plataforma, Productos, Soluciones, Casos de éxito, Noticias, Empresa, EN, Contacto | Menú principal |
+| — | Navbar | 6 menús reales de xone.es (36 enlaces) + Wiki, EN y Contacto. Destacado: XOneCode y un caso de éxito por menú | Menú principal. **Reescritura**: las descripciones cortas de cada enlace son propias |
 | Hero | eyebrow, H1, subtítulo, 2 CTA, tarjeta interactiva (sectores que rotan + plataformas + CTA), 70 %, ENS · ISO 27001 | Home (hero) · sectores de /soluciones-xone/ |
 | Logos | 14 clientes en marquee | Home → "Empresas que confían en XOne" |
 | 01 | Por qué XOne: 4 pilares + 4 cifras | Home → "Una plataforma, experiencias ilimitadas" y bloque de cifras |
