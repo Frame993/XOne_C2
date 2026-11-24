@@ -21,7 +21,8 @@ Todo el contenido sale de xone.es (consultado el 24-nov-2026). Imágenes y logos
 
 ## 2. [PENDIENTE]
 
-- **[PENDIENTE] Snippet de código real de XOneCode** (MCP o envío de tarea a Autopilot). El CodeBlock de la sección 02 lo indica; xone.es no publica código.
+- **[PENDIENTE] Snippet de código real de XOneCode** (MCP o envío de tarea a Autopilot). La sección 02 ya no muestra código; XOneCode aparece como franja bajo la demo.
+- **[PENDIENTE] Validar las cifras de las demos de IA**: son ilustrativas (no son métricas de XOne).
 - **[PENDIENTE] Pricing.** xone.es no publica precios. Propuesta: **omitir pricing** y mantener la sección de Servicios en su lugar (ya montada).
 - **[PENDIENTE] Logos de clientes en SVG/monocromo**: hoy son PNG de distintos tamaños; se muestran en gris con `grayscale`. Para modo oscuro se usa `invert`, que no es fiable con todos.
 - **[PENDIENTE] Migrar los logos de clientes** a `public/` en lugar de enlazarlos a xone.es. (El hero ya no usa imágenes de la plataforma, por decisión de diseño.)
@@ -54,7 +55,11 @@ Todo el contenido sale de xone.es (consultado el 24-nov-2026). Imágenes y logos
 
 ### Textos ilustrativos dentro de las animaciones (validar)
 
-La tarjeta del hero escribe "Movilizamos …" + sector (texto nuestro; los sectores son reales). Las mini-ilustraciones usan etiquetas genéricas que **no son datos**: "app.xone", "Orden de trabajo", estados "Sin cobertura / Trabajando en local / Sincronizando / Al día", sistemas "ERP / CRM / BD", "App", y las etiquetas `[ REAL NATIVE ]`, `[ MULTIPLATAFORMA ]`, `[ OFFLINE FIRST ]`, `[ MXDP ]`. Los nombres de los pilares (Multiplataforma, Módulos de seguridad, Comunicaciones, Bus de integración) salen de /que-es-xone/.
+La tarjeta del hero escribe "Movilizamos …" + sector (texto nuestro; los sectores son reales). Las mini-ilustraciones usan etiquetas genéricas que **no son datos**: "app.xone"; registro de seguridad "Sesión autenticada / Datos cifrados en tránsito / Dispositivo verificado / Acceso auditado"; cola offline "Parte de trabajo / Fotos de la avería / Firma del cliente" con estados "Sin cobertura / Sincronizando / Al día / en cola / enviado / Sin cambios pendientes"; sistemas "ERP / CRM / BD", "BUS"; demos de IA (estados "Generando pantalla / Organizando en Autopilot / Agentes trabajando / Documentando / Atendiendo consultas", **cifras de las tablas** como 18 componentes, 34 tareas, 42 pruebas, 128 consultas… y paneles "Orden de trabajo con mapa y firma", T-101…, "crearOrden()", "¿Cómo reasigno una orden?"), y las etiquetas `[ REAL NATIVE ]`, `[ MULTIPLATAFORMA ]`, `[ OFFLINE FIRST ]`, `[ MXDP ]`. Los nombres de los pilares (Multiplataforma, Módulos de seguridad, Comunicaciones, Bus de integración) salen de /que-es-xone/.
+
+### Etiquetas de sección (índice / eyebrow) — redactadas por nosotros
+
+Ventajas · Por qué XOne · Módulos de la plataforma · Clientes · Casos de éxito · Comunidad · Testimonios · Acompañamiento experto · Contacto · Antes de empezar. Regla: índice, eyebrow y titular nunca repiten palabras (DESIGN_SYSTEM §2.3).
 
 ## 4. Componentes o tokens que faltaron o hubo que forzar
 
