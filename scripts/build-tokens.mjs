@@ -2,7 +2,7 @@
 // y tokens/contrast-report.md a partir de una única fuente de verdad.
 // Uso: node scripts/build-tokens.mjs
 import { writeFileSync, mkdirSync } from "node:fs";
-import { converter, formatHex, clampChroma, wcagContrast } from "culori";
+import { converter, formatHex, clampChroma, wcagContrast, formatCss } from "culori";
 
 const toOklch = converter("oklch");
 const STEPS = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950];
@@ -35,24 +35,33 @@ const status = {
   amber: scale("#E5A00D", 400),
   red: scale("#DC3B2F", 500),
 };
-// Neutros fríos con el tono del azul de marca; 900 = #18293E (texto actual de xone.es)
-const NEUTRAL = { 25: [0.987, 0.002], 50: [0.972, 0.004], 100: [0.948, 0.006], 150: [0.93, 0.008], 200: [0.9, 0.01], 300: [0.83, 0.014], 400: [0.7, 0.02], 500: [0.585, 0.024], 600: [0.49, 0.028], 700: [0.405, 0.034], 800: [0.335, 0.04], 950: [0.205, 0.032], 975: [0.165, 0.026] };
-const neutral = { 0: "#ffffff" };
-for (const [k, [l, c]] of Object.entries(NEUTRAL)) neutral[k] = formatHex(clampChroma({ mode: "oklch", l, c, h: 252 }, "oklch"));
-neutral[900] = "#18293e";
-const neutralSorted = Object.fromEntries(Object.entries(neutral).sort((a, b) => +a[0] - +b[0]));
+// v2 · Neutros PUROS (croma 0), calcados de firecrawl.dev: el gris sin tono deja que el cian sea la única nota de color.
+// 700/600 = tinta #262626 al 72 % / 64 % sobre #F9F9F9 (la jerarquía por alfa de la referencia, resuelta a sólidos AA).
+const neutral = {
+  0: "#ffffff", 25: "#fbfbfb", 50: "#f9f9f9", 100: "#ededed", 150: "#e8e8e8", 200: "#e6e6e6", 300: "#c2c2c2",
+  400: "#a3a3a3", 500: "#8a8a8a", 600: "#6b6b6b", 700: "#616161", 800: "#404040", 850: "#333333", 900: "#262626",
+  925: "#1f1f1f", 950: "#171717", 975: "#0a0a0a",
+};
+const neutralSorted = neutral;
 
 // paso extra: el cian más claro que da 4.5:1 con texto blanco (CTA con texto blanco, como la referencia)
 brand.cyan = { ...brand.cyan, 650: "#007e9e" };
 brand.cyan = Object.fromEntries(Object.entries(brand.cyan).sort((a, b) => +a[0] - +b[0]));
+// Escalas alfa (patrón de la referencia: heat-4…100 y black-alpha-*): tintes, halos y bordes que funcionan sobre cualquier superficie
+const hexA = (hex, a) => hex + Math.round(a * 255).toString(16).padStart(2, "0");
+const ALPHAS = [4, 8, 12, 16, 24, 40, 64, 72];
+const cyanAlpha = Object.fromEntries(ALPHAS.map((a) => [a, hexA("#00aed9", a / 100)]));
+const inkAlpha = Object.fromEntries(ALPHAS.map((a) => [a, hexA("#262626", a / 100)]));
+const whiteAlpha = Object.fromEntries(ALPHAS.map((a) => [a, hexA("#ffffff", a / 100)]));
 const primitive = {
-  color: { cyan: brand.cyan, petrol: brand.petrol, neutral: neutralSorted, green: status.green, amber: status.amber, red: status.red },
+  color: { cyan: brand.cyan, "cyan-alpha": cyanAlpha, "ink-alpha": inkAlpha, "white-alpha": whiteAlpha, petrol: brand.petrol, neutral: neutralSorted, green: status.green, amber: status.amber, red: status.red },
   font: {
     family: { sans: "'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif", mono: "'Geist Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" },
-    weight: { regular: 400, book: 450, medium: 500, semibold: 600, bold: 700 },
-    // escala tomada de firecrawl.dev (computed): 10 12 13 14 16 20 24 40 52
-    size: { "2xs": "10px", xs: "12px", sm: "13px", md: "14px", base: "16px", lg: "20px", xl: "24px", "2xl": "32px", "3xl": "40px", "4xl": "52px" },
-    lineHeight: { "2xs": "12px", xs: "16px", sm: "20px", md: "20px", base: "24px", lg: "28px", xl: "32px", "2xl": "38px", "3xl": "44px", "4xl": "56px" },
+    // 3 pesos: 400 lectura · 500 interfaz (botones, nav, badges) · 600 titulares y énfasis
+    weight: { regular: 400, medium: 500, semibold: 600 },
+    // escala base de firecrawl.dev (10 12 14 16 20 24 40 52) + 32 y 64 propios
+    size: { "2xs": "10px", xs: "12px", sm: "13px", md: "14px", base: "16px", lg: "20px", xl: "24px", "2xl": "32px", "3xl": "40px", "4xl": "52px", "5xl": "64px" },
+    lineHeight: { "2xs": "12px", xs: "16px", sm: "20px", md: "20px", base: "24px", lg: "28px", xl: "32px", "2xl": "38px", "3xl": "44px", "4xl": "56px", "5xl": "68px", code: "22px" },
     tracking: { tight: "-0.02em", snug: "-0.01em", normal: "0em", wide: "0.01em", caps: "0.08em" },
   },
   space: { 0: "0px", 0.5: "2px", 1: "4px", 1.5: "6px", 2: "8px", 2.5: "10px", 3: "12px", 4: "16px", 5: "20px", 6: "24px", 7: "28px", 8: "32px", 10: "40px", 12: "48px", 16: "64px", 24: "96px" },
@@ -66,44 +75,48 @@ const primitive = {
 // ---------- 2. SEMANTIC (light / dark) ----------
 const R = (p) => `{primitive.${p}}`;
 const semanticColor = {
-  "bg.base": ["color.neutral.25", "color.neutral.975"],
-  "bg.subtle": ["color.neutral.50", "color.neutral.950"],
+  "bg.base": ["color.neutral.50", "color.neutral.975"],
+  "bg.subtle": ["color.neutral.25", "color.neutral.950"],
   "bg.inverse": ["color.neutral.900", "color.neutral.50"],
   "surface.default": ["color.neutral.0", "color.neutral.950"],
-  "surface.raised": ["color.neutral.0", "color.neutral.900"],
-  "surface.sunken": ["color.neutral.50", "color.neutral.975"],
+  "surface.raised": ["color.neutral.0", "color.neutral.925"],
+  "surface.sunken": ["color.neutral.25", "color.neutral.975"],
   "text.primary": ["color.neutral.900", "color.neutral.50"],
-  "text.secondary": ["color.neutral.700", "color.neutral.200"],
+  "text.secondary": ["color.neutral.700", "color.neutral.300"],
   "text.muted": ["color.neutral.600", "color.neutral.400"],
-  "text.decorative": ["color.neutral.300", "color.neutral.700"],
+  "text.decorative": ["color.neutral.300", "color.neutral.800"],
   "text.inverse": ["color.neutral.0", "color.neutral.950"],
   "text.accent": ["color.cyan.700", "color.cyan.400"],
   "text.accent-display": ["color.cyan.600", "color.cyan.400"],
-  "text.link": ["color.petrol.700", "color.cyan.300"],
-  "border.faint": ["color.neutral.100", "color.neutral.900"],
-  "border.muted": ["color.neutral.150", "color.neutral.800"],
-  "border.loud": ["color.neutral.200", "color.neutral.700"],
+  "text.link": ["color.cyan.700", "color.cyan.300"],
+  "border.faint": ["color.neutral.100", "color.neutral.925"],
+  "border.muted": ["color.neutral.150", "color.neutral.850"],
+  "border.loud": ["color.neutral.200", "color.neutral.800"],
   "accent.default": ["color.cyan.500", "color.cyan.500"],
   "accent.hover": ["color.cyan.400", "color.cyan.400"],
   "accent.active": ["color.cyan.600", "color.cyan.600"],
-  "accent.fg": ["color.neutral.950", "color.neutral.950"],
+  "accent.fg": ["color.neutral.975", "color.neutral.975"],
   "accent.solid": ["color.cyan.650", "color.cyan.650"],
   "accent.solid-hover": ["color.cyan.700", "color.cyan.700"],
   "accent.solid-active": ["color.cyan.800", "color.cyan.800"],
   "accent.solid-fg": ["color.neutral.0", "color.neutral.0"],
-  "fx.cell": ["color.petrol.700", "color.cyan.300"],
+  "fx.cell": ["color.neutral.900", "color.neutral.0"],
   "fx.glyph": ["color.cyan.500", "color.cyan.400"],
-  "fx.matrix": ["color.petrol.300", "color.petrol.700"],
+  "fx.matrix": ["color.neutral.300", "color.neutral.600"],
   "accent.subtle": ["color.cyan.50", "color.cyan.950"],
+  "signal.bg": ["color.cyan.650", "color.cyan.650"],
+  "signal.fg": ["color.neutral.0", "color.neutral.0"],
+  "signal.fg-muted": ["color.cyan.50", "color.cyan.50"],
+  "signal.surface": ["color.cyan.700", "color.cyan.700"],
   "accent.subtle-fg": ["color.cyan.800", "color.cyan.200"],
   "accent.border": ["color.cyan.200", "color.cyan.800"],
   "brand.wordmark": ["color.petrol.700", "color.neutral.0"],
   "brand.symbol": ["color.cyan.500", "color.cyan.500"],
-  "brand.secondary": ["color.petrol.700", "color.petrol.400"],
-  "brand.secondary-hover": ["color.petrol.800", "color.petrol.300"],
-  "brand.secondary-fg": ["color.neutral.0", "color.neutral.950"],
-  "overlay.hover": ["color.neutral.100", "color.neutral.900"],
-  "overlay.press": ["color.neutral.150", "color.neutral.800"],
+  "brand.secondary": ["color.neutral.900", "color.neutral.50"],
+  "brand.secondary-hover": ["color.neutral.800", "color.neutral.200"],
+  "brand.secondary-fg": ["color.neutral.0", "color.neutral.975"],
+  "overlay.hover": ["color.neutral.100", "color.neutral.925"],
+  "overlay.press": ["color.neutral.150", "color.neutral.850"],
   "focus.ring": ["color.cyan.600", "color.cyan.400"],
   "success.fg": ["color.green.700", "color.green.300"],
   "success.bg": ["color.green.50", "color.green.950"],
@@ -115,19 +128,19 @@ const semanticColor = {
   "code.bg": ["color.neutral.0", "color.neutral.950"],
   "code.fg": ["color.neutral.900", "color.neutral.100"],
   "code.line-number": ["color.neutral.600", "color.neutral.400"],
-  "code.keyword": ["color.petrol.700", "color.cyan.300"],
-  "code.string": ["color.green.700", "color.green.300"],
+  "code.keyword": ["color.cyan.700", "color.cyan.300"],
+  "code.string": ["color.amber.800", "color.amber.300"],
   "code.comment": ["color.neutral.600", "color.neutral.400"],
 };
 // sombras: estructura de firecrawl.dev, teñidas con el azul de marca
 const shadow = {
   light: {
-    xs: "0 0.5px 0.5px rgb(24 41 62 / 0.06), 0 1px 2px rgb(24 41 62 / 0.04)",
-    card: "0 24px 32px -12px rgb(24 41 62 / 0.04), 0 16px 24px -8px rgb(24 41 62 / 0.04), 0 8px 16px -4px rgb(24 41 62 / 0.03), 0 0 0 1px rgb(24 41 62 / 0.05)",
-    float: "0 40px 48px -20px rgb(24 41 62 / 0.05), 0 32px 32px -20px rgb(24 41 62 / 0.05), 0 16px 24px -12px rgb(24 41 62 / 0.05), 0 0 0 1px rgb(24 41 62 / 0.06)",
+    xs: "0 0.5px 0.5px rgb(0 0 0 / 0.06), 0 1px 2px rgb(0 0 0 / 0.04)",
+    card: "0 24px 32px -12px rgb(0 0 0 / 0.04), 0 16px 24px -8px rgb(0 0 0 / 0.04), 0 8px 16px -4px rgb(0 0 0 / 0.03), 0 0 0 1px rgb(0 0 0 / 0.05)",
+    float: "0 40px 48px -20px rgb(0 0 0 / 0.05), 0 32px 32px -20px rgb(0 0 0 / 0.05), 0 16px 24px -12px rgb(0 0 0 / 0.05), 0 0 0 1px rgb(0 0 0 / 0.06)",
     accent: "inset 0 1px 0 rgb(255 255 255 / 0.22), inset 0 -6px 12px rgb(0 60 80 / 0.28), 0 2px 4px rgb(0 126 158 / 0.16), 0 1px 1px rgb(0 126 158 / 0.16), 0 0.5px 0.5px rgb(0 126 158 / 0.2)",
     "accent-hover": "inset 0 1px 0 rgb(255 255 255 / 0.22), inset 0 -6px 12px rgb(0 60 80 / 0.28), 0 4px 8px rgb(0 126 158 / 0.22), 0 1px 1px rgb(0 126 158 / 0.16), 0 0.5px 0.5px rgb(0 126 158 / 0.2)",
-    inset: "inset 0 6px 12px rgb(24 41 62 / 0.03), inset 0 0.75px 0.75px rgb(24 41 62 / 0.03)",
+    inset: "inset 0 6px 12px rgb(0 0 0 / 0.03), inset 0 0.75px 0.75px rgb(0 0 0 / 0.03)",
   },
   dark: {
     xs: "0 0 0 1px rgb(255 255 255 / 0.06)",
@@ -161,6 +174,41 @@ const component = {
   section: { "padding-y": "{primitive.space.24}", "padding-y-sm": "{primitive.space.16}", "grid-line": "{semantic.color.border.faint}" },
 };
 
+// ---------- TIPOGRAFÍA · roles (web) y escalas de marketing ----------
+// Cada rol = familia + tamaño + interlineado + peso + tracking (+ mayúsculas). Fuente única de verdad para web y piezas.
+const typeRoles = {
+  hero:      { family: "sans", size: "5xl", lh: "5xl", weight: "semibold", tracking: "tight", use: "Sólo hero o portadas; 1 por pieza" },
+  title:     { family: "sans", size: "4xl", lh: "4xl", weight: "semibold", tracking: "tight", use: "H1/H2 de sección en desktop" },
+  "title-md":{ family: "sans", size: "3xl", lh: "3xl", weight: "semibold", tracking: "tight", use: "H1/H2 en tablet; titulares de CTA" },
+  "title-sm":{ family: "sans", size: "2xl", lh: "2xl", weight: "semibold", tracking: "tight", use: "H1/H2 en móvil; cifras destacadas" },
+  heading:   { family: "sans", size: "xl", lh: "xl", weight: "semibold", tracking: "snug", use: "H3: títulos de bloque/tarjeta grande" },
+  item:      { family: "sans", size: "base", lh: "base", weight: "semibold", tracking: "normal", use: "Título de celda, paso, producto o pregunta" },
+  lead:      { family: "sans", size: "lg", lh: "lg", weight: "regular", tracking: "snug", use: "Subtítulos y párrafos destacados" },
+  body:      { family: "sans", size: "base", lh: "base", weight: "regular", tracking: "normal", use: "Texto corrido" },
+  "body-sm": { family: "sans", size: "md", lh: "md", weight: "regular", tracking: "normal", use: "Texto secundario, descripciones de celda, pie" },
+  label:     { family: "sans", size: "md", lh: "md", weight: "medium", tracking: "normal", use: "Botones, navegación, pestañas, títulos de lista" },
+  "label-sm":{ family: "sans", size: "xs", lh: "xs", weight: "medium", tracking: "normal", use: "Badges, chips, metadatos" },
+  overline:  { family: "mono", size: "xs", lh: "xs", weight: "regular", tracking: "caps", upper: true, use: "Eyebrows, índices, etiquetas técnicas" },
+  micro:     { family: "mono", size: "2xs", lh: "2xs", weight: "regular", tracking: "caps", upper: true, use: "Etiquetas dentro de ilustraciones (nunca texto esencial)" },
+  code:      { family: "mono", size: "md", lh: "code", weight: "regular", tracking: "normal", use: "Código y valores técnicos" },
+};
+// Escalas de marketing (px salvo print en pt). Proporciones de la escala web aplicadas a cada formato.
+const marketing = {
+  "social-1080":   { unit: "px", note: "Post 1080×1080 / 1080×1350", display: [96, 100], title: [64, 68], heading: [40, 48], lead: [32, 42], body: [26, 36], overline: [20, 24], margin: 80 },
+  "slides-1920":   { unit: "px", note: "Presentación 1920×1080", display: [120, 124], title: [80, 86], heading: [48, 56], lead: [36, 48], body: [28, 40], overline: [22, 28], margin: 120 },
+  "banner-web":    { unit: "px", note: "Banners / ads (lado corto ≥ 250)", display: [48, 52], title: [32, 36], heading: [24, 30], lead: [18, 24], body: [14, 20], overline: [11, 14], margin: 24 },
+  "email-600":     { unit: "px", note: "Email 600px de ancho", display: [40, 44], title: [32, 38], heading: [22, 28], lead: [18, 26], body: [16, 24], overline: [12, 16], margin: 32 },
+  "print-a4":      { unit: "pt", note: "A4 / dossier impreso", display: [48, 52], title: [32, 36], heading: [18, 22], lead: [13, 18], body: [10, 14], overline: [7.5, 10], margin: 54 },
+};
+const roleToken = (r) => ({
+  $type: "typography",
+  $value: {
+    fontFamily: `{primitive.font.family.${r.family}}`, fontSize: `{primitive.font.size.${r.size}}`, lineHeight: `{primitive.font.lineHeight.${r.lh}}`,
+    fontWeight: `{primitive.font.weight.${r.weight}}`, letterSpacing: `{primitive.font.tracking.${r.tracking}}`,
+  },
+  $description: r.use + (r.upper ? " · MAYÚSCULAS" : ""),
+});
+
 // ---------- W3C JSON ----------
 const typeOf = (path, v) => path.startsWith("color") ? "color" : path.startsWith("font.family") ? "fontFamily" : path.startsWith("font.weight") ? "fontWeight" : path.startsWith("duration") ? "duration" : path.startsWith("easing") ? "cubicBezier" : path.startsWith("shadow") ? "shadow" : "dimension";
 function toW3C(obj, prefix = "") {
@@ -182,6 +230,12 @@ const tokensJson = {
   primitive: toW3C(primitive),
   semantic: { ...semanticJson, shadow: Object.fromEntries(Object.keys(shadow.light).map((k) => [k, { $type: "shadow", $value: shadow.light[k], $extensions: { "es.xone.modes": { dark: shadow.dark[k] } } }])) },
   component: toW3C(component),
+  typography: Object.fromEntries(Object.entries(typeRoles).map(([k, r]) => [k, roleToken(r)])),
+  marketing: Object.fromEntries(Object.entries(marketing).map(([fmt, m]) => [fmt, {
+    $description: m.note,
+    ...Object.fromEntries(["display", "title", "heading", "lead", "body", "overline"].map((role) => [role, { $type: "typography", $value: { fontFamily: role === "overline" ? "{primitive.font.family.mono}" : "{primitive.font.family.sans}", fontSize: `${m[role][0]}${m.unit}`, lineHeight: `${m[role][1]}${m.unit}`, fontWeight: `{primitive.font.weight.${["display", "title", "heading"].includes(role) ? "semibold" : "regular"}}`, letterSpacing: `{primitive.font.tracking.${["display", "title"].includes(role) ? "tight" : role === "overline" ? "caps" : role === "heading" ? "snug" : "normal"}}` } }])),
+    margin: { $type: "dimension", $value: `${m.margin}${m.unit}` },
+  }])),
 };
 mkdirSync("tokens", { recursive: true });
 writeFileSync("tokens/tokens.json", JSON.stringify(tokensJson, null, 2));
@@ -223,7 +277,20 @@ ${shD.map((l) => "  " + l).join("\n")}
 ${lines(component).join("\n")}
 }
 `;
-writeFileSync("src/styles/tokens.css", css);
+// Pantallas P3: el mismo cian con +25 % de croma (misma luminosidad → mismo contraste). La referencia usa display-p3 en todo.
+const toP3 = (hex) => { const o = toOklch(hex); return formatCss(clampChroma({ mode: "oklch", l: o.l, c: o.c * 1.25, h: o.h }, "oklch", "p3"), "p3"); };
+const p3 = [300, 400, 500, 600, 650, 700].map((k) => `    --xo-color-cyan-${k}: ${toP3(brand.cyan[k])};`).join("\n");
+const cssOut = css + `/* P3 · cian más vivo en pantallas de gama amplia */\n@supports (color: color(display-p3 1 1 1)) {\n  @media (color-gamut: p3) {\n    :root {\n${p3}\n    }\n  }\n}\n`;
+const typeCss = Object.entries(typeRoles).map(([k, r]) => [
+  `  --xo-type-${k}-family: var(--xo-font-family-${r.family});`,
+  `  --xo-type-${k}-size: var(--xo-font-size-${r.size});`,
+  `  --xo-type-${k}-line-height: var(--xo-font-lineHeight-${r.lh});`,
+  `  --xo-type-${k}-weight: var(--xo-font-weight-${r.weight});`,
+  `  --xo-type-${k}-tracking: var(--xo-font-tracking-${r.tracking});`,
+  `  --xo-type-${k}-transform: ${r.upper ? "uppercase" : "none"};`,
+].join("\n")).join("\n");
+writeFileSync("src/styles/tokens.css", cssOut + `/* 4 · tipografía por roles */\n:root {\n${typeCss}\n}\n`);
+writeFileSync("tokens/type-roles.json", JSON.stringify({ roles: typeRoles, marketing }, null, 2));
 
 // ---------- Contraste WCAG ----------
 const flat = {};
@@ -235,7 +302,7 @@ const PAIRS = [
   ["text.secondary", "bg.base"], ["text.secondary", "surface.default"],
   ["text.muted", "bg.base"], ["text.muted", "surface.default"], ["text.muted", "bg.subtle"],
   ["text.accent", "bg.base"], ["text.accent", "surface.default"], ["text.accent-display", "bg.base", 3], ["text.accent-display", "surface.default", 3], ["text.link", "bg.base"], ["text.link", "surface.default"],
-  ["text.inverse", "bg.inverse"], ["accent.fg", "accent.default"], ["accent.solid-fg", "accent.solid"], ["accent.solid-fg", "accent.solid-hover"], ["accent.solid-fg", "accent.solid-active"],
+  ["text.inverse", "bg.inverse"], ["signal.fg", "signal.bg"], ["signal.fg", "signal.surface"], ["signal.fg-muted", "signal.surface"], ["brand.secondary-fg", "brand.secondary"], ["accent.fg", "accent.default"], ["accent.solid-fg", "accent.solid"], ["accent.solid-fg", "accent.solid-hover"], ["accent.solid-fg", "accent.solid-active"],
   ["brand.secondary-fg", "brand.secondary"], ["brand.secondary-fg", "brand.secondary-hover"],
   ["accent.subtle-fg", "accent.subtle"], ["text.primary", "overlay.hover"], ["text.muted", "overlay.hover"],
   ["success.fg", "success.bg"], ["warning.fg", "warning.bg"], ["danger.fg", "danger.bg"], ["danger.fg", "surface.default"],

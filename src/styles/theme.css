@@ -5,6 +5,7 @@
 @import "tailwindcss";
 @import "./tokens.css";
 
+@source inline("type-hero type-title type-title-md type-title-sm type-heading type-item type-lead type-body type-body-sm type-label type-label-sm type-overline type-micro type-code");
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 @theme inline {
@@ -81,7 +82,6 @@
   --text-3xl--line-height: var(--xo-font-lineHeight-3xl);
   --text-4xl: var(--xo-font-size-4xl);
   --text-4xl--line-height: var(--xo-font-lineHeight-4xl);
-  --font-weight-book: var(--xo-font-weight-book);
   --tracking-tight: var(--xo-font-tracking-tight);
   --tracking-snug: var(--xo-font-tracking-snug);
   --tracking-caps: var(--xo-font-tracking-caps);
@@ -110,7 +110,122 @@
   }
 }
 
+/* Roles tipográficos (ver DESIGN_SYSTEM §2.3): usar SIEMPRE estos en lugar de tamaños o pesos sueltos */
+@utility type-hero {
+  font-family: var(--xo-type-hero-family);
+  font-size: var(--xo-type-hero-size);
+  line-height: var(--xo-type-hero-line-height);
+  font-weight: var(--xo-type-hero-weight);
+  letter-spacing: var(--xo-type-hero-tracking);
+  text-transform: var(--xo-type-hero-transform);
+}
+@utility type-title {
+  font-family: var(--xo-type-title-family);
+  font-size: var(--xo-type-title-size);
+  line-height: var(--xo-type-title-line-height);
+  font-weight: var(--xo-type-title-weight);
+  letter-spacing: var(--xo-type-title-tracking);
+  text-transform: var(--xo-type-title-transform);
+}
+@utility type-title-md {
+  font-family: var(--xo-type-title-md-family);
+  font-size: var(--xo-type-title-md-size);
+  line-height: var(--xo-type-title-md-line-height);
+  font-weight: var(--xo-type-title-md-weight);
+  letter-spacing: var(--xo-type-title-md-tracking);
+  text-transform: var(--xo-type-title-md-transform);
+}
+@utility type-title-sm {
+  font-family: var(--xo-type-title-sm-family);
+  font-size: var(--xo-type-title-sm-size);
+  line-height: var(--xo-type-title-sm-line-height);
+  font-weight: var(--xo-type-title-sm-weight);
+  letter-spacing: var(--xo-type-title-sm-tracking);
+  text-transform: var(--xo-type-title-sm-transform);
+}
+@utility type-heading {
+  font-family: var(--xo-type-heading-family);
+  font-size: var(--xo-type-heading-size);
+  line-height: var(--xo-type-heading-line-height);
+  font-weight: var(--xo-type-heading-weight);
+  letter-spacing: var(--xo-type-heading-tracking);
+  text-transform: var(--xo-type-heading-transform);
+}
+@utility type-item {
+  font-family: var(--xo-type-item-family);
+  font-size: var(--xo-type-item-size);
+  line-height: var(--xo-type-item-line-height);
+  font-weight: var(--xo-type-item-weight);
+  letter-spacing: var(--xo-type-item-tracking);
+  text-transform: var(--xo-type-item-transform);
+}
+@utility type-lead {
+  font-family: var(--xo-type-lead-family);
+  font-size: var(--xo-type-lead-size);
+  line-height: var(--xo-type-lead-line-height);
+  font-weight: var(--xo-type-lead-weight);
+  letter-spacing: var(--xo-type-lead-tracking);
+  text-transform: var(--xo-type-lead-transform);
+}
+@utility type-body {
+  font-family: var(--xo-type-body-family);
+  font-size: var(--xo-type-body-size);
+  line-height: var(--xo-type-body-line-height);
+  font-weight: var(--xo-type-body-weight);
+  letter-spacing: var(--xo-type-body-tracking);
+  text-transform: var(--xo-type-body-transform);
+}
+@utility type-body-sm {
+  font-family: var(--xo-type-body-sm-family);
+  font-size: var(--xo-type-body-sm-size);
+  line-height: var(--xo-type-body-sm-line-height);
+  font-weight: var(--xo-type-body-sm-weight);
+  letter-spacing: var(--xo-type-body-sm-tracking);
+  text-transform: var(--xo-type-body-sm-transform);
+}
+@utility type-label {
+  font-family: var(--xo-type-label-family);
+  font-size: var(--xo-type-label-size);
+  line-height: var(--xo-type-label-line-height);
+  font-weight: var(--xo-type-label-weight);
+  letter-spacing: var(--xo-type-label-tracking);
+  text-transform: var(--xo-type-label-transform);
+}
+@utility type-label-sm {
+  font-family: var(--xo-type-label-sm-family);
+  font-size: var(--xo-type-label-sm-size);
+  line-height: var(--xo-type-label-sm-line-height);
+  font-weight: var(--xo-type-label-sm-weight);
+  letter-spacing: var(--xo-type-label-sm-tracking);
+  text-transform: var(--xo-type-label-sm-transform);
+}
+@utility type-overline {
+  font-family: var(--xo-type-overline-family);
+  font-size: var(--xo-type-overline-size);
+  line-height: var(--xo-type-overline-line-height);
+  font-weight: var(--xo-type-overline-weight);
+  letter-spacing: var(--xo-type-overline-tracking);
+  text-transform: var(--xo-type-overline-transform);
+}
+@utility type-micro {
+  font-family: var(--xo-type-micro-family);
+  font-size: var(--xo-type-micro-size);
+  line-height: var(--xo-type-micro-line-height);
+  font-weight: var(--xo-type-micro-weight);
+  letter-spacing: var(--xo-type-micro-tracking);
+  text-transform: var(--xo-type-micro-transform);
+}
+@utility type-code {
+  font-family: var(--xo-type-code-family);
+  font-size: var(--xo-type-code-size);
+  line-height: var(--xo-type-code-line-height);
+  font-weight: var(--xo-type-code-weight);
+  letter-spacing: var(--xo-type-code-tracking);
+  text-transform: var(--xo-type-code-transform);
+}
+
 @layer base {
+  html, body { overflow-x: clip; }
   html { background: var(--xo-color-bg-base); color: var(--xo-color-text-primary); font-family: var(--xo-font-family-sans); -webkit-font-smoothing: antialiased; }
   body { font-size: var(--xo-font-size-base); line-height: var(--xo-font-lineHeight-base); }
   :focus-visible { outline: 2px solid var(--xo-color-focus-ring); outline-offset: 2px; }
@@ -124,6 +239,20 @@
   /* contenedor con líneas guía verticales (patrón firecrawl) */
   .xo-container { width: min(100% - 2 * var(--xo-size-gutter), var(--xo-size-container)); margin-inline: auto; }
   .xo-rails { border-inline: 1px solid var(--xo-section-grid-line); }
+  /*
+   * Esquinas "curvy": cada bloque delimitado por líneas muestra en sus 4 esquinas una cuña del color de
+   * línea con un cuarto de círculo de radio 6px. Donde se tocan 4 bloques, las cuñas forman la unión cóncava.
+   */
+  .xo-curvy, .xo-cells > * { position: relative; }
+  .xo-curvy::after, .xo-cells > *::after {
+    content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 1;
+    --xo-c: var(--xo-color-border-faint);
+    background:
+      radial-gradient(circle at 100% 100%, transparent 6px, var(--xo-c) 6.6px) top left / 7px 7px no-repeat,
+      radial-gradient(circle at 0 100%, transparent 6px, var(--xo-c) 6.6px) top right / 7px 7px no-repeat,
+      radial-gradient(circle at 100% 0, transparent 6px, var(--xo-c) 6.6px) bottom left / 7px 7px no-repeat,
+      radial-gradient(circle at 0 0, transparent 6px, var(--xo-c) 6.6px) bottom right / 7px 7px no-repeat;
+  }
   /* rejilla de celdas separadas por líneas de 1px (patrón firecrawl) */
   .xo-cells { display: grid; gap: 1px; background: var(--xo-section-grid-line); border-bottom: 1px solid var(--xo-section-grid-line); }
   .xo-cells > * { background: var(--xo-color-bg-base); }
@@ -137,9 +266,22 @@
   @keyframes xo-orbit { to { rotate: 360deg; } }
   @keyframes xo-twinkle { 0%, 100% { scale: 1; opacity: 1; } 50% { scale: 0.8; opacity: 0.6; } }
   .xo-progress { animation: xo-progress linear both; }
+  .xo-progress-y { animation: xo-progress-y linear both; }
+  @keyframes xo-progress-y { from { transform: scaleY(0); } to { transform: scaleY(1); } }
   @keyframes xo-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
   .xo-caret::after { content: ""; display: inline-block; width: 0.5em; height: 1.1em; margin-left: 2px; vertical-align: text-bottom; background: var(--xo-color-fx-glyph); animation: xo-blink 1s steps(1) infinite; }
   @keyframes xo-blink { 50% { opacity: 0; } }
+  /* micro-animaciones de las ilustraciones */
+  .xo-type { transform-box: fill-box; transform-origin: left; animation: xo-type 3.2s var(--xo-easing-out) infinite both; }
+  @keyframes xo-type { 0% { transform: scaleX(0); } 25%, 85% { transform: scaleX(1); } 100% { transform: scaleX(1); opacity: 0.4; } }
+  .xo-pulse { animation: xo-pulse 1.2s var(--xo-easing-in-out) infinite; }
+  @keyframes xo-pulse { 50% { opacity: 0.35; } }
+  .xo-blip { opacity: 0.25; animation: xo-blip 4s linear infinite; }
+  @keyframes xo-blip { 0% { opacity: 1; box-shadow: 0 0 0 6px var(--xo-color-cyan-alpha-24); } 18% { opacity: 0.25; box-shadow: 0 0 0 0 transparent; } 100% { opacity: 0.25; } }
+  .xo-ring { transform-box: fill-box; transform-origin: center; animation: xo-ring 0.8s var(--xo-easing-out) infinite; }
+  @keyframes xo-ring { from { transform: scale(0.75); opacity: 0.9; } to { transform: scale(1.25); opacity: 0; } }
+  .xo-dots::after { content: "…"; display: inline-block; width: 1.2em; overflow: hidden; vertical-align: bottom; animation: xo-dots 1.4s steps(4) infinite; }
+  @keyframes xo-dots { from { width: 0; } to { width: 1.2em; } }
   .xo-marquee { animation: xo-marquee 60s linear infinite; }
   .xo-marquee:hover { animation-play-state: paused; }
   @keyframes xo-marquee { to { transform: translateX(-50%); } }

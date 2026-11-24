@@ -1,0 +1,265 @@
+{
+  "roles": {
+    "hero": {
+      "family": "sans",
+      "size": "5xl",
+      "lh": "5xl",
+      "weight": "semibold",
+      "tracking": "tight",
+      "use": "Sólo hero o portadas; 1 por pieza"
+    },
+    "title": {
+      "family": "sans",
+      "size": "4xl",
+      "lh": "4xl",
+      "weight": "semibold",
+      "tracking": "tight",
+      "use": "H1/H2 de sección en desktop"
+    },
+    "title-md": {
+      "family": "sans",
+      "size": "3xl",
+      "lh": "3xl",
+      "weight": "semibold",
+      "tracking": "tight",
+      "use": "H1/H2 en tablet; titulares de CTA"
+    },
+    "title-sm": {
+      "family": "sans",
+      "size": "2xl",
+      "lh": "2xl",
+      "weight": "semibold",
+      "tracking": "tight",
+      "use": "H1/H2 en móvil; cifras destacadas"
+    },
+    "heading": {
+      "family": "sans",
+      "size": "xl",
+      "lh": "xl",
+      "weight": "semibold",
+      "tracking": "snug",
+      "use": "H3: títulos de bloque/tarjeta grande"
+    },
+    "item": {
+      "family": "sans",
+      "size": "base",
+      "lh": "base",
+      "weight": "semibold",
+      "tracking": "normal",
+      "use": "Título de celda, paso, producto o pregunta"
+    },
+    "lead": {
+      "family": "sans",
+      "size": "lg",
+      "lh": "lg",
+      "weight": "regular",
+      "tracking": "snug",
+      "use": "Subtítulos y párrafos destacados"
+    },
+    "body": {
+      "family": "sans",
+      "size": "base",
+      "lh": "base",
+      "weight": "regular",
+      "tracking": "normal",
+      "use": "Texto corrido"
+    },
+    "body-sm": {
+      "family": "sans",
+      "size": "md",
+      "lh": "md",
+      "weight": "regular",
+      "tracking": "normal",
+      "use": "Texto secundario, descripciones de celda, pie"
+    },
+    "label": {
+      "family": "sans",
+      "size": "md",
+      "lh": "md",
+      "weight": "medium",
+      "tracking": "normal",
+      "use": "Botones, navegación, pestañas, títulos de lista"
+    },
+    "label-sm": {
+      "family": "sans",
+      "size": "xs",
+      "lh": "xs",
+      "weight": "medium",
+      "tracking": "normal",
+      "use": "Badges, chips, metadatos"
+    },
+    "overline": {
+      "family": "mono",
+      "size": "xs",
+      "lh": "xs",
+      "weight": "regular",
+      "tracking": "caps",
+      "upper": true,
+      "use": "Eyebrows, índices, etiquetas técnicas"
+    },
+    "micro": {
+      "family": "mono",
+      "size": "2xs",
+      "lh": "2xs",
+      "weight": "regular",
+      "tracking": "caps",
+      "upper": true,
+      "use": "Etiquetas dentro de ilustraciones (nunca texto esencial)"
+    },
+    "code": {
+      "family": "mono",
+      "size": "md",
+      "lh": "code",
+      "weight": "regular",
+      "tracking": "normal",
+      "use": "Código y valores técnicos"
+    }
+  },
+  "marketing": {
+    "social-1080": {
+      "unit": "px",
+      "note": "Post 1080×1080 / 1080×1350",
+      "display": [
+        96,
+        100
+      ],
+      "title": [
+        64,
+        68
+      ],
+      "heading": [
+        40,
+        48
+      ],
+      "lead": [
+        32,
+        42
+      ],
+      "body": [
+        26,
+        36
+      ],
+      "overline": [
+        20,
+        24
+      ],
+      "margin": 80
+    },
+    "slides-1920": {
+      "unit": "px",
+      "note": "Presentación 1920×1080",
+      "display": [
+        120,
+        124
+      ],
+      "title": [
+        80,
+        86
+      ],
+      "heading": [
+        48,
+        56
+      ],
+      "lead": [
+        36,
+        48
+      ],
+      "body": [
+        28,
+        40
+      ],
+      "overline": [
+        22,
+        28
+      ],
+      "margin": 120
+    },
+    "banner-web": {
+      "unit": "px",
+      "note": "Banners / ads (lado corto ≥ 250)",
+      "display": [
+        48,
+        52
+      ],
+      "title": [
+        32,
+        36
+      ],
+      "heading": [
+        24,
+        30
+      ],
+      "lead": [
+        18,
+        24
+      ],
+      "body": [
+        14,
+        20
+      ],
+      "overline": [
+        11,
+        14
+      ],
+      "margin": 24
+    },
+    "email-600": {
+      "unit": "px",
+      "note": "Email 600px de ancho",
+      "display": [
+        40,
+        44
+      ],
+      "title": [
+        32,
+        38
+      ],
+      "heading": [
+        22,
+        28
+      ],
+      "lead": [
+        18,
+        26
+      ],
+      "body": [
+        16,
+        24
+      ],
+      "overline": [
+        12,
+        16
+      ],
+      "margin": 32
+    },
+    "print-a4": {
+      "unit": "pt",
+      "note": "A4 / dossier impreso",
+      "display": [
+        48,
+        52
+      ],
+      "title": [
+        32,
+        36
+      ],
+      "heading": [
+        18,
+        22
+      ],
+      "lead": [
+        13,
+        18
+      ],
+      "body": [
+        10,
+        14
+      ],
+      "overline": [
+        7.5,
+        10
+      ],
+      "margin": 54
+    }
+  }
+}
