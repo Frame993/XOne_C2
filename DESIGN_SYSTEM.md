@@ -10,7 +10,7 @@ Sistema de diseño de la nueva web de XOne. Estructura, espaciado y jerarquía t
 
 1. **Rejilla visible, contenido en celdas.** Contenedor de 1112px con raíles verticales y celdas separadas por líneas de 1px (`.xo-rails`, `.xo-cells`). Es el ritmo de la referencia.
 2. **Técnico, no frío.** Etiquetas en mono (`[ 01 / 07 ] » PLATAFORMA`), datos concretos, frases cortas. El color cálido de la referencia se sustituye por el cian del logo.
-3. **Un único acento.** El cian `#00AED9` es la única nota de color en titulares y CTA principal; el petróleo `#155D82` es el color de marca secundario (wordmark, banner, enlaces).
+3. **Un único acento sobre grises puros.** El cian `#00AED9` es la única nota de color (titulares, CTA, enlaces, glifos, SignalBand). El petróleo `#155D82` queda sólo en el wordmark del logo.
 4. **Ángulos del logo.** Radios contenidos (6px botones, 12px tarjetas), iconos con trazo recto y uniones en inglete, chevrones `»` y la X del logo como separadores.
 5. **Accesible por defecto.** Todos los pares de texto de los tokens cumplen WCAG AA en claro y oscuro; foco visible con `focus.ring`; `prefers-reduced-motion` anula animaciones.
 
@@ -24,10 +24,11 @@ Sistema de diseño de la nueva web de XOne. Estructura, espaciado y jerarquía t
 |---|---|---|
 | `cyan 50–950` | **500 = #00AED9** | Chevrón principal del logo (SVG) |
 | `petrol 50–950` | **700 = #155D82** | Wordmark y chevrones secundarios del logo (SVG) |
-| `neutral 0–975` | **900 = #18293E** | Color de texto de xone.es actual (continuidad); tono frío h≈252 |
+| `neutral 0–975` | **900 = #262626** | **v2:** grises puros (croma 0) como la referencia; el cian es la única nota de color |
+| `cyan-alpha / ink-alpha / white-alpha` | 4…72 % | Tintes, halos y bordes sobre cualquier superficie |
 | `green / amber / red 50–950` | 500 / 400 / 500 | Estados (decisión propia) |
 
-Escalas generadas en OKLCH con luminosidad objetivo por paso y el color de marca fijado exacto en su ancla.
+Escalas generadas en OKLCH con luminosidad objetivo por paso y el color de marca fijado exacto en su ancla. En pantallas P3 el cian 300–700 gana +25 % de croma (misma luminosidad → mismo contraste). Auditoría y motivos del cambio: `docs/PALETTE_AUDIT.md`.
 
 ### 2.2 Color — semánticos
 
@@ -62,15 +63,66 @@ Informe completo: `tokens/contrast-report.md` (33 pares, todos ✅).
 
 ### 2.3 Tipografía
 
-| | Valor | Motivo |
-|---|---|---|
-| Sans | **Plus Jakarta Sans** (variable 400–700) | Ya la usa xone.es (continuidad); geométrica, encaja con el "ONE" del logo |
-| Mono | **Geist Mono** 400/500 | Sustituye a Space Mono de xone.es; misma función que GeistMono en la referencia |
-| Escala | 10/12 · 12/16 · 13/20 · 14/20 · 16/24 · 20/28 · 24/32 · 32/38 · 40/44 · 52/56 | Medida en firecrawl.dev (32/38 añadido) |
-| Pesos | 400 regular · 450 book (UI) · 500 · 600 titulares/botones · 700 | fc usa 500 en titulares; subimos a 600 para acercarnos al 800 de xone.es sin perder sobriedad |
-| Tracking | titulares −0.02em · cuerpo 0 · mono caps +0.08em | fc: −0.01em |
+**Familias.** Plus Jakarta Sans (variable 400–600, continuidad con xone.es; geométrica como el wordmark) para todo el texto · Geist Mono sólo para etiquetas técnicas, índices y código. Autoalojadas con `@fontsource`. Para piezas fuera de la web: Google Fonts, mismas familias.
 
-Alternativas valoradas: Geist (más cercana a la referencia, pierde continuidad) e Inter (neutra, sin carácter). Elegida Plus Jakarta Sans. Fuentes autoalojadas con `@fontsource` (sin dependencias de Google en runtime).
+**Pesos (sólo 3).** 400 lectura · 500 interfaz (botones, navegación, pestañas, badges, enlaces) · 600 titulares y énfasis. Nunca 700/800, nunca cursiva salvo citas.
+
+**Roles.** Fuente única de verdad: `scripts/build-tokens.mjs` → `tokens.json › typography`, `tokens/type-roles.json`, variables `--xo-type-*` y utilidades Tailwind `type-*`. **No usar tamaños/pesos sueltos** (`text-lg`, `font-bold`…).
+
+| Rol | Utilidad | Tamaño / interlineado | Peso | Tracking | Uso |
+|---|---|---|---|---|---|
+| hero | `type-hero` | 64 / 68 | 600 | −0.02em | Sólo portadas; 1 por pieza |
+| title | `type-title` | 52 / 56 | 600 | −0.02em | H1/H2 de sección (desktop) |
+| title-md | `type-title-md` | 40 / 44 | 600 | −0.02em | H1/H2 tablet, titular de CTA, cifras grandes |
+| title-sm | `type-title-sm` | 32 / 38 | 600 | −0.02em | H1/H2 móvil |
+| heading | `type-heading` | 24 / 32 | 600 | −0.01em | H3 de bloque o tarjeta grande |
+| item | `type-item` | 16 / 24 | 600 | 0 | Título de celda, paso, producto, pregunta |
+| lead | `type-lead` | 20 / 28 | 400 | −0.01em | Subtítulos y párrafos destacados (`CardLead`: arranque en 600) |
+| body | `type-body` | 16 / 24 | 400 | 0 | Texto corrido |
+| body-sm | `type-body-sm` | 14 / 20 | 400 | 0 | Texto secundario, descripciones, pie |
+| label | `type-label` | 14 / 20 | 500 | 0 | Botones, nav, pestañas, enlaces de acción |
+| label-sm | `type-label-sm` | 12 / 16 | 500 | 0 | Badges, chips, metadatos |
+| overline | `type-overline` | 12 / 16 mono | 400 | +0.08em · MAYÚS. | Eyebrows, índices, etiquetas técnicas (con viñeta píxel) |
+| micro | `type-micro` | 10 / 12 mono | 400 | +0.08em · MAYÚS. | Sólo dentro de ilustraciones (nunca texto esencial) |
+| code | `type-code` | 14 / 22 mono | 400 | 0 | Código y valores técnicos |
+
+**Índice, eyebrow y titular nunca repiten palabras.** Cada uno tiene un trabajo distinto:
+- **Índice** (`SectionIndex`): categoría de navegación, 1–2 palabras (Ventajas, Productos, Clientes, Servicios, FAQ).
+- **Eyebrow**: el ángulo o promesa de la sección (Módulos de la plataforma, Casos de éxito, Acompañamiento experto, Antes de empezar).
+- **Titular**: el mensaje. Si el eyebrow ya dice "Casos de éxito", el titular no vuelve a decirlo.
+
+| Sección | Índice | Eyebrow | Titular |
+|---|---|---|---|
+| 01 | Ventajas | Por qué XOne | Una plataforma, experiencias ilimitadas |
+| 02 | Cómo funciona | XOne + IA | La IA, en cada paso de tus proyectos |
+| 03 | Productos | Módulos de la plataforma | Todo lo que necesitas para movilizar tu negocio |
+| 04 | Clientes | Casos de éxito | Movilidad real en sectores exigentes |
+| 05 | Comunidad | Testimonios | Lo que dicen nuestros clientes |
+| 06 | Servicios | Acompañamiento experto | De la implantación simple a la solución a medida |
+| CTA | — | Contacto | ¿Hablamos de tu proyecto? |
+| 07 | FAQ | Antes de empezar | Preguntas frecuentes |
+
+**Titulares responsive:** `type-title-sm md:type-title-md lg:type-title` (32 → 40 → 52). Subtítulo: `type-body md:type-lead`.
+
+**Reglas de composición (web y piezas)**
+1. Máximo 3 niveles por pieza: un titular, un texto, una etiqueta. El salto mínimo entre niveles es de 1,25×.
+2. Una sola palabra o fragmento de acento por titular (`text.accent-display`), siempre en el mismo peso que el titular.
+3. Longitud de línea: 45–75 caracteres en texto; titulares ≤ 3 líneas (`text-balance`).
+4. Mono sólo en mayúsculas para etiquetas (overline/micro) o en código; nunca para párrafos ni titulares.
+5. Tamaño mínimo legible: 14px en web (12px sólo etiquetas), 24px en social 1080, 9pt en impresión.
+6. Contraste: texto sobre fondo según `tokens/contrast-report.md` (AA). Sobre la SignalBand, siempre blanco.
+
+**Escalas para marketing** (`tokens.json › marketing`, mismo peso/tracking que los roles web)
+
+| Formato | Hero | Title | Heading | Lead | Body | Overline | Margen |
+|---|---|---|---|---|---|---|---|
+| Social 1080×1080 / 1080×1350 | 96/100 | 64/68 | 40/48 | 32/42 | 26/36 | 20/24 | 80 |
+| Slides 1920×1080 | 120/124 | 80/86 | 48/56 | 36/48 | 28/40 | 22/28 | 120 |
+| Banner / ads | 48/52 | 32/36 | 24/30 | 18/24 | 14/20 | 11/14 | 24 |
+| Email 600px | 40/44 | 32/38 | 22/28 | 18/26 | 16/24 | 12/16 | 32 |
+| Impresión A4 (pt) | 48/52 | 32/36 | 18/22 | 13/18 | 10/14 | 7.5/10 | 54pt |
+
+Plantilla mental de una pieza: overline mono con viñeta cian → titular (title/hero) con una palabra en cian → lead → CTA en `label`. Fondo neutro `#F9F9F9` o la SignalBand `#007E9E` con texto blanco; nunca texto blanco sobre `#00AED9`.
 
 ### 2.4 Espacio, layout, radios, sombras, motion
 
@@ -80,24 +132,57 @@ Alternativas valoradas: Geist (más cercana a la referencia, pierde continuidad)
 - **Sombras**: `xs`, `card`, `float`, `accent` (botón primario, con brillo interior), `inset`. Estructura multicapa copiada de la referencia, teñida con #18293E / cian.
 - **Motion**: instant 50ms (nav) · fast 100ms (scale) · base 200ms (color) · slow 400ms · slower 500ms (entrada). Easing `standard` = ease; `out` = cubic-bezier(.22,1,.36,1) para entradas.
 
-## 2.5 Motion y rejillas (FX)
+## 2.5 Sistema de rejilla de página
+
+Estudiado en el DOM de firecrawl.dev (raíles fijos `border-x` del contenedor a toda la altura, divisores `w-screen` en cada frontera, nodos de unión de 21px en cada cruce, marco de 1314px en hero/CTA, celdas `curvy-rect` con esquinas cóncavas). Reglas XONE (`src/components/fx/GridLines.tsx`):
+
+| Regla | Pieza |
+|---|---|
+| Los bordes del contenedor (1112px) son **raíles fijos** a toda la altura de la página | `PageRails` |
+| **Toda frontera de sección** es una línea a todo el viewport, nunca sólo dentro del contenedor | `FullLine` |
+| Donde una `FullLine` cruza un raíl, el marco o la división central de un `GridSpacer` hay un **nodo de unión** (cruz de 1px con esquinas cóncavas, color de línea) | `Connector` |
+| Entre secciones (medido en la referencia): **fila vacía de un solo bloque** 92px móvil / 140px desktop + **fila índice** partida en 2 columnas (py 24/45px → 106px), con la barra de acento sobre el raíl izquierdo y media unión en la división central | `GridSpacer`, `SectionIndex` |
+| Cabecera de sección: padding vertical 48 / 88 / 143px (móvil / tablet / desktop) | `Heading` |
+| **Esquinas curvy**: todo bloque delimitado por líneas (filas, celdas, cabeceras, pie) lleva en sus 4 esquinas una cuña del color de línea con radio 6px; donde se tocan bloques, las cuñas forman la unión cóncava | `.xo-curvy`, `.xo-cells > *` |
+| Las `FullLine` siempre cuelgan de un padre a **ancho completo** (nunca dentro del contenedor), para que los nodos caigan en los raíles | — |
+| Hero y CTA son **secciones enmarcadas**: contenedor + 1 columna exterior por lado (13 × 101px = 1314px), etiquetas mono en las esquinas exteriores | `FrameSection` |
+| Celdas **decorativas**: redondeadas (radio 8), columnas exteriores como una celda alta, zonas laterales con celdas de 1–2 filas (patrón irregular simétrico), bloque central fusionado, sólo filas completas | `GridCanvas` |
+| Celdas **de contenido**: cuadradas, separadas por 1px | `.xo-cells` |
+| Bloques de color (SignalBand) viven **dentro** del contenedor, entre raíles | — |
+
+### Nodos: dónde sí y dónde no
+
+| ✅ Sí | ❌ No |
+|---|---|
+| Cruce de `FullLine` con los raíles del contenedor | Sobre bloques de color (SignalBand, banner): las líneas que tocan un bloque usan `nodes={false}` |
+| Cruce con el marco exterior de `FrameSection` (≥996px) | Dentro de celdas o encima de contenido |
+| Cruce con la división central de un `GridSpacer` (≥768px) | Como decoración suelta (estrellas, destellos, cruces flotantes) |
+
+### Lenguaje propio (para distanciarnos de la referencia)
+
+- **Sin** estrellas/destellos, sin cruces cóncavas, sin etiquetas entre corchetes `[ … ]` ni barras `//`.
+- La unidad gráfica de XONE es el **píxel cuadrado**: viñeta de etiquetas mono (4px cian: `▪ MXDP`), glifos de píxel en celdas, puntos de las animaciones. Los nodos de unión son la única pieza de "unión" de líneas.
+- Etiquetas técnicas: mono en mayúsculas con viñeta píxel cian (`Badge variant="mono"`, etiquetas de esquina de `FrameSection`, lenguaje del `CodeBlock`).
+
+## 2.6 Motion y rejillas (FX)
 
 Medido en firecrawl.dev: canvas de celdas en el hero, arte ASCII con `illuminate` (7s), anillos con `spin` 32s, indicadores con resorte `linear()` de 750ms, barras que crecen (`scaleY`/`scaleX`), texto "scramble", marquee de logos en celdas con subrayado de acento, filas separadoras de rejilla con cruces, y fade-in-up al hacer scroll. Versión XONE (`src/components/fx/`):
 
 | Pieza | Qué hace | Tokens |
 |---|---|---|
 | `GridCanvas` | Rejilla de celdas de 100px (radio 8, 1px de separación) **contenida**: contenedor + 1 columna por lado (13 × 101 = 1314px, como la referencia), sólo filas completas (el hero ajusta su altura a múltiplos de 101px) y bloque central fusionado donde va el contenido. Sólo ≥996px. Celdas laterales que se iluminan y glifos abstractos | `fx.cell`, `fx.glyph`, `border.*` |
-| `DotMatrix` | Arte de caracteres animado y abstracto: `blob` (masa orgánica que respira junto a titulares), `field` (onda tenue), `fountain` (puntos que burbujean en la CTA). 12–16 fps, se pausa fuera de pantalla | `fx.matrix`, `fx.glyph` |
+| `DotMatrix` | Arte de caracteres animado y abstracto (` .·:-=+x*#`): `blob` (masa orgánica que respira junto a titulares y en FAQ), `field` (onda tenue; en la banda de señal en blanco y con máscara hacia el centro). 12–16 fps, se pausa fuera de pantalla. **Es el único recurso animado junto a titulares**: nada de glifos de píxel ni símbolos en las rejillas | `fx.matrix` |
 | — | **No usar la X del logo animada**: el motion es siempre abstracto; el logo sólo aparece estático | |
-| `Spark` | Estrella de 4 puntas en anillo en intersecciones de la rejilla | `fx.glyph`, `duration.ambient` |
-| `GridSpacer` + `Cross` | Fila vacía de rejilla entre secciones con cruces en las intersecciones | `border.faint/loud` |
+| `GridSpacer` | Fila vacía entre secciones con `FullLine` arriba/abajo y uniones | `border.faint` |
+| CTA · `GridCanvas mirror` | Sincronización: las celdas laterales se iluminan con un relleno tenue, en espejo a ambos lados. **Sin glifos ni símbolos** | `fx.cell` |
 | `Reveal` | Fade-in-up al entrar en pantalla, escalonado 80ms por celda | `duration.slower`, `easing.out` |
 | `CountUp` | Cifras que cuentan al aparecer (70 %, +20…) | — |
 | `Scramble` | Etiquetas mono que rotan con efecto scramble | — |
 | `Marquee` | Logos y testimonios en celdas, pausa al hover | — |
 | `AutoSteps` | Pasos con barra de progreso que avanza sola (pausa con hover/foco) | `easing.standard` |
+| `AIShowcase` | Patrón "use cases" de la referencia: pestañas verticales de 300px siempre visibles (icono, título, descripción; la activa tintada con progreso vertical en el borde) + demo con contenido concreto (estado con puntos animados, tabla con contadores que suben, panel flotante que se escribe) + franja inferior con XOneCode | `accent-subtle`, `shadow.float` |
 | `HeroConsole` | Tarjeta del hero: escribe "Movilizamos <sector>", selector de plataformas y botón a contacto. Sin imágenes de producto | `shadow.float` |
-| Ilustraciones | `PlatformsIllo`, `SecurityIllo`, `OfflineIllo`, `IntegrationIllo`: mini-UIs animadas dentro de las celdas | tokens semánticos |
+| Ilustraciones | Panel de **alto fijo (240px), a sangre y pegado abajo** de la celda, separado del texto por una línea → alineado en toda la fila aunque el texto ocupe más o menos líneas. Escenas en bucle: `PlatformsIllo` (un paquete viaja del editor a cada plataforma, que queda "compilada"), `SecurityIllo` (radar con barrido + registro de eventos que se valida), `OfflineIllo` (cae la cobertura, los cambios se encolan y se envían al volver), `IntegrationIllo` (eventos de ERP/CRM/BD pasan por el bus y aparecen en la app). Se pausan fuera de pantalla | tokens semánticos |
 | Tabs | Indicador que se desliza con resorte | `easing.spring`, `duration.spring` |
 | Button primario | Sombra interior + halo que crece en hover, flecha que avanza | `shadow.accent(-hover)` |
 
