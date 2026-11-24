@@ -2,3 +2,8 @@ node_modules
 dist
 .DS_Store
 *.log
+
+# capturas de trabajo (regenerables, no se versionan)
+Claude outputs/
+docs/screenshots/*
+!docs/screenshots/compare-palette-v1-v2.png

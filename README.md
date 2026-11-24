@@ -20,5 +20,5 @@ npm run build
 | Homepage | `index.html` → `src/pages/Home.tsx`, contenido en `src/content/xone.ts` |
 | Mapa de contenido, [PENDIENTE], reescrituras | `CONTENT_MAP.md` |
 | Informe WCAG | `tokens/contrast-report.md` |
-| Capturas (referencia y resultado) | `docs/reference/`, `docs/screenshots/` |
+| Capturas de referencia | `docs/reference/` (las del resultado, en `docs/screenshots/`, no se versionan) |
 | Logo | `public/brand/` |
