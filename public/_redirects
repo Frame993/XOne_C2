@@ -1,0 +1,3 @@
+# Todas las rutas (/slug/, /en/slug/) las resuelve index.html en el navegador.
+# Los archivos que existen (styleguide.html, assets, brand) se sirven tal cual.
+/*    /index.html    200
