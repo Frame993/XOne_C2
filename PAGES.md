@@ -23,7 +23,7 @@ Estado: ✅ hecha · ⏳ lote en curso · — pendiente
 | Movilidad XOne | `como-resolvemos-la-movilidad` |
 | DevOps | `devops` |
 
-## Lote 2 · Productos (menú «Productos»)
+## Lote 2 · Productos (menú «Productos») ✅
 | Página | Slug |
 |---|---|
 | XOneCode (IA) | `xonecode` |

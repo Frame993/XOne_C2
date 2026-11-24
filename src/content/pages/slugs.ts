@@ -8,4 +8,18 @@ export const BUILT_SLUGS = [
   "que-nos-hace-unicos-xone",
   "como-resolvemos-la-movilidad",
   "devops",
+  // Lote 2 · Productos
+  "xonecode",
+  "nueva-mxdp",
+  "herramientas-rapidas-de-desarrollo-xonecloud",
+  "replica-de-datos-y-documentacion-xone",
+  "ciberseguridad",
+  "bus-integracion-esb-enterprise-service-bus",
+  "cloud-vs-on-premise-xone",
+  "sistema-de-actualizaciones-xone",
+  "multiplataforma-xone",
+  "sistema-de-monitorizacion-con-ia",
+  "notificaciones-push-xone",
+  "xoneassist",
+  "gestion-de-movilidad-empresarial-xone",
 ];

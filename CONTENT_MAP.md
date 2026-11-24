@@ -83,3 +83,14 @@ Fuente: `xone.es/{slug}/` y `xone.es/en/{slug}/` (24-nov-2026). Todo el cuerpo d
 
 ## Home en inglés (`/en/`)
 Textos de `xone.es/en/` cuando existen. **Traducción propia**: descripciones del menú, FAQ, testimonios, lista de reconocimientos, servicios, textos de las demos animadas (AIShowcase, ilustraciones) y etiquetas de interfaz.
+
+
+## Páginas · lote 2 (Productos) — ES y EN
+
+Fuente: `xone.es/{slug}/` y `xone.es/en/{slug}/` (24-nov-2026). Cuerpo de texto real; en `ciberseguridad`, `gestion-de-movilidad-empresarial-xone`, `nueva-mxdp` y `bus-integracion-esb-enterprise-service-bus` los párrafos largos se han **condensado** (mismo contenido, menos texto por celda).
+**Reescrituras propias** (revisar):
+- Titulares, eyebrows e índices de sección (p. ej. «Un programador más, especializado en XOne», «Trece capacidades para cualquier canal», «Protección para redes, apps, dispositivos y datos», «Conecta tus sistemas sin tocarlos», «Doce funciones para actualizar sin fricción», «Siete trabajos que se hacen solos»).
+- Frases de apertura: `xonecode` («Tú decides qué construir; XOneCode se encarga del cómo» es real), `ciberseguridad` («Acceso seguro… con un enfoque modular y receptivo»), `bus-integracion` («Movilidad para prácticamente cualquier sistema, con mínimos cambios»), `cloud-vs-on-premise` (real), `replica` («Una de las funcionalidades más importantes de XOne» es real).
+- Títulos de fila en `replica-de-datos-y-documentacion-xone` («Copias locales de los datos», «Un servidor de réplica para todas tus apps»…) y etiquetas cortas de celda.
+- Titular del hero de `ciberseguridad` («Ciberseguridad de extremo a extremo»), `multiplataforma-xone` («Multiplataforma: un solo código») y `xoneassist` («XOneAssist, tu tutor virtual»).
+- `xonecode`: la demo animada «Del diseño al soporte, con IA» reutiliza la de la home con los cinco pasos reales.
