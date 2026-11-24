@@ -11,11 +11,11 @@ import { useInView, useReducedMotion } from "./hooks";
  * Cada escena cuenta una historia en bucle (8–10 s) y se detiene fuera de pantalla o con reduced-motion.
  */
 
-const panel = "relative h-full w-full overflow-hidden";
-const VB = "0 0 560 240";
+export const panel = "relative h-full w-full overflow-hidden";
+export const VB = "0 0 560 240";
 
 /** Paso de una secuencia en bucle; sólo avanza en pantalla y sin reduced-motion. */
-function useLoop(steps: number, every: number) {
+export function useLoop(steps: number, every: number) {
   const reduced = useReducedMotion();
   const [ref, inView] = useInView<HTMLDivElement>();
   const [step, setStep] = useState(reduced ? steps - 1 : 0);
@@ -27,7 +27,7 @@ function useLoop(steps: number, every: number) {
   return [ref, step, reduced] as const;
 }
 
-const DotBg = () => <div aria-hidden className="xo-dot-grid absolute inset-0 opacity-60 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />;
+export const DotBg = () => <div aria-hidden className="xo-dot-grid absolute inset-0 opacity-60 [mask-image:radial-gradient(ellipse_at_center,black,transparent_75%)]" />;
 
 /* ───────────── 01 · Un código, todas las plataformas ───────────── */
 const TARGETS = [

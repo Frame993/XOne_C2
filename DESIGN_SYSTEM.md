@@ -290,3 +290,15 @@ npm run build
 
 Cada bloque con índice muestra la barra «NN / TT » ETIQUETA» y una cabecera; índice, eyebrow y título no repiten palabras.
 **Idiomas**: español en `/slug/`, inglés en `/en/slug/` (`src/i18n.ts`: `t(es, en)`, `link(slug)`, `alternate(lang)`); el selector ES/EN lleva a la misma página en el otro idioma.
+
+## Escenas animadas explicativas (`src/components/fx/Scenes.tsx`)
+
+Ilustraciones vectoriales animadas que **explican** un concepto de la página (no decoran). El contenido las pide por nombre con `visual: SceneName`:
+
+- `intro.visual` → panel a sangre bajo el texto de la columna derecha.
+- `rows.items[].visual` → panel a sangre al pie de la columna ancha (texto), nunca en la columna estrecha del título.
+- `cells.items[].visual` → panel al pie de la celda (ponlo en **todas** las celdas del bloque para que la fila alinee).
+
+Registro `SCENES`: platforms, security, offline, integration (home) + push, update, monitor, pipeline, broker, onprem, cloud, fleet, agents, chat, sentiment.
+
+Reglas: viewBox 560×240 · sólo tokens (`--xo-color-*`) · `aria-hidden` · textos con `t()` · bucle con `useLoop` (se para fuera de pantalla) · con reduced-motion muestran su estado final estático · nada de glifos/símbolos animados en rejillas · nunca combinar una animación CSS de `transform` con un `transform` posicionado en el mismo `<g>` (anidar dos grupos).

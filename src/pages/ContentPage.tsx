@@ -1,6 +1,6 @@
 import { Fragment, useLayoutEffect, useRef, useState, type ReactNode } from "react";
 import { Button, CardLead, Icon, Logo, Section, SectionHeading, SectionIndex, cn, type IconName } from "../components/ui";
-import { AIShowcase, DotMatrix, FrameSection, FullLine, GRID_STEP, GridCanvas, GridSpacer, Reveal } from "../components/fx";
+import { AIShowcase, DotMatrix, SCENES, type SceneName, FrameSection, FullLine, GRID_STEP, GridCanvas, GridSpacer, Reveal } from "../components/fx";
 import { CTA, SiteLayout } from "../components/layout/SiteLayout";
 import { Heading } from "../components/layout/Heading";
 import * as C from "../content/xone";
@@ -11,6 +11,12 @@ import { currentSlug, link, t } from "../i18n";
 const resolve = (l: PageLink) => l.href ?? link(l.slug ?? "");
 const isExternal = (href: string) => /^https?:/.test(href);
 const pad = (n: number) => String(n).padStart(2, "0");
+
+/** Panel de escena animada: alto fijo, a sangre, separado por línea. */
+function Scene({ name, className }: { name: SceneName; className?: string }) {
+  const S = SCENES[name];
+  return <div className={cn("h-60 border-t border-line-faint bg-bg-subtle", className)}><S /></div>;
+}
 
 function MoreLink({ to, className }: { to: PageLink; className?: string }) {
   const href = resolve(to);
@@ -84,6 +90,7 @@ function Intro({ b }: { b: Extract<Block, { type: "intro" }> }) {
         <Reveal delay={1} className="xo-curvy flex flex-col gap-4 p-7 md:p-10 lg:py-16">
           {b.text?.map((p, i) => <p key={i} className={cn("text-pretty", i === 0 ? "type-lead text-fg-secondary" : "type-body text-fg-muted")}>{p}</p>)}
           {b.link && <MoreLink to={b.link} className="mt-2" />}
+          {b.visual && <Scene name={b.visual} className="-mx-7 -mb-7 mt-4 md:-mx-10 md:-mb-10 lg:-mb-16 lg:mt-auto lg:h-64" />}
         </Reveal>
       </Section>
     </div>
@@ -95,7 +102,8 @@ function Cells({ b }: { b: Extract<Block, { type: "cells" }> }) {
   return (
     <ul className={cn("xo-cells", cols === 2 && "md:grid-cols-2", cols === 3 && "md:grid-cols-2 lg:grid-cols-3", cols === 4 && "sm:grid-cols-2 lg:grid-cols-4")}>
       {b.items.map((it, i) => (
-        <Reveal as="li" key={it.label} delay={i % cols} className={cn("flex flex-col gap-5 p-7", cols === 4 ? "md:p-8" : "md:p-10")}>
+        <Reveal as="li" key={it.label} delay={i % cols} className="flex flex-col">
+          <div className={cn("flex flex-1 flex-col gap-5 p-7", cols === 4 ? "md:p-8" : "md:p-10")}>
           <div className="flex items-center justify-between gap-4">
             <span className="inline-flex items-center gap-2 type-overline text-fg-muted">
               {it.icon && <span className="inline-flex size-6 items-center justify-center rounded-sm border border-accent-border bg-accent-subtle text-accent-subtle-fg"><Icon name={it.icon} size={14} /></span>}
@@ -107,6 +115,8 @@ function Cells({ b }: { b: Extract<Block, { type: "cells" }> }) {
           {it.lead ? <CardLead lead={it.lead} className={cols === 2 ? "type-body md:type-lead" : "type-body"}>{it.text}</CardLead> : <p className={cn("type-body text-fg-secondary", cols === 2 && "md:type-lead")}>{it.text}</p>}
           {it.more?.map((p, k) => <p key={k} className="type-body text-fg-muted">{p}</p>)}
           {it.link && <MoreLink to={it.link} className="mt-auto pt-2" />}
+          </div>
+          {it.visual && <Scene name={it.visual} />}
         </Reveal>
       ))}
       {/* celdas vacías para completar la última fila en escritorio (la rejilla nunca queda a medias) */}
@@ -133,6 +143,8 @@ function Rows({ b }: { b: Extract<Block, { type: "rows" }> }) {
             )}
             {it.note && <p className="border-l-2 border-accent pl-4 type-body font-medium text-fg">{it.note}</p>}
             {it.link && <MoreLink to={it.link} className="pt-1" />}
+            {/* escena a sangre al pie de la columna ancha */}
+            {it.visual && <Scene name={it.visual} className="-mx-7 -mb-7 mt-3 md:-mx-10 md:-mb-10 lg:h-64" />}
           </Reveal>
         </li>
       ))}

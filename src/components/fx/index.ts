@@ -6,3 +6,4 @@ export * from "./Illustrations";
 export * from "./hooks";
 export * from "./GridLines";
 export * from "./AIShowcase";
+export * from "./Scenes";

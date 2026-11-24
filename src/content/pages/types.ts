@@ -1,4 +1,5 @@
 import type { IconName } from "../../components/ui/Icon";
+import type { SceneName } from "../../components/fx/Scenes";
 
 /** Enlace de contenido: `slug` para páginas del sitio (se resuelve por idioma), `href` para externos. */
 export type PageLink = { label: string; slug?: string; href?: string };
@@ -11,11 +12,11 @@ type Head = { index: string; eyebrow: string; title: string; accent?: string; su
 
 export type Block =
   /** Declaración de apertura a dos columnas: frase grande a la izquierda, texto y enlace a la derecha. */
-  | { type: "intro"; lead: string; accent?: string; text?: string[]; link?: PageLink }
+  | { type: "intro"; lead: string; accent?: string; text?: string[]; link?: PageLink; /** escena animada que explica el concepto (bajo el texto) */ visual?: SceneName }
   /** Rejilla de celdas al estilo «etiqueta + Frase destacada. texto» (2 o 3 columnas). */
-  | (Head & { type: "cells"; cols?: 2 | 3 | 4; items: { label: string; icon?: IconName; lead?: string; text: string; more?: string[]; link?: PageLink }[] })
+  | (Head & { type: "cells"; cols?: 2 | 3 | 4; items: { label: string; icon?: IconName; lead?: string; text: string; more?: string[]; link?: PageLink; /** escena animada al pie de la celda (úsala en todas las celdas del bloque) */ visual?: SceneName }[] })
   /** Filas largas: título a la izquierda, párrafos a la derecha. */
-  | (Head & { type: "rows"; items: { title: string; text: string[]; note?: string; list?: string[]; link?: PageLink }[] })
+  | (Head & { type: "rows"; items: { title: string; text: string[]; note?: string; list?: string[]; link?: PageLink; /** escena animada bajo el título */ visual?: SceneName }[] })
   /** Lista corta en celdas con marca (capacidades, principios…). */
   | (Head & { type: "chips"; cols?: 2 | 3 | 4; text?: string; items: string[] })
   /** Cita destacada sobre la banda de señal. */
