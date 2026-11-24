@@ -6,10 +6,11 @@ import { setupCanvas, useInView, useReducedMotion, useTokenColors, withAlpha } f
  * Arte de caracteres animado y abstracto (equivalente al ASCII "illuminate" de la referencia). Modos:
  *  - "blob":   masa orgánica que respira, para acompañar titulares.
  *  - "field":  campo ondulado tenue para fondos.
- *  - "fountain": dos fuentes de puntos que suben (CTA).
+ *  - "fountain": montículo de puntos que burbujea.
+ *  - "signal": columnas de puntos que suben y bajan como barras de cobertura/sincronización (concepto XONE para la CTA).
  */
 const CHARS = " .·:-=+x*#";
-export function DotMatrix({ mode = "field", className, cellW = 9, cellH = 12, fps = 12, colorVar = "--xo-color-fx-matrix" }: { mode?: "blob" | "field" | "fountain"; className?: string; cellW?: number; cellH?: number; fps?: number; colorVar?: string }) {
+export function DotMatrix({ mode = "field", className, cellW = 9, cellH = 12, fps = 12, colorVar = "--xo-color-fx-matrix" }: { mode?: "blob" | "field" | "fountain" | "signal"; className?: string; cellW?: number; cellH?: number; fps?: number; colorVar?: string }) {
   const ref = useRef<HTMLCanvasElement>(null);
   const [wrap, inView] = useInView<HTMLDivElement>();
   const reduced = useReducedMotion();
@@ -34,6 +35,16 @@ export function DotMatrix({ mode = "field", className, cellW = 9, cellH = 12, fp
         if (r > edge) return 0;
         const sweep = 0.5 + 0.5 * Math.sin((u + v) * 6 - t * 1.2);
         return (1 - r / edge) * 0.6 + 0.4 * sweep * (1 - r / edge);
+      }
+      if (mode === "signal") {
+        // envolvente en campana: columnas más altas hacia el centro de la zona
+        const env = 0.25 + 0.7 * Math.pow(Math.sin(Math.PI * Math.min(1, Math.max(0, u))), 1.4);
+        const wave = 0.55 + 0.45 * Math.sin(t * 1.3 + cx * 0.55) * Math.cos(t * 0.7 - cx * 0.21);
+        const height = env * wave;
+        const up = 1 - v;
+        if (up > height) return 0;
+        if (height - up < 1 / rows) return 1; // punto de cabeza: acento
+        return 0.2 + 0.5 * (up / Math.max(height, 0.01));
       }
       if (mode === "fountain") {
         // montículo de puntos que "burbujea" desde abajo (como los de la CTA de la referencia)
@@ -62,9 +73,9 @@ export function DotMatrix({ mode = "field", className, cellW = 9, cellH = 12, fp
           const i = intensity(cx, cy, t);
           if (i < 0.08) continue;
           const ch = CHARS[Math.min(CHARS.length - 1, Math.floor(i * CHARS.length))];
-          const hot = mode !== "field" && i > 0.85;
+          const hot = (mode === "fountain" || mode === "signal") && i > 0.85;
           ctx.fillStyle = withAlpha(hot ? colors.accent : colors.ink, hot ? 0.9 : 0.25 + i * 0.6);
-          if (mode === "fountain") ctx.fillRect(cx * cellW + cellW / 2 - 1, cy * cellH + cellH / 2 - 1, 2, 2);
+          if (mode === "fountain" || mode === "signal") ctx.fillRect(cx * cellW + cellW / 2 - 1, cy * cellH + cellH / 2 - 1, 2, 2);
           else ctx.fillText(ch, cx * cellW, cy * cellH);
         }
       }

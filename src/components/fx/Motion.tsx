@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, type CSSProperties, type ElementType, type ReactNode } from "react";
 import { cn } from "../ui/utils";
 import { useInView, useReducedMotion } from "./hooks";
+import { FullLine } from "./GridLines";
 
 /** Aparición al hacer scroll (fade-in-up). `delay` en pasos de 80ms para escalonar celdas. */
 export function Reveal({ as: Tag = "div", delay = 0, className, children, ...rest }: { as?: ElementType; delay?: number; className?: string; children: ReactNode } & Record<string, unknown>) {
@@ -85,31 +86,13 @@ export function Marquee({ children, duration = 60, className, label }: { childre
   );
 }
 
-/** Marca de intersección de rejilla: estrella de 4 puntas en cian dentro de un anillo. */
-export function Spark({ className, style }: { className?: string; style?: CSSProperties }) {
+/** Fila separadora entre secciones (medida en la referencia: 92px móvil / 140px desktop), un solo bloque con esquinas curvy. */
+export function GridSpacer({ nodesTop = true, nodesBottom = true }: { nodesTop?: boolean; nodesBottom?: boolean }) {
   return (
-    <span aria-hidden style={style} className={cn("pointer-events-none absolute z-10 inline-flex size-10 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-pill border border-line-faint bg-bg", className)}>
-      <svg viewBox="0 0 16 16" className="size-4 animate-[xo-twinkle_var(--xo-duration-ambient)_var(--xo-easing-in-out)_infinite]"><path d="M8 0l1.6 6.4L16 8l-6.4 1.6L8 16l-1.6-6.4L0 8l6.4-1.6z" fill="var(--xo-color-fx-glyph)" /></svg>
-    </span>
-  );
-}
-
-/** Fila separadora de rejilla vacía entre secciones, con cruces en las intersecciones. */
-export function GridSpacer({ split = true }: { split?: boolean }) {
-  return (
-    <div aria-hidden className="xo-container xo-rails relative grid h-16 border-b border-line-faint md:h-24 md:grid-cols-2">
-      {split && <div className="hidden border-r border-line-faint md:block" />}
-      <Cross className="top-full left-0" />
-      <Cross className="top-full left-full" />
-      {split && <Cross className="top-full left-1/2 hidden md:block" />}
+    <div aria-hidden className="relative">
+      <FullLine position="top" nodes={nodesTop} />
+      <FullLine position="bottom" nodes={nodesBottom} />
+      <div className="xo-container xo-rails xo-curvy h-[92px] lg:h-[140px]" />
     </div>
-  );
-}
-
-export function Cross({ className }: { className?: string }) {
-  return (
-    <svg aria-hidden viewBox="0 0 11 11" className={cn("pointer-events-none absolute z-10 size-[11px] -translate-x-1/2 -translate-y-1/2 text-line-loud", className)}>
-      <path d="M5.5 0v11M0 5.5h11" stroke="currentColor" strokeWidth="1" />
-    </svg>
   );
 }
