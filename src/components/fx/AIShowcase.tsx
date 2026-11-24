@@ -2,6 +2,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { cn } from "../ui/utils";
 import { Icon, type IconName } from "../ui/Icon";
 import { useInView, useReducedMotion } from "./hooks";
+import { t } from "../../i18n";
 
 /**
  * "La IA en cada paso" — patrón "use cases" de la referencia:
@@ -20,7 +21,7 @@ type Demo = {
   panel: { title: string; meta: string }[];
 };
 
-const DEMOS: Demo[] = [
+const DEMOS: Demo[] = t<Demo[]>([
   {
     status: "Generando pantalla",
     rows: [["Pantallas", 3], ["Componentes", 18], ["Variantes de diseño", 4], ["Adaptado a la marca", 100, "%"]],
@@ -71,7 +72,58 @@ const DEMOS: Demo[] = [
       { title: "El técnico recibe un aviso", meta: "paso 3" },
     ],
   },
-];
+], [
+  {
+    status: "Generating screen",
+    rows: [["Screens", 3], ["Components", 18], ["Design variants", 4], ["On brand", 100, "%"]],
+    panelTitle: "Work order with map and signature",
+    panel: [
+      { title: "Header · Order #2481", meta: "component" },
+      { title: "Location map", meta: "component" },
+      { title: "Customer signature", meta: "component" },
+    ],
+  },
+  {
+    status: "Organizing in Autopilot",
+    rows: [["Requirements", 12], ["Tasks created", 34], ["User stories", 8], ["Dependencies", 5]],
+    panelTitle: "Project requirements",
+    panel: [
+      { title: "Biometric sign-in", meta: "T-101 · in progress" },
+      { title: "Photos of the fault", meta: "T-102 · pending" },
+      { title: "Offline mode", meta: "T-103 · pending" },
+    ],
+  },
+  {
+    status: "Agents at work",
+    rows: [["Tasks coded", 7], ["Tests passed", 42], ["Deployments", 3], ["Pending reviews", 2]],
+    panelTitle: "Agent log",
+    panel: [
+      { title: "Reading the XOne project", meta: "MCP" },
+      { title: "Coding task T-103", meta: "skills" },
+      { title: "Tests green · deployed", meta: "test environment" },
+    ],
+  },
+  {
+    status: "Documenting",
+    rows: [["Functions documented", 56], ["Screens", 14], ["Diagrams", 6], ["Up to date", 100, "%"]],
+    panelTitle: "createOrder()",
+    panel: [
+      { title: "Creates a work order", meta: "description" },
+      { title: "customer, location, technician", meta: "parameters" },
+      { title: "Order with “Pending” status", meta: "result" },
+    ],
+  },
+  {
+    status: "Answering questions",
+    rows: [["Questions answered", 128], ["Solved without escalation", 91, "%"], ["Languages", 3], ["Open", 4]],
+    panelTitle: "How do I reassign an order?",
+    panel: [
+      { title: "Open the order and tap “Reassign”", meta: "step 1" },
+      { title: "Choose an available technician", meta: "step 2" },
+      { title: "The technician gets a notification", meta: "step 3" },
+    ],
+  },
+]);
 
 const ICONS: IconName[] = ["layers", "doc", "code", "doc", "chat"];
 
@@ -113,7 +165,7 @@ function Row({ label, value, unit, run }: { label: string; value: number; unit?:
   return (
     <div className="grid grid-cols-[1fr_auto] items-center gap-4 border-b border-line-faint px-6 py-4 last:border-b-0">
       <span className="type-body-sm text-fg-secondary">{label}</span>
-      <span className="font-mono type-body-sm tabular-nums text-fg">{n.toLocaleString("es-ES")}{unit ? ` ${unit}` : ""}</span>
+      <span className="font-mono type-body-sm tabular-nums text-fg">{n.toLocaleString(t("es-ES", "en-GB"))}{unit ? ` ${unit}` : ""}</span>
     </div>
   );
 }
@@ -163,7 +215,7 @@ export function AIShowcase({ steps, footer, every = 7000 }: { steps: { title: st
 
   return (
     <div ref={ref} className="grid lg:grid-cols-[300px_1fr]">
-      <div role="tablist" aria-orientation="vertical" aria-label="Pasos" className="xo-curvy flex flex-col border-b border-line-faint lg:border-r" onMouseLeave={() => setPaused(false)}>
+      <div role="tablist" aria-orientation="vertical" aria-label={t("Pasos", "Steps")} className="xo-curvy flex flex-col border-b border-line-faint lg:border-r" onMouseLeave={() => setPaused(false)}>
         {steps.map((s, k) => {
           const active = k === i;
           return (

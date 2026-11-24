@@ -4,8 +4,9 @@ import { Logo } from "./Logo";
 import { Button } from "./Button";
 import { Icon, type IconName } from "./Icon";
 import { Connector, FrameRails, RAILS } from "../fx/GridLines";
+import { t } from "../../i18n";
 
-export type NavLink = { label: string; href: string };
+export type NavLink = { label: string; href: string; lang?: string; title?: string };
 export type NavItem = { label: string; desc: string; href: string; icon: IconName | string; tag?: string };
 export type NavMenu = { label: string; items: NavItem[]; caseIndex?: number };
 export type NavCase = { name: string; sector: string; href: string };
@@ -19,7 +20,7 @@ export function ThemeToggle() {
     try { localStorage.setItem("xo-theme", dark ? "dark" : "light"); } catch { /* almacenamiento no disponible */ }
   }, [dark]);
   return (
-    <button type="button" onClick={() => setDark((d) => !d)} className="inline-flex size-8 items-center justify-center rounded-md text-fg-secondary hover:bg-hover hover:text-fg" aria-label={dark ? "Activar modo claro" : "Activar modo oscuro"}>
+    <button type="button" onClick={() => setDark((d) => !d)} className="inline-flex size-8 items-center justify-center rounded-md text-fg-secondary hover:bg-hover hover:text-fg" aria-label={dark ? t("Activar modo claro", "Switch to light mode") : t("Activar modo oscuro", "Switch to dark mode")}>
       <Icon name={dark ? "sun" : "moon"} />
     </button>
   );
@@ -63,7 +64,7 @@ function MenuPanel({ menu, featured, stories, story, id, onNavigate }: { menu: N
           <div aria-hidden className={cn("grid min-h-12 flex-1 grid-cols-2", "[&>i]:border-r", line)}><i className={line} /></div>
         </div>
         <div className="flex flex-col">
-          <p className={cn("flex h-14 items-center border-b px-7 type-body-sm text-fg-muted", line)}>Destacado</p>
+          <p className={cn("flex h-14 items-center border-b px-7 type-body-sm text-fg-muted", line)}>{t("Destacado", "Featured")}</p>
           {featured && (
             <a href={featured.href} className="group/f flex flex-col gap-3 bg-(--xo-color-signal-bg) px-7 py-6 text-(--xo-color-signal-fg) transition-colors duration-200 hover:bg-(--xo-color-signal-surface)">
               <span className="flex items-center justify-between type-overline">
@@ -76,7 +77,7 @@ function MenuPanel({ menu, featured, stories, story, id, onNavigate }: { menu: N
           {story && (
             <a href={story.href} className={cn("group/s flex flex-col gap-8 border-b px-7 py-6 transition-colors duration-200 hover:bg-(--xo-color-menu-hover)", line)}>
               <span className="flex items-center justify-between">
-                <span className="inline-flex items-center gap-2 type-overline text-fg-accent"><i className="size-1 bg-accent" aria-hidden />Caso de éxito</span>
+                <span className="inline-flex items-center gap-2 type-overline text-fg-accent"><i className="size-1 bg-accent" aria-hidden />{t("Caso de éxito", "Success story")}</span>
                 <Icon name="external" size={18} className="text-fg-muted transition-transform duration-200 group-hover/s:-translate-y-0.5 group-hover/s:translate-x-0.5 group-hover/s:text-fg-accent" />
               </span>
               <span className="flex flex-col gap-1">
@@ -175,7 +176,7 @@ export function Navbar({ menus = [], links = [], cta, secondary, wiki, featured,
       <div className="xo-container xo-rails flex h-(--xo-navbar-height) items-center justify-between gap-4 px-4">
         <a href="/" className="shrink-0 rounded-sm" aria-label="XOne, inicio"><Logo /></a>
 
-        <nav aria-label="Principal" className="hidden lg:block">
+        <nav aria-label={t("Principal", "Main")} className="hidden lg:block">
           <ul className="flex items-center gap-0.5">
             {menus.map((m, i) => (
               <li key={m.label}>
@@ -201,10 +202,10 @@ export function Navbar({ menus = [], links = [], cta, secondary, wiki, featured,
 
         <div className="flex items-center gap-1.5">
           {wiki && <a href={wiki.href} className="hidden h-8 items-center gap-1 rounded-md px-2.5 type-label text-fg-secondary hover:bg-hover hover:text-fg xl:inline-flex">{wiki.label}<Icon name="external" size={14} /></a>}
-          {secondary && <a href={secondary.href} hrefLang="en" className="hidden h-8 items-center rounded-md px-2.5 type-label text-fg-secondary hover:bg-hover hover:text-fg sm:inline-flex" lang="en" title="English version">{secondary.label}</a>}
+          {secondary && <a href={secondary.href} hrefLang={secondary.lang} className="hidden h-8 items-center rounded-md px-2.5 type-label text-fg-secondary hover:bg-hover hover:text-fg sm:inline-flex" lang={secondary.lang} title={secondary.title}>{secondary.label}</a>}
           <ThemeToggle />
           <Button href={cta.href} size="sm" className="ml-1 max-sm:hidden">{cta.label}</Button>
-          <button type="button" className="inline-flex size-9 items-center justify-center rounded-md hover:bg-hover lg:hidden" aria-expanded={mobile} aria-controls="xo-mobile-nav" aria-label={mobile ? "Cerrar menú" : "Abrir menú"} onClick={() => setMobile((o) => !o)}>
+          <button type="button" className="inline-flex size-9 items-center justify-center rounded-md hover:bg-hover lg:hidden" aria-expanded={mobile} aria-controls="xo-mobile-nav" aria-label={mobile ? t("Cerrar menú", "Close menu") : t("Abrir menú", "Open menu")} onClick={() => setMobile((o) => !o)}>
             <Icon name={mobile ? "close" : "menu"} size={20} />
           </button>
         </div>
@@ -228,7 +229,7 @@ export function Navbar({ menus = [], links = [], cta, secondary, wiki, featured,
       )}
 
       {/* menú móvil: acordeón a pantalla completa */}
-      <nav id="xo-mobile-nav" aria-label="Principal móvil" hidden={!mobile} className="fixed inset-x-0 bottom-0 overflow-y-auto border-t border-line-faint bg-bg lg:hidden" style={{ top }}>
+      <nav id="xo-mobile-nav" aria-label={t("Principal móvil", "Main (mobile)")} hidden={!mobile} className="fixed inset-x-0 bottom-0 overflow-y-auto border-t border-line-faint bg-bg lg:hidden" style={{ top }}>
         <ul className="xo-container flex flex-col px-0">
           {menus.map((m, i) => {
             const isOpen = mobileGroup === i;

@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Logo } from "./Logo";
 import { Connector, RAILS } from "../fx/GridLines";
+import { t } from "../../i18n";
 
 export type FooterColumn = { title: string; links: { label: string; href: string }[] };
 
@@ -15,7 +16,7 @@ export function Footer({ tagline, columns, aside, legal }: { tagline: string; co
             <p className="max-w-xs type-lead text-fg-secondary">{tagline}</p>
             {aside}
           </div>
-          <nav aria-label="Pie de página" className="xo-cells grid-cols-2 border-b-0 md:grid-cols-4">
+          <nav aria-label={t("Pie de página", "Footer")} className="xo-cells grid-cols-2 border-b-0 md:grid-cols-4">
             {columns.map((c) => (
               <div key={c.title}>
                 <h2 className="px-7 pt-7 pb-3 type-label font-semibold text-(--xo-footer-heading-fg)">{c.title}</h2>

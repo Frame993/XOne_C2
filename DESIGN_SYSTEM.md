@@ -270,3 +270,23 @@ npm run build
 - **El lienzo de la rejilla (`GridCanvas`) no dibuja contorno exterior**: los bordes del marco y las líneas de frontera ya lo hacen.
 - **Header**: igual que en la referencia, la rejilla cruza el anuncio y el header: línea a todo el ancho bajo el anuncio y bajo el header, raíles del contenedor y columnas exteriores del marco (`FrameRails`), con nodos en cada cruce.
 - **Verificación**: auditoría con Playwright a 1425 px y 1440 px. Comprueba que no haya líneas paralelas a 1px de distancia (dobles), que no haya bordes en medio píxel y que cada nodo caiga exactamente en el centro de sus dos líneas. Resultado: 0 dobles y 84/84 nodos alineados.
+
+
+## Páginas de contenido (plantilla)
+
+`src/pages/ContentPage.tsx` pinta cualquier página a partir de su contenido (`src/content/pages/*.ts`):
+
+| Pieza | Qué es | Uso |
+|---|---|---|
+| Hero | Marco de 1314px con rejilla y etiquetas de esquina, miga de pan en píldora, H1 con acento, entrada y 2 botones (Contacto + secundario) | Siempre |
+| `intro` | Dos celdas: frase grande con acento a la izquierda, texto y enlace a la derecha | Apertura de la página |
+| `cells` | Rejilla de celdas «etiqueta + **Frase destacada.** texto» (2, 3 o 4 columnas), con icono, número y enlace | Capacidades, servicios |
+| `rows` | Filas: número y título a la izquierda, párrafos, lista, nota destacada y enlace a la derecha | Contenido largo |
+| `chips` | Lista corta en celdas con marca | Capacidades, principios |
+| `quote` | Cita sobre la banda de señal | Una por página como máximo |
+| `diagram` | Cuatro cuadrantes alrededor del núcleo, con columnas laterales | Marketectura |
+| Sigue explorando | Las otras páginas del mismo grupo del menú | Siempre, antes del CTA |
+| CTA | El mismo CTA enmarcado de la home | Siempre |
+
+Cada bloque con índice muestra la barra «NN / TT » ETIQUETA» y una cabecera; índice, eyebrow y título no repiten palabras.
+**Idiomas**: español en `/slug/`, inglés en `/en/slug/` (`src/i18n.ts`: `t(es, en)`, `link(slug)`, `alternate(lang)`); el selector ES/EN lleva a la misma página en el otro idioma.

@@ -69,3 +69,17 @@ Ventajas · Por qué XOne · Módulos de la plataforma · Clientes · Casos de �
 - **Tokens añadidos durante el montaje:** `text.accent-display` (el cian de texto normal quedaba apagado en titulares), `brand.wordmark` y `brand.symbol` (logo por tema).
 - **Valores forzados:** `active:scale-[0.98]` en Button; máscaras con degradado en hero y marquee; `aspect-[16/9]` del hero; opacidad 60/40 % de la trama de puntos; `max-w-32` y `h-8` de logos de clientes; `grid-cols-[240px_1fr]` de la fila de logos y `[1fr_1.6fr]` del FAQ. Tamaños de iconos (14/16/18/20) pasados como props.
 - **Banda de contacto oscura:** se resuelve con `data-theme="dark"` en un subárbol (los tokens de componente se redeclaran por tema para que funcione).
+
+
+## Páginas · lote 1 (Plataforma) — ES y EN
+
+Fuente: `xone.es/{slug}/` y `xone.es/en/{slug}/` (24-nov-2026). Todo el cuerpo de texto es real (algunos párrafos largos se han condensado sin cambiar el sentido).
+**Reescrituras propias** (revisar):
+- Índices, eyebrows y titulares de sección de las páginas (p. ej. «Diez piezas que trabajan como un solo sistema», «Cinco herramientas para crear apps nativas», «Ocho razones para elegir XOne», «Nueve claves de una plataforma pensada para programar», «Ocho principios que guían cada entrega»).
+- Frases de apertura: `que-es-xone` («Del primer día de desarrollo a la app en funcionamiento, un 70 % menos de tiempo»), `servicios-y-soporte` («De la implantación simple a la solución a medida»), `marketectura` (segundo párrafo: «Alrededor de ellos, las soluciones móviles…»), `como-resolvemos-la-movilidad` (párrafo de apertura que enumera las nueve claves).
+- Etiquetas cortas de las celdas (p. ej. «Comunicaciones inteligentes», «Herramientas low-code»).
+- Marketectura: el diagrama de xone.es era una imagen; se ha rehecho como componente con las mismas etiquetas (traducidas al español en la versión ES).
+- Bloque final «Sigue explorando · Más formas de conocer XOne» y página 404.
+
+## Home en inglés (`/en/`)
+Textos de `xone.es/en/` cuando existen. **Traducción propia**: descripciones del menú, FAQ, testimonios, lista de reconocimientos, servicios, textos de las demos animadas (AIShowcase, ilustraciones) y etiquetas de interfaz.

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { cn } from "../ui/utils";
+import { t } from "../../i18n";
 import { Icon } from "../ui/Icon";
 import { useInView, useReducedMotion } from "./hooks";
 
@@ -83,7 +84,7 @@ export function PlatformsIllo() {
 const POINTS = [
   { a: 35, r: 92 }, { a: 140, r: 64 }, { a: 220, r: 92 }, { a: 300, r: 44 }, { a: 80, r: 44 },
 ];
-const LOG = ["Sesión autenticada", "Datos cifrados en tránsito", "Dispositivo verificado", "Acceso auditado"];
+const LOG = t(["Sesión autenticada", "Datos cifrados en tránsito", "Dispositivo verificado", "Acceso auditado"], ["Session authenticated", "Data encrypted in transit", "Device verified", "Access audited"]);
 
 export function SecurityIllo() {
   const [ref, step, reduced] = useLoop(LOG.length, 1500);
@@ -121,7 +122,7 @@ export function SecurityIllo() {
 
 /* ───────────── 03 · Siempre operativa ───────────── */
 // 0 online · 1 cae la cobertura · 2–4 cambios en cola · 5 vuelve la cobertura · 6–8 sincroniza · 9 al día
-const QUEUE = ["Parte de trabajo", "Fotos de la avería", "Firma del cliente"];
+const QUEUE = t(["Parte de trabajo", "Fotos de la avería", "Firma del cliente"], ["Work report", "Photos of the fault", "Customer signature"]);
 
 export function OfflineIllo() {
   const [ref, step, reduced] = useLoop(10, 900);
@@ -130,7 +131,7 @@ export function OfflineIllo() {
   const queued = Math.min(3, Math.max(0, s - 1));
   const synced = s >= 6 ? Math.min(3, s - 5) : 0;
   const bars = offline ? 0 : s === 5 ? 2 : 4;
-  const status = offline ? { t: "Sin cobertura", c: "bg-warning-bg text-warning" } : s >= 5 && s < 9 ? { t: "Sincronizando", c: "bg-accent-subtle text-accent-subtle-fg" } : { t: "Al día", c: "bg-success-bg text-success" };
+  const status = offline ? { t: t("Sin cobertura", "No coverage"), c: "bg-warning-bg text-warning" } : s >= 5 && s < 9 ? { t: t("Sincronizando", "Syncing"), c: "bg-accent-subtle text-accent-subtle-fg" } : { t: t("Al día", "Up to date"), c: "bg-success-bg text-success" };
   return (
     <div ref={ref} className={cn(panel, "flex items-center justify-center")} aria-hidden>
       <DotBg />
@@ -141,7 +142,7 @@ export function OfflineIllo() {
           </span>
           <span key={status.t} className={cn("inline-flex animate-fade-in-up items-center gap-1 rounded-pill px-2 py-0.5 text-2xs font-semibold", status.c)}>{status.t}</span>
         </div>
-        {s === 0 && <p className="absolute inset-x-4 top-[52px] flex items-center gap-1.5 text-xs text-fg-muted"><Icon name="check" size={12} className="text-success" />Sin cambios pendientes</p>}
+        {s === 0 && <p className="absolute inset-x-4 top-[52px] flex items-center gap-1.5 text-xs text-fg-muted"><Icon name="check" size={12} className="text-success" />{t("Sin cambios pendientes", "No pending changes")}</p>}
         <ul className="flex flex-col gap-1.5">
           {QUEUE.map((q, k) => {
             const inQueue = k < queued || s >= 5;
@@ -150,7 +151,7 @@ export function OfflineIllo() {
               <li key={q} className={cn("flex items-center justify-between rounded-md border px-2.5 py-1.5 text-xs transition-all duration-(--xo-duration-slow)", inQueue ? "border-line-faint opacity-100" : "border-transparent opacity-0 -translate-y-1")}>
                 <span className="text-fg-secondary">{q}</span>
                 <span className={cn("inline-flex items-center gap-1 font-mono text-2xs", ok ? "text-success" : "text-fg-muted")}>
-                  {ok ? <><Icon name="check" size={11} />enviado</> : <><span className="size-1.5 rounded-pill bg-warning xo-pulse" />en cola</>}
+                  {ok ? <><Icon name="check" size={11} />{t("enviado", "sent")}</> : <><span className="size-1.5 rounded-pill bg-warning xo-pulse" />{t("en cola", "queued")}</>}
                 </span>
               </li>
             );

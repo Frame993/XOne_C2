@@ -1,3 +1,4 @@
+import { t } from "../../i18n";
 import { useState, type ReactNode } from "react";
 import { cn } from "./utils";
 import { Icon } from "./Icon";
@@ -36,10 +37,10 @@ export function CodeBlock({ code, title, language, className, showLineNumbers = 
         </span>
         <button type="button" onClick={copy} className="inline-flex h-7 items-center gap-1 rounded-sm px-2 text-xs text-fg-muted hover:bg-hover hover:text-fg" aria-live="polite">
           <Icon name={copied ? "check" : "copy"} size={14} />
-          {copied ? "Copiado" : "Copiar"}
+          {copied ? t("Copiado", "Copied") : t("Copiar", "Copy")}
         </button>
       </figcaption>
-      <pre tabIndex={0} aria-label={title ? `Código: ${title}` : "Bloque de código"} className="overflow-x-auto p-4 focus-visible:outline-2 focus-visible:outline-ring type-code">
+      <pre tabIndex={0} aria-label={title ? `${t("Código", "Code")}: ${title}` : t("Bloque de código", "Code block")} className="overflow-x-auto p-4 focus-visible:outline-2 focus-visible:outline-ring type-code">
         <code>
           {lines.map((l, i) => (
             <span key={i} className="flex">
