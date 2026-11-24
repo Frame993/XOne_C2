@@ -1,0 +1,147 @@
+/* Tailwind v4 — consume los tokens de XONE. Sin paleta por defecto: sólo existen utilidades de tokens. */
+@import "@fontsource-variable/plus-jakarta-sans";
+@import "@fontsource/geist-mono/400.css";
+@import "@fontsource/geist-mono/500.css";
+@import "tailwindcss";
+@import "./tokens.css";
+
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme inline {
+  /* reset: nada de colores, radios, sombras ni fuentes de Tailwind por defecto */
+  --color-*: initial;
+  --radius-*: initial;
+  --shadow-*: initial;
+  --font-*: initial;
+  --breakpoint-*: initial;
+  --text-*: initial;
+
+  /* breakpoints (firecrawl.dev: 576 / 768 / 996 / 1200) */
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 996px;
+  --breakpoint-xl: 1200px;
+
+  /* semantic colors → bg-bg, text-fg, border-line… */
+  --color-bg: var(--xo-color-bg-base);
+  --color-bg-subtle: var(--xo-color-bg-subtle);
+  --color-bg-inverse: var(--xo-color-bg-inverse);
+  --color-surface: var(--xo-color-surface-default);
+  --color-surface-raised: var(--xo-color-surface-raised);
+  --color-surface-sunken: var(--xo-color-surface-sunken);
+  --color-fg: var(--xo-color-text-primary);
+  --color-fg-secondary: var(--xo-color-text-secondary);
+  --color-fg-muted: var(--xo-color-text-muted);
+  --color-fg-decorative: var(--xo-color-text-decorative);
+  --color-fg-inverse: var(--xo-color-text-inverse);
+  --color-fg-accent: var(--xo-color-text-accent);
+  --color-fg-accent-display: var(--xo-color-text-accent-display);
+  --color-link: var(--xo-color-text-link);
+  --color-line-faint: var(--xo-color-border-faint);
+  --color-line: var(--xo-color-border-muted);
+  --color-line-loud: var(--xo-color-border-loud);
+  --color-accent: var(--xo-color-accent-default);
+  --color-accent-hover: var(--xo-color-accent-hover);
+  --color-accent-fg: var(--xo-color-accent-fg);
+  --color-accent-subtle: var(--xo-color-accent-subtle);
+  --color-accent-subtle-fg: var(--xo-color-accent-subtle-fg);
+  --color-accent-border: var(--xo-color-accent-border);
+  --color-secondary: var(--xo-color-brand-secondary);
+  --color-secondary-fg: var(--xo-color-brand-secondary-fg);
+  --color-hover: var(--xo-color-overlay-hover);
+  --color-press: var(--xo-color-overlay-press);
+  --color-ring: var(--xo-color-focus-ring);
+  --color-success: var(--xo-color-success-fg);
+  --color-success-bg: var(--xo-color-success-bg);
+  --color-warning: var(--xo-color-warning-fg);
+  --color-warning-bg: var(--xo-color-warning-bg);
+  --color-danger: var(--xo-color-danger-fg);
+  --color-danger-bg: var(--xo-color-danger-bg);
+
+  /* typography */
+  --font-sans: var(--xo-font-family-sans);
+  --font-mono: var(--xo-font-family-mono);
+  --text-2xs: var(--xo-font-size-2xs);
+  --text-2xs--line-height: var(--xo-font-lineHeight-2xs);
+  --text-xs: var(--xo-font-size-xs);
+  --text-xs--line-height: var(--xo-font-lineHeight-xs);
+  --text-sm: var(--xo-font-size-sm);
+  --text-sm--line-height: var(--xo-font-lineHeight-sm);
+  --text-md: var(--xo-font-size-md);
+  --text-md--line-height: var(--xo-font-lineHeight-md);
+  --text-base: var(--xo-font-size-base);
+  --text-base--line-height: var(--xo-font-lineHeight-base);
+  --text-lg: var(--xo-font-size-lg);
+  --text-lg--line-height: var(--xo-font-lineHeight-lg);
+  --text-xl: var(--xo-font-size-xl);
+  --text-xl--line-height: var(--xo-font-lineHeight-xl);
+  --text-2xl: var(--xo-font-size-2xl);
+  --text-2xl--line-height: var(--xo-font-lineHeight-2xl);
+  --text-3xl: var(--xo-font-size-3xl);
+  --text-3xl--line-height: var(--xo-font-lineHeight-3xl);
+  --text-4xl: var(--xo-font-size-4xl);
+  --text-4xl--line-height: var(--xo-font-lineHeight-4xl);
+  --font-weight-book: var(--xo-font-weight-book);
+  --tracking-tight: var(--xo-font-tracking-tight);
+  --tracking-snug: var(--xo-font-tracking-snug);
+  --tracking-caps: var(--xo-font-tracking-caps);
+
+  /* radius / shadow / layout / motion */
+  --radius-xs: var(--xo-radius-xs);
+  --radius-sm: var(--xo-radius-sm);
+  --radius-md: var(--xo-radius-md);
+  --radius-lg: var(--xo-radius-lg);
+  --radius-xl: var(--xo-radius-xl);
+  --radius-pill: var(--xo-radius-pill);
+  --shadow-xs: var(--xo-shadow-xs);
+  --shadow-card: var(--xo-shadow-card);
+  --shadow-float: var(--xo-shadow-float);
+  --shadow-accent: var(--xo-shadow-accent);
+  --shadow-inset: var(--xo-shadow-inset);
+  --container-page: var(--xo-size-container);
+  --container-prose: var(--xo-size-prose-max);
+  --ease-standard: var(--xo-easing-standard);
+  --ease-out: var(--xo-easing-out);
+  --animate-fade-in-up: fade-in-up var(--xo-duration-slower) var(--xo-easing-out) both;
+
+  @keyframes fade-in-up {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: none; }
+  }
+}
+
+@layer base {
+  html { background: var(--xo-color-bg-base); color: var(--xo-color-text-primary); font-family: var(--xo-font-family-sans); -webkit-font-smoothing: antialiased; }
+  body { font-size: var(--xo-font-size-base); line-height: var(--xo-font-lineHeight-base); }
+  :focus-visible { outline: 2px solid var(--xo-color-focus-ring); outline-offset: 2px; }
+  ::selection { background: var(--xo-color-accent-subtle); color: var(--xo-color-accent-subtle-fg); }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 1ms !important; transition-duration: 1ms !important; scroll-behavior: auto !important; }
+  }
+}
+
+@layer components {
+  /* contenedor con líneas guía verticales (patrón firecrawl) */
+  .xo-container { width: min(100% - 2 * var(--xo-size-gutter), var(--xo-size-container)); margin-inline: auto; }
+  .xo-rails { border-inline: 1px solid var(--xo-section-grid-line); }
+  /* rejilla de celdas separadas por líneas de 1px (patrón firecrawl) */
+  .xo-cells { display: grid; gap: 1px; background: var(--xo-section-grid-line); border-bottom: 1px solid var(--xo-section-grid-line); }
+  .xo-cells > * { background: var(--xo-color-bg-base); }
+  /* reveal al hacer scroll */
+  [data-reveal] { transition: opacity var(--xo-duration-slower) var(--xo-easing-out) var(--xo-reveal-delay, 0ms), translate var(--xo-duration-slower) var(--xo-easing-out) var(--xo-reveal-delay, 0ms); }
+  [data-reveal="out"] { opacity: 0; translate: 0 16px; }
+  @media (prefers-reduced-motion: reduce) { [data-reveal="out"] { opacity: 1; translate: none; } }
+  /* líneas discontinuas que fluyen (conectores) */
+  .xo-flow { animation: xo-dash 1.2s linear infinite; }
+  @keyframes xo-dash { to { stroke-dashoffset: -16; } }
+  @keyframes xo-orbit { to { rotate: 360deg; } }
+  @keyframes xo-twinkle { 0%, 100% { scale: 1; opacity: 1; } 50% { scale: 0.8; opacity: 0.6; } }
+  .xo-progress { animation: xo-progress linear both; }
+  @keyframes xo-progress { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+  .xo-caret::after { content: ""; display: inline-block; width: 0.5em; height: 1.1em; margin-left: 2px; vertical-align: text-bottom; background: var(--xo-color-fx-glyph); animation: xo-blink 1s steps(1) infinite; }
+  @keyframes xo-blink { 50% { opacity: 0; } }
+  .xo-marquee { animation: xo-marquee 60s linear infinite; }
+  .xo-marquee:hover { animation-play-state: paused; }
+  @keyframes xo-marquee { to { transform: translateX(-50%); } }
+  .xo-dot-grid { background-image: radial-gradient(var(--xo-color-border-loud) 1px, transparent 1px); background-size: 16px 16px; }
+}
