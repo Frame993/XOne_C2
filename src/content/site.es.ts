@@ -141,12 +141,14 @@ export const products: { title: string; icon: IconName; text: string; href: stri
   { title: "Actualizaciones", icon: "device", text: "XOne Live recibe las peticiones de los dispositivos, las valida y gestiona el envío de actualizaciones desde el servidor.", href: link("sistema-de-actualizaciones-xone") },
 ];
 
+const CASE_SLUG: Record<string, string> = {"MiniTS": "minits", "Iberdrola": "iberdrola", "Gamesa": "gamesa", "Sacyr": "sacyr", "Navantia": "navantia", "Orenes": "orenes", "Loomis": "loomis", "Istobal": "istobal", "JCarrion": "jcarrion", "Cofares": "cofares", "Ingeteam": "ingeteam", "Tubasa": "tubasa-buskme"};
+
 export const cases = [
   ["MiniTS", "Servicio de carsharing"], ["Iberdrola", "Asistencia técnica en subestaciones"], ["Gamesa", "Gestión operativa de fuerza de campo"],
   ["Sacyr", "Estacionamiento regulado"], ["Navantia", "Mantenimientos preventivos y correctivos"], ["Orenes", "Mantenimiento de máquinas de juego"],
   ["Loomis", "Gestión de bienes y mercancías"], ["Istobal", "Mantenimiento de estaciones de lavado"], ["JCarrion", "Gestión de transporte de mercancías"],
   ["Cofares", "Visión artificial móvil y realidad aumentada"], ["Ingeteam", "App de prevención de riesgos laborales"], ["Tubasa", "Pago del trayecto en el bus urbano"],
-].map(([name, sector]) => ({ name, sector, href: link("casos-de-exito-xone") }));
+].map(([name, sector]) => ({ name, sector, href: link(`casos-de-exito-xone/${CASE_SLUG[name]}`) }));
 
 export const testimonials = [
   { quote: "Trabajar con la herramienta XOne nos permite afrontar los proyectos de movilidad centrándonos tan solo en las necesidades funcionales del cliente.", author: "Jordi Segura", company: "JSV" },

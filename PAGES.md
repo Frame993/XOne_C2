@@ -40,7 +40,7 @@ Estado: ✅ hecha · ⏳ lote en curso · — pendiente
 | XOneAssist | `xoneassist` |
 | EMM / MAM / MDM / BYOD | `gestion-de-movilidad-empresarial-xone` |
 
-## Lote 3 · Soluciones y casos de éxito
+## Lote 3 · Soluciones y casos de éxito ✅
 | Página | Slug |
 |---|---|
 | Soluciones XOne | `soluciones-xone` |

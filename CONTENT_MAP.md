@@ -94,3 +94,16 @@ Fuente: `xone.es/{slug}/` y `xone.es/en/{slug}/` (24-nov-2026). Cuerpo de texto 
 - Títulos de fila en `replica-de-datos-y-documentacion-xone` («Copias locales de los datos», «Un servidor de réplica para todas tus apps»…) y etiquetas cortas de celda.
 - Titular del hero de `ciberseguridad` («Ciberseguridad de extremo a extremo»), `multiplataforma-xone` («Multiplataforma: un solo código») y `xoneassist` («XOneAssist, tu tutor virtual»).
 - `xonecode`: la demo animada «Del diseño al soporte, con IA» reutiliza la de la home con los cinco pasos reales.
+
+## Páginas · lote 3 (Soluciones y casos de éxito) — ES y EN
+
+Textos reales de xone.es y xone.es/en (24-nov-2026), condensados en los casos largos (Iberdrola, Gamesa, Sacyr, Orenes, Cofares, Istobal). Redactado por nosotros:
+
+- Titulares de sección (índice / eyebrow / título) de todas las páginas, p. ej. «Proyecto · Reto y respuesta · Del desafío a la solución XOne».
+- Fichas `facts` de cada caso: reordenan los datos clave del original (sistemas, integración, tiempos, dispositivos).
+- Resúmenes de una línea de cada caso (`CASES` en `casos.ts`), para el listado y «Otros clientes que confían en XOne».
+- Citas de cierre de Iberdrola, Navantia, Istobal e Ingeteam: frases del texto original convertidas en cita.
+- `soluciones-xone`: la cita sobre tecnologías emergentes y el bloque de 6 casos de éxito.
+- GSAT / iSAT: «Con XOne no existen los límites» traduce el «Limits don't exist with XOne» que xone.es muestra en inglés también en la versión española.
+- Kit Digital: las tarjetas de soluciones resumen los textos originales; precios y bonos sin cambios. La tarjeta «Sitio web» no está en el listado original de la página (sí como subpágina).
+- Las subpáginas del Kit Digital comparten estructura (`kitCategory`); su EN es el real de xone.es/en.
