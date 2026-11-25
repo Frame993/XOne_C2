@@ -119,3 +119,12 @@ Textos reales de xone.es y xone.es/en (24-nov-2026). Literales, sin tocar: aviso
 - Logos: se omiten las imágenes de xone.es sin texto alternativo (no se sabe qué empresa son). Revisar si falta algún cliente.
 - Contacto: formulario que sólo abre el programa de correo, como en xone.es («esta web no guarda ni envía ningún dato»), coherente con la política de privacidad.
 - «Modalidades de soporte» enlaza a xone.es hasta que se construya en su lote.
+
+## Páginas · lote 5a (Recursos + noticias 2021–2026) — ES y EN
+
+- Documentación, premios y colaboraciones: textos reales de xone.es y /en/. Premios agrupados en tres filas (Gartner, Movilforum, premios empresariales) con los mismos 8 reconocimientos.
+- Noticias: el cuerpo en español es literal (src/content/news/es). xone.es no tiene noticias en inglés salvo 9 entradas publicadas aparte en inglés (`pair` en meta.ts): se usa ese texto tal cual. **El resto de traducciones al inglés son nuestras** (src/content/news/en) y conviene revisarlas.
+- Títulos en mayúsculas normalizados («BLOG TECNOLOGÍA 2022» → «Blog tecnología 2022», «DATA UPDATE» → «Data update»). Las entradas con título técnico en xone.es (`blognoticiadatos`, `blognews`, `blogherramientasxone`, `noticia-blog-ia`) llevan un título nuestro sacado de su contenido; se revisará al migrarlas.
+- `tendencias-sat-blog` y la noticia de Gartner de 2021 tienen el mismo texto que otras entradas; comparten cuerpo (`body`).
+- «Certificación ISO 27001»: en xone.es sólo es la imagen del certificado; añadimos un enlace a Certificaciones.
+- Las noticias aún no migradas aparecen en el listado y enlazan a xone.es.

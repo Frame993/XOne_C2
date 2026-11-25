@@ -1,0 +1,11 @@
+![App Tubasa · Muévete por Badajoz](/media/Imagentubasaxone.webp)
+### App Tubasa · Muévete por Badajoz
+Tras el enorme éxito obtenido con la app de movilidad para carsharing, la empresa Grupo Ruiz ha vuelto a confiar en la tecnología XOne para desarrollar una nueva aplicación móvil para viajar en el transporte urbano de la ciudad de Badajoz. Una aplicación que ha supuesto un importante cambio tecnológico en los puntos de venta de los autobuses urbanos y que ha permitido facilitar y optimizar el sistema de pago a los usuarios para dichos servicios.
+La aplicación denominada “App Tubasa-Muévete por Badajoz” está operativa para el gran público desde el pasado día 22 de Agosto y se puede descargar de forma gratuita tanto en sistemas Android e iOS.
+Hasta la fecha, todos los servicios y trayectos del autobús se abonaban en metálico, algo que se sigue manteniendo por decisión de la empresa gestora, pero el usuario que lo desee podrá realizar el pago de los trayectos forma directa a través de la propia aplicación.
+La App Tubasa-Muévete por Badajoz, dispone de varios tipos de bonos que el usuario seleccionará en función de sus necesidades, cuentan con abonos para estudiantes, parados, abono ordinario, abono peques…
+Está compuesta de varios apartados, uno para que el usuario rellene con sus datos personales, un apartado para cargar y comprobar el saldo del que dispone el usuario, información de las diferentes líneas y paradas de autobuses de la ciudad, así como todos los movimientos o trayectos que se vayan realizando.
+Hay un apartado innovador denominado “Buskme” o Bus a demanda, que es un servicio a medida y permite optimizar los servicios de transporte nocturno y durante los fines de semana, ya que habilitará un número determinado de autobuses en esa franja horaria y se moverán de acuerdo a la demanda que haya de pasajeros.
+La app ya ha sido descargada por más 10.000 usuarios, y estamos seguros de que será un gran éxito y una forma de modernizar los servicios urbanos de nuestra ciudad.
+Agradecemos una vez más al Grupo Ruiz la confianza que ha vuelto a depositar en nuestra tecnología y esperamos seguir aportando las capacidades de XOne para acciones futuras.
+[Ver el caso de éxito de Tubasa](/casos-de-exito-xone/tubasa-buskme/)

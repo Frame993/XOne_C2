@@ -70,7 +70,7 @@ Estado: ✅ hecha · ⏳ lote en curso · — pendiente
 | Contacto | `contacto` |
 | Aviso legal y privacidad | `uso-de-cookies-y-politica-de-privacidad` |
 
-## Lote 5 · Recursos y noticias
+## Lote 5 · Recursos y noticias (5a ✅: listado, 3 páginas, plantilla y 18 noticias 2021–2026; 5b/5c: noticias 2018–2020)
 | Página | Slug |
 |---|---|
 | Noticias (listado) | `noticias` |

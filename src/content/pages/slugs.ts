@@ -1,3 +1,5 @@
+import { BUILT_NEWS } from "../news/meta";
+
 /** Slugs de las páginas ya construidas (se amplía en cada lote). Los enlaces a slugs que no estén aquí van a xone.es. */
 export const BUILT_SLUGS = [
   // Lote 1 · Plataforma
@@ -57,4 +59,10 @@ export const BUILT_SLUGS = [
   "financiacion-europea",
   "contacto",
   "uso-de-cookies-y-politica-de-privacidad",
+  // Lote 5 · Recursos (+ noticias migradas, más abajo)
+  "noticias",
+  "documentacionxone",
+  "premios-y-reconocimientos",
+  "colaboraciones-id",
+  ...BUILT_NEWS,
 ];

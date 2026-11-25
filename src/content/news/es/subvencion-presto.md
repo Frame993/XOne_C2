@@ -1,0 +1,5 @@
+![Cartel de la subvención: software de fichajes con videoanalítica e IA](/media/cartel-Fichajes.png)
+**BENEFICIARIO:** Computer Global Software S.L., CIF: B06373864
+**PROGRAMA DE AYUDAS:** ConsolidaPyme. Programa para la Consolidación y Crecimiento de las PYMES. Línea 3 – Ayudas para herramientas tecnológicas avanzadas.
+**INFORMACIÓN DE LA AYUDA:** Cofinanciación del 85% con cargo al Programa Operativo del Fondo Europeo de Desarrollo Regional (FEDER) de Extremadura, correspondiente al periodo de programación 2021-2027, dentro del Objetivo Político 1 «una Europa más competitiva e inteligente, promoviendo una transformación económica innovadora e inteligente y una conectividad regional a las tecnologías de la información y de las comunicaciones»; Prioridad 1.A «Transición Digital e Inteligente» y Objetivo Específico 1.3 «El refuerzo del crecimiento sostenible y la competitividad de las pymes y la creación de empleo en estas, también mediante inversiones productivas».
+**PROYECTO:** Creación de un software de fichajes, control y seguridad a través de la instalación de cámaras de video analítica con la ayuda de la IA.
