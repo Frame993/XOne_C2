@@ -44,4 +44,17 @@ export const BUILT_SLUGS = [
   "xone-agente-digitalizador-procesos",
   "gsat",
   "isat",
+  // Lote 4 · Comunidad, Empresa, contacto y legal
+  "nuestros-clientes-xone",
+  "comentarios-clientes",
+  "socios-estrategicos-xone",
+  "partners",
+  "hazte-partner-xone",
+  "hazte-partner-formulario",
+  "programadepartners",
+  "sobre-nosotros",
+  "certificaciones",
+  "financiacion-europea",
+  "contacto",
+  "uso-de-cookies-y-politica-de-privacidad",
 ];

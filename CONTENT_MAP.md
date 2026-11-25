@@ -107,3 +107,15 @@ Textos reales de xone.es y xone.es/en (24-nov-2026), condensados en los casos la
 - GSAT / iSAT: «Con XOne no existen los límites» traduce el «Limits don't exist with XOne» que xone.es muestra en inglés también en la versión española.
 - Kit Digital: las tarjetas de soluciones resumen los textos originales; precios y bonos sin cambios. La tarjeta «Sitio web» no está en el listado original de la página (sí como subpágina).
 - Las subpáginas del Kit Digital comparten estructura (`kitCategory`); su EN es el real de xone.es/en.
+
+## Páginas · lote 4 (Comunidad, Empresa, contacto y legal) — ES y EN
+
+Textos reales de xone.es y xone.es/en (24-nov-2026). Literales, sin tocar: aviso legal, cookies y privacidad (`src/content/docs/legal.*.md`), la Política de Seguridad de la Información (`politica-seguridad.*.md`), los datos de los certificados ENS e ISO/IEC 27001 y las opiniones de clientes. Redactado por nosotros:
+
+- Titulares de sección (índice / eyebrow / título) y las frases grandes de apertura (`intro.lead`) de clientes, socios, partners, hazte partner, sobre nosotros, certificaciones y financiación.
+- Financiación europea: la banda de datos (programa, inversión, subvención, 80 %) reordena las cifras del texto original.
+- Programa de partners: las 8 tarjetas de «Qué ofrecemos» resumen los párrafos originales; requisitos, criterios y condiciones son literales.
+- Sobre nosotros: la visión se presenta como lista resumida; «Trabaja con nosotros» pasa a cita con el correo de contacto.
+- Logos: se omiten las imágenes de xone.es sin texto alternativo (no se sabe qué empresa son). Revisar si falta algún cliente.
+- Contacto: formulario que sólo abre el programa de correo, como en xone.es («esta web no guarda ni envía ningún dato»), coherente con la política de privacidad.
+- «Modalidades de soporte» enlaza a xone.es hasta que se construya en su lote.

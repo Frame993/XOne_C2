@@ -54,7 +54,7 @@ Estado: ✅ hecha · ⏳ lote en curso · — pendiente
 | GSAT | `gsat` |
 | iSAT | `isat` |
 
-## Lote 4 · Comunidad, Empresa, contacto y legal
+## Lote 4 · Comunidad, Empresa, contacto y legal ✅
 | Página | Slug |
 |---|---|
 | Clientes | `nuestros-clientes-xone` |

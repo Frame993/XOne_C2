@@ -3,10 +3,11 @@ import { plataforma } from "./plataforma";
 import { productos } from "./productos";
 import { soluciones } from "./soluciones";
 import { casos } from "./casos";
+import { empresa } from "./empresa";
 import { BUILT_SLUGS } from "./slugs";
 
 /** Todas las páginas de contenido por slug (se amplía en cada lote). */
-export const PAGES: Record<string, Page> = { ...plataforma, ...productos, ...soluciones, ...casos };
+export const PAGES: Record<string, Page> = { ...plataforma, ...productos, ...soluciones, ...casos, ...empresa };
 
 // cada slug construido debe tener su página y viceversa
 if (import.meta.env.DEV) {
