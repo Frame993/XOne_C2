@@ -6,6 +6,9 @@ import { Heading } from "../components/layout/Heading";
 import * as C from "../content/xone";
 import type { Block, PageDoc, PageLink } from "../content/pages/types";
 import { currentSlug, link, t } from "../i18n";
+import { Contact, Doc, Logos, Testimonials } from "./blocks/Extra";
+import { NewsArticle, NewsList } from "./blocks/News";
+import { ImgOrPlaceholder } from "../components/ui";
 
 
 const resolve = (l: PageLink) => l.href ?? link(l.slug ?? "");
@@ -56,7 +59,11 @@ function PageHero({ doc, group }: { doc: PageDoc; group: string }) {
               <ol className="inline-flex items-center gap-2 rounded-pill border border-line bg-surface px-3 py-1 type-overline text-fg-muted shadow-xs">
                 <li><a href={link("")} className="hover:text-fg">{t("Inicio", "Home")}</a></li>
                 <li aria-hidden className="size-1 bg-accent" />
-                <li aria-current="page" className="text-fg-secondary">{group}</li>
+                {doc.crumb ? (
+                  <li><a href={resolve(doc.crumb)} className="hover:text-fg">{doc.crumb.label}</a></li>
+                ) : (
+                  <li aria-current="page" className="text-fg-secondary">{group}</li>
+                )}
               </ol>
             </nav>
           </Reveal>
@@ -65,8 +72,8 @@ function PageHero({ doc, group }: { doc: PageDoc; group: string }) {
             {/* el mismo arte de caracteres que el hero de la home, por detrás de las acciones y contenido en el bloque central */}
             <DotMatrix mode="field" className="top-1/2 -inset-x-8 hidden h-[220px] -translate-y-[38%] lg:block" />
             <div className="relative z-10 flex w-full flex-col items-stretch justify-center gap-3 sm:w-auto sm:flex-row sm:items-center">
-              <Button href={C.contact.cta.href} size="lg" iconRight="arrow">{C.contact.cta.label}</Button>
-              {h.secondary && <Button href={resolve(h.secondary)} size="lg" variant="ghost">{h.secondary.label}</Button>}
+              {h.primary !== false && <Button href={C.contact.cta.href} size="lg" iconRight="arrow">{C.contact.cta.label}</Button>}
+              {h.secondary && <Button href={resolve(h.secondary)} size="lg" variant={h.primary === false ? "primary" : "ghost"} iconRight={h.primary === false ? "arrow" : undefined}>{h.secondary.label}</Button>}
             </div>
           </Reveal>
         </div>
@@ -76,6 +83,26 @@ function PageHero({ doc, group }: { doc: PageDoc; group: string }) {
 }
 
 /* ---------- Bloques ---------- */
+
+/** Ficha del proyecto: datos clave bajo el hero. */
+function Facts({ b }: { b: Extract<Block, { type: "facts" }> }) {
+  const n = b.items.length;
+  return (
+    <div className="relative">
+      <FullLine position="bottom" />
+      <Section>
+        <dl className={cn("xo-cells grid-cols-1 sm:grid-cols-2", n === 3 && "lg:grid-cols-3", n >= 4 && "lg:grid-cols-4")}>
+          {b.items.map((f, i) => (
+            <Reveal key={f.label} delay={i % 4} className="flex flex-col gap-2 p-7 md:p-8">
+              <dt className="type-overline text-fg-muted">{f.label}</dt>
+              <dd className="text-pretty type-heading text-fg">{f.value}</dd>
+            </Reveal>
+          ))}
+        </dl>
+      </Section>
+    </div>
+  );
+}
 
 function Intro({ b }: { b: Extract<Block, { type: "intro" }> }) {
   return (
@@ -133,6 +160,7 @@ function Rows({ b }: { b: Extract<Block, { type: "rows" }> }) {
           <Reveal className="xo-curvy flex flex-col gap-3 p-7 md:px-10 md:pt-10 md:pb-6 lg:border-r lg:border-line-faint lg:pb-10">
             <span aria-hidden className="font-mono text-xs text-fg-accent">{pad(i + 1)}</span>
             <h3 className="text-balance text-fg type-heading">{it.title}</h3>
+            {it.image && <ImgOrPlaceholder src={it.image.src} alt={it.image.alt} note={it.image.alt} className="mt-4 h-24 w-auto self-start rounded-md bg-white object-contain p-2" />}
           </Reveal>
           <Reveal delay={1} className="flex flex-col gap-4 px-7 pb-7 md:px-10 md:pb-10 lg:pt-10">
             {it.text.map((p, k) => <p key={k} className={cn("text-pretty", k === 0 ? "type-body text-fg md:type-lead" : "type-body text-fg-secondary")}>{p}</p>)}
@@ -158,10 +186,13 @@ function Chips({ b }: { b: Extract<Block, { type: "chips" }> }) {
     <ul className={cn("xo-cells grid-cols-1 sm:grid-cols-2", cols === 3 && "lg:grid-cols-3", cols === 4 && "lg:grid-cols-4")}>
       {b.items.map((x, i) => (
         <Reveal as="li" key={x} delay={i % cols} className="flex items-center gap-3 p-6">
-          <span className="inline-flex size-7 shrink-0 items-center justify-center rounded-sm bg-accent-subtle text-accent-subtle-fg"><Icon name="check" size={14} /></span>
+          <span className="inline-flex size-7 shrink-0 items-center justify-center rounded-sm bg-accent-subtle font-mono text-xs text-accent-subtle-fg">{b.numbered ? pad(i + 1) : <Icon name="check" size={14} />}</span>
           <span className="type-label text-fg">{x}</span>
         </Reveal>
       ))}
+      {/* celdas vacías para cerrar la última fila (2 columnas en sm, `cols` en lg) */}
+      {Array.from({ length: (cols - (b.items.length % cols)) % cols }, (_, k) => <li key={`vacía-${k}`} aria-hidden className={cols === 2 ? "hidden sm:block" : "hidden lg:block"} />)}
+      {b.items.length % 2 === 1 && cols !== 2 && <li aria-hidden className="hidden sm:block lg:hidden" />}
     </ul>
   );
 }
@@ -210,7 +241,7 @@ function Quote({ b }: { b: Extract<Block, { type: "quote" }> }) {
             <DotMatrix mode="field" colorVar="--xo-color-neutral-0" cellW={10} cellH={14} className="top-0 left-0 hidden h-full w-[22%] opacity-50 [mask-image:linear-gradient(90deg,black,transparent)] lg:block" />
             <DotMatrix mode="field" colorVar="--xo-color-neutral-0" cellW={10} cellH={14} className="top-0 right-0 hidden h-full w-[22%] opacity-50 [mask-image:linear-gradient(270deg,black,transparent)] lg:block" />
             <blockquote className="relative mx-auto max-w-3xl text-balance type-title-sm md:type-title-md">{b.text}</blockquote>
-            {b.source && <figcaption className="relative mt-6 type-overline text-(--xo-color-signal-fg-muted)">{b.source}</figcaption>}
+            {b.source && <figcaption className="relative mt-6 type-overline text-(--xo-color-signal-fg)">{b.source}</figcaption>}
           </figure>
         </div>
       </div>
@@ -232,15 +263,15 @@ function Indexed({ n, total, b, afterColor, children }: { n: number; total: numb
   );
 }
 
-function Related({ n, total, group }: { n: number; total: number; group: number }) {
+function Related({ n, total, group, own, head }: { n: number; total: number; group: number; own?: PageDoc["related"]; head?: PageDoc["relatedTitle"] }) {
   const menu = C.nav.menus[group];
-  const items = menu.items.filter((it) => !it.href.endsWith(`/${currentSlug}/`));
+  const items = own ? own.map((r) => ({ label: r.label, desc: r.desc, href: link(r.slug), icon: r.icon ?? "arrow" })) : menu.items.filter((it) => !it.href.endsWith(`/${currentSlug}/`));
   return (
     <>
       <GridSpacer />
       <SectionIndex n={n} total={total} label={menu.label} />
       <Section label={t("Sigue explorando", "Keep exploring")}>
-        <Heading art="right" eyebrow={t("Sigue explorando", "Keep exploring")} title={t("Más formas de", "More ways to")} accent={t("conocer XOne", "get to know XOne")} />
+        <Heading art="right" eyebrow={t("Sigue explorando", "Keep exploring")} title={head?.title ?? t("Más formas de", "More ways to")} accent={head?.accent ?? t("conocer XOne", "get to know XOne")} />
         <ul className="xo-cells sm:grid-cols-2 lg:grid-cols-3">
           {items.map((it, i) => (
             <Reveal as="li" key={it.href} delay={i % 3}>
@@ -254,6 +285,9 @@ function Related({ n, total, group }: { n: number; total: number; group: number 
               </a>
             </Reveal>
           ))}
+          {/* cerrar la última fila (2 columnas en sm, 3 en lg) */}
+          {Array.from({ length: (3 - (items.length % 3)) % 3 }, (_, k) => <li key={`vacía-${k}`} aria-hidden className="hidden lg:block" />)}
+          {items.length % 2 === 1 && <li aria-hidden className="hidden sm:block lg:hidden" />}
         </ul>
       </Section>
     </>
@@ -272,13 +306,17 @@ export function ContentPage({ doc }: { doc: PageDoc }) {
       {doc.blocks.map((b, i) => {
         const afterColor = doc.blocks[i - 1]?.type === "quote";
         if (b.type === "intro") return <Intro key={i} b={b} />;
+        if (b.type === "facts") return <Facts key={i} b={b} />;
+        if (b.type === "doc") return <Doc key={i} b={b} />;
+        if (b.type === "contact") return <Contact key={i} />;
+        if (b.type === "article") return <NewsArticle key={i} slug={b.slug} />;
         if (b.type === "quote") return <Quote key={i} b={b} />;
         n++;
-        const body = b.type === "cells" ? <Cells b={b} /> : b.type === "rows" ? <Rows b={b} /> : b.type === "chips" ? <Chips b={b} /> : b.type === "showcase" ? <AIShowcase steps={b.steps} /> : <Diagram b={b} />;
+        const body = b.type === "news" ? <NewsList /> : b.type === "logos" ? <Logos b={b} /> : b.type === "testimonials" ? <Testimonials b={b} /> : b.type === "cells" ? <Cells b={b} /> : b.type === "rows" ? <Rows b={b} /> : b.type === "chips" ? <Chips b={b} /> : b.type === "showcase" ? <AIShowcase steps={b.steps} /> : <Diagram b={b} />;
         return <Fragment key={i}><Indexed n={n} total={total} b={b} afterColor={afterColor}>{body}</Indexed></Fragment>;
       })}
-      <Related n={total} total={total} group={doc.group} />
-      <CTA />
+      <Related n={total} total={total} group={doc.group} own={doc.related} head={doc.relatedTitle} />
+      {doc.cta !== false && <CTA />}
     </SiteLayout>
   );
 }

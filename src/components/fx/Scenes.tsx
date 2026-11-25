@@ -547,6 +547,133 @@ export function SentimentIllo() {
   );
 }
 
+/* ───────────── Carsharing: localizar, abrir, conducir y pagar desde el móvil ───────────── */
+const CAR_PATH = [[70, 184], [70, 104], [190, 104], [190, 56], [312, 56]] as const;
+
+export function CarshareIllo() {
+  const [ref, step, reduced] = useLoop(9, 1000);
+  const s = reduced ? 8 : step;
+  const pos = CAR_PATH[Math.max(0, Math.min(4, s - 2))];
+  const phase = s < 2 ? "find" : s === 2 ? "open" : s < 7 ? "drive" : s === 7 ? "pay" : "paid";
+  const screen = {
+    find: { t: t("Vehículo a 200 m", "Vehicle 200 m away"), b: t("RESERVAR", "BOOK"), tone: "acc" as const },
+    open: { t: t("Abriendo por Bluetooth", "Unlocking via Bluetooth"), b: t("ABIERTO", "UNLOCKED"), tone: "ok" as const },
+    drive: { t: t(`En marcha · ${s - 2} min`, `Driving · ${s - 2} min`), b: t("EN USO", "IN USE"), tone: "acc" as const },
+    pay: { t: t("Aparcado en zona", "Parked in zone"), b: t("PAGAR 3,40 €", "PAY €3.40"), tone: "warn" as const },
+    paid: { t: t("Trayecto de 4 min", "4-min trip"), b: t("PAGADO", "PAID"), tone: "ok" as const },
+  }[phase];
+  return (
+    <div ref={ref} className={panel} aria-hidden>
+      <DotBg />
+      <svg viewBox={VB} className="absolute inset-0 size-full" preserveAspectRatio="xMidYMid meet">
+        {/* plano: manzanas */}
+        {[[96, 124, 76, 44], [96, 30, 76, 56], [214, 78, 120, 56], [214, 150, 120, 60], [24, 30, 30, 132]].map(([x, y, w, h], k) => (
+          <rect key={k} x={x} y={y} width={w} height={h} rx="6" fill={C.surf} stroke={C.line} strokeDasharray="3 3" />
+        ))}
+        <path d={`M${CAR_PATH.map((p) => p.join(" ")).join(" L")}`} fill="none" stroke={C.loud} strokeWidth="1.5" strokeDasharray="4 4" className="xo-flow" />
+        <circle cx="312" cy="56" r="7" fill="none" stroke={C.accB} strokeDasharray="2 3" />
+        <g style={{ transform: `translate(${pos[0]}px, ${pos[1]}px)`, transition: `transform 950ms linear` }}>
+          {phase === "find" && !reduced && <circle r="16" fill="none" stroke={C.glyph} className="xo-ring" />}
+          <rect x="-11" y="-8" width="22" height="16" rx="5" fill={phase === "drive" ? C.glyph : C.surf} stroke={C.glyph} strokeWidth="1.5" style={{ transition: "fill 300ms" }} />
+          <rect x="-6" y="-4" width="12" height="5" rx="1.5" fill={phase === "drive" ? C.surf : C.acc} />
+        </g>
+        {/* móvil */}
+        <rect x="380" y="22" width="148" height="196" rx="18" fill={C.surf} stroke={C.line} />
+        <rect x="434" y="30" width="40" height="5" rx="2.5" fill={C.loud} />
+        <text x="396" y="62" {...mono} fontSize="9" fill={C.muted}>MINITS · EV-07</text>
+        <g style={{ opacity: phase === "open" ? 1 : 0.9 }}>
+          <circle cx="454" cy="118" r="30" fill={phase === "open" || phase === "paid" ? C.okBg : C.acc} stroke={phase === "open" || phase === "paid" ? C.ok : C.accB} style={{ transition: "fill 300ms, stroke 300ms" }} />
+          <rect x="444" y="116" width="20" height="16" rx="3" fill="none" stroke={phase === "open" || phase === "paid" ? C.ok : C.accT} strokeWidth="1.75" />
+          <path d={phase === "find" ? "M448 116 v-5 a6 6 0 0 1 12 0 v5" : "M448 116 v-5 a6 6 0 0 1 12 0"} fill="none" stroke={phase === "open" || phase === "paid" ? C.ok : C.accT} strokeWidth="1.75" />
+        </g>
+        <g key={phase} className={reduced ? undefined : "animate-fade-in-up"}>
+          <text x="454" y="170" textAnchor="middle" fontSize="10.5" fill={C.sec}>{screen.t}</text>
+          <Pill x={394} y={184} w={120} tone={screen.tone} text={screen.b} />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+/* ───────────── Visión artificial: un barrido lee todo el lote ───────────── */
+export function ScanIllo() {
+  const [ref, step, reduced] = useLoop(8, 650);
+  const cols = reduced ? 4 : Math.min(step, 4);
+  const lineX = 120 + Math.min(step, 4) * 80;
+  const done = cols >= 4;
+  return (
+    <div ref={ref} className={panel} aria-hidden>
+      <DotBg />
+      <svg viewBox={VB} className="absolute inset-0 size-full" preserveAspectRatio="xMidYMid meet">
+        {/* visor de cámara */}
+        {[[96, 24, 1, 1], [464, 24, -1, 1], [96, 196, 1, -1], [464, 196, -1, -1]].map(([x, y, dx, dy], k) => (
+          <path key={k} d={`M${x} ${y + 18 * dy} V${y} H${x + 18 * dx}`} fill="none" stroke={C.glyph} strokeWidth="2" />
+        ))}
+        <line x1="112" x2="448" y1="118" y2="118" stroke={C.line} />
+        <line x1="112" x2="448" y1="190" y2="190" stroke={C.line} />
+        {[0, 1].map((r) => [0, 1, 2, 3].map((c) => {
+          const on = c < cols;
+          const x = 128 + c * 80, y = 70 + r * 72;
+          return (
+            <g key={`${r}${c}`}>
+              <rect x={x} y={y} width="56" height="46" rx="5" fill={on ? C.acc : C.surf} stroke={on ? C.accB : C.line} style={{ transition: "fill 250ms, stroke 250ms" }} />
+              {[0, 3, 5, 9, 11, 15, 18, 21, 25, 28, 31].map((bx, k) => <rect key={k} x={x + 10 + bx} y={y + 22} width={k % 3 ? 1.5 : 2.5} height="14" fill={on ? C.accT : C.loud} />)}
+              <g style={{ opacity: on ? 1 : 0, transform: on ? "none" : "translateY(4px)", transition: `opacity 250ms, transform 300ms ${ease}` }}>
+                <rect x={x + 8} y={y - 14} width="40" height="16" rx="8" fill={C.surf} stroke={C.accB} />
+                <path d={`M${x + 15} ${y - 6} l3 3 l5 -6`} fill="none" stroke={C.ok} strokeWidth="1.5" />
+                <text x={x + 27} y={y - 2.5} {...mono} fontSize="8" fill={C.accT}>{`×${[12, 4, 8, 2, 6, 10, 3, 5][r * 4 + c]}`}</text>
+              </g>
+            </g>
+          );
+        }))}
+        {!reduced && !done && <rect x="-1" y="40" width="2" height="156" fill={C.glyph} opacity="0.9" style={{ transform: `translateX(${lineX}px)`, transition: "transform 600ms linear" }} />}
+        <g key={done ? "d" : "s"} className={reduced ? undefined : "animate-fade-in-up"}>
+          <Pill x={206} y={210} w={148} tone={done ? "ok" : "acc"} text={done ? t("8/8 · UN SOLO BARRIDO", "8/8 · ONE SWEEP") : t(`LEYENDO · ${cols * 2}/8`, `READING · ${cols * 2}/8`)} />
+        </g>
+      </svg>
+    </div>
+  );
+}
+
+/* ───────────── Rutas de transporte: la orden avanza parada a parada ───────────── */
+const STOPS = [[40, 196], [106, 128], [184, 176], [250, 84], [334, 132]] as const;
+const STOP_NAMES = t(["Carga · Almacén", "Cliente A", "Cliente B", "Cliente C", "Descarga final"], ["Loading · Warehouse", "Customer A", "Customer B", "Customer C", "Final unloading"]);
+
+export function RouteIllo() {
+  const [ref, step, reduced] = useLoop(8, 1100);
+  const at = reduced ? 4 : Math.min(step, 4);
+  const [x, y] = STOPS[at];
+  return (
+    <div ref={ref} className={panel} aria-hidden>
+      <DotBg />
+      <svg viewBox={VB} className="absolute inset-0 size-full" preserveAspectRatio="xMidYMid meet">
+        <path d={`M${STOPS.map((p) => p.join(" ")).join(" L")}`} fill="none" stroke={C.loud} strokeWidth="1.5" strokeDasharray="4 4" className="xo-flow" />
+        {STOPS.map(([sx, sy], k) => (
+          <g key={k}>
+            <circle cx={sx} cy={sy} r="9" fill={k <= at ? C.acc : C.surf} stroke={k <= at ? C.accB : C.line} style={{ transition: "fill 300ms, stroke 300ms" }} />
+            {k < at ? <path d={`M${sx - 4} ${sy} l3 3 l5 -6`} fill="none" stroke={C.ok} strokeWidth="1.5" /> : <circle cx={sx} cy={sy} r="2.5" fill={k === at ? C.glyph : C.loud} />}
+          </g>
+        ))}
+        <g style={{ transform: `translate(${x}px, ${y - 22}px)`, transition: `transform 1000ms ${ease}` }}>
+          <rect x="-15" y="-9" width="30" height="16" rx="4" fill={C.glyph} />
+          <rect x="7" y="-6" width="6" height="7" rx="1" fill={C.surf} />
+          <circle cx="-8" cy="8" r="3" fill={C.surf} stroke={C.glyph} strokeWidth="1.5" />
+          <circle cx="8" cy="8" r="3" fill={C.surf} stroke={C.glyph} strokeWidth="1.5" />
+        </g>
+      </svg>
+      <ul className="absolute top-3 right-3 flex w-[34%] flex-col gap-1 rounded-lg border border-line bg-surface p-2 shadow-card">
+        <li className="mb-0.5 px-1 font-mono text-2xs tracking-wider text-fg-muted">{t("ORDEN DE CARGA", "LOADING ORDER")} · {at}/4</li>
+        {STOP_NAMES.map((n, k) => (
+          <li key={n} className={cn("flex items-center justify-between rounded-sm px-1.5 py-0.5 text-2xs transition-colors duration-(--xo-duration-base)", k === at ? "bg-accent-subtle text-accent-subtle-fg" : k < at ? "text-fg-secondary" : "text-fg-muted")}>
+            <span className="truncate">{n}</span>
+            {k < at ? <Icon name="check" size={10} className="shrink-0 text-success" /> : k === at ? <i className="size-1.5 shrink-0 rounded-pill bg-accent xo-pulse" /> : null}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
 /** Registro de escenas que el contenido puede pedir por nombre. */
 export const SCENES = {
   platforms: PlatformsIllo,
@@ -564,5 +691,8 @@ export const SCENES = {
   agents: AgentsIllo,
   chat: ChatIllo,
   sentiment: SentimentIllo,
+  carshare: CarshareIllo,
+  scan: ScanIllo,
+  route: RouteIllo,
 } satisfies Record<string, ComponentType>;
 export type SceneName = keyof typeof SCENES;

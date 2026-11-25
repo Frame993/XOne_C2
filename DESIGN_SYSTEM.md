@@ -282,10 +282,19 @@ npm run build
 | `intro` | Dos celdas: frase grande con acento a la izquierda, texto y enlace a la derecha | Apertura de la página |
 | `cells` | Rejilla de celdas «etiqueta + **Frase destacada.** texto» (2, 3 o 4 columnas), con icono, número y enlace | Capacidades, servicios |
 | `rows` | Filas: número y título a la izquierda, párrafos, lista, nota destacada y enlace a la derecha | Contenido largo |
-| `chips` | Lista corta en celdas con marca | Capacidades, principios |
+| `chips` | Lista corta en celdas con marca (`numbered` → 01, 02… para pasos); cierra la última fila con celdas vacías | Capacidades, principios, pasos |
+| `logos` | Muro de logotipos en celdas (gris con acento al pasar; `color` para logos que deben verse tal cual, como FEDER) | Clientes, socios, partners, financiación |
+| `testimonials` | Opiniones completas: titular, cita y firma | Opiniones de clientes |
+| `doc` | Documento largo en markdown mínimo (`src/content/docs/*.md`, `Prose`) con índice lateral fijo | Aviso legal, política de seguridad |
+| `news` | Listado de noticias: destacada + filtro por año + rejilla de tarjetas (imagen, fecha, título) | Noticias |
+| `article` | Cuerpo de una noticia (markdown en `src/content/news/{es,en}`, carga diferida) con «Más noticias» lateral | Cada noticia |
+| `contact` | Email y teléfono, oficina y formulario que sólo prepara un correo (no se guarda ni envía nada) | Contacto |
+| `facts` | Banda de datos clave (etiqueta + valor) sin índice, bajo el hero | Ficha de un caso de éxito o de una ayuda |
 | `quote` | Cita sobre la banda de señal | Una por página como máximo |
 | `diagram` | Cuatro cuadrantes alrededor del núcleo, con columnas laterales | Marketectura |
-| Sigue explorando | Las otras páginas del mismo grupo del menú | Siempre, antes del CTA |
+| Sigue explorando | Las otras páginas del mismo grupo del menú, o las de `related` (con `relatedTitle`) | Siempre, antes del CTA |
+| Opciones de página | `hero.primary: false` quita el botón de contacto del hero; `cta: false` quita el CTA final; `rows.items[].image` muestra un sello bajo el título | Contacto, certificaciones |
+| Miga de pan | «Inicio · grupo»; con `crumb`, «Inicio · página madre» enlazada (casos de éxito, Kit Digital) | Siempre |
 | CTA | El mismo CTA enmarcado de la home | Siempre |
 
 Cada bloque con índice muestra la barra «NN / TT » ETIQUETA» y una cabecera; índice, eyebrow y título no repiten palabras.
@@ -299,6 +308,6 @@ Ilustraciones vectoriales animadas que **explican** un concepto de la página (n
 - `rows.items[].visual` → panel a sangre al pie de la columna ancha (texto), nunca en la columna estrecha del título.
 - `cells.items[].visual` → panel al pie de la celda (ponlo en **todas** las celdas del bloque para que la fila alinee).
 
-Registro `SCENES`: platforms, security, offline, integration (home) + push, update, monitor, pipeline, broker, onprem, cloud, fleet, agents, chat, sentiment.
+Registro `SCENES`: platforms, security, offline, integration (home) + push, update, monitor, pipeline, broker, onprem, cloud, fleet, agents, chat, sentiment, carshare, scan, route.
 
 Reglas: viewBox 560×240 · sólo tokens (`--xo-color-*`) · `aria-hidden` · textos con `t()` · bucle con `useLoop` (se para fuera de pantalla) · con reduced-motion muestran su estado final estático · nada de glifos/símbolos animados en rejillas · nunca combinar una animación CSS de `transform` con un `transform` posicionado en el mismo `<g>` (anidar dos grupos).

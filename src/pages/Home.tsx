@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { Badge, Button, CardLead, Icon, Section, SectionHeading, SectionIndex, cn } from "../components/ui";
+import { Badge, Button, CardLead, Icon, ImgOrPlaceholder, Section, SectionHeading, SectionIndex, cn } from "../components/ui";
 import { CTA, SiteLayout } from "../components/layout/SiteLayout";
 import { Heading } from "../components/layout/Heading";
 import { link, t } from "../i18n";
@@ -7,17 +7,6 @@ import * as C from "../content/xone";
 import { AIShowcase, CountUp, DotMatrix, FrameSection, FullLine, GRID_STEP, GridCanvas, useReducedMotion, GridSpacer, IntegrationIllo, Marquee, OfflineIllo, PlatformsIllo, Reveal, Scramble, SecurityIllo } from "../components/fx";
 
 const TOTAL = 7;
-
-function ImgOrPlaceholder({ src, alt, className, note }: { src: string; alt: string; className?: string; note: string }) {
-  const [failed, setFailed] = useState(false);
-  if (failed)
-    return (
-      <div role="img" aria-label={alt} className={cn("xo-dot-grid flex items-center justify-center bg-surface-sunken p-6 text-center type-overline text-fg-muted", className)}>
-        {t("imagen", "image")}: {note}
-      </div>
-    );
-  return <img src={src} alt={alt} loading="lazy" onError={() => setFailed(true)} className={className} />;
-}
 
 /** Tarjeta interactiva del hero (equivalente a la "consola" de la referencia), sin imágenes de producto. */
 function HeroConsole() {

@@ -10,3 +10,5 @@ export * from "./Logo";
 export * from "./Icon";
 export * from "./Section";
 export { cn } from "./utils";
+export * from "./Img";
+export * from "./Prose";
