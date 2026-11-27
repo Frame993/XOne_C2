@@ -1,5 +1,5 @@
-import { useEffect, type ReactNode } from "react";
-import { Button, Eyebrow, Footer, Icon, Navbar } from "../ui";
+import { Fragment, useEffect, type ReactNode } from "react";
+import { Button, Eyebrow, Footer, Icon, Navbar, SectionIndex } from "../ui";
 import { FrameRails, FrameSection, FullLine, GRID_STEP, GridCanvas, GridSpacer, PageRails } from "../fx";
 import * as C from "../../content/xone";
 import { alternate, link, locale, t } from "../../i18n";
@@ -30,7 +30,7 @@ function Announcement() {
       <FullLine position="bottom" frame />
       <div className="xo-container xo-rails px-3 py-3">
         <a href={C.announcement.href} className="flex min-h-10 flex-wrap items-center justify-center gap-x-2 rounded-md bg-(--xo-color-accent-solid) px-4 py-2 text-center type-body-sm text-(--xo-color-accent-solid-fg) transition-colors duration-(--xo-duration-base) hover:bg-(--xo-color-accent-solid-hover)">
-          <span className="inline-flex h-5 items-center rounded-pill bg-(--xo-color-ink-alpha-40) px-2 type-label-sm">{t("Nuevo", "New")}</span>
+          <span className="inline-flex h-5 items-center rounded-pill bg-(--xo-color-ink-alpha-40) px-2 type-label-sm">{C.announcement.badge}</span>
           {C.announcement.text}
           <span className="inline-flex items-center gap-1 font-medium underline underline-offset-4">{C.announcement.cta}<Icon name="arrow" size={14} /></span>
         </a>
@@ -42,13 +42,13 @@ function Announcement() {
 function CTAContent() {
   const k = C.contact;
   return (
-    <div className="relative mx-auto flex h-full max-w-[505px] flex-col items-center justify-center gap-5 px-6 text-center">
+    <div className="relative mx-auto flex h-full max-w-[680px] flex-col items-center justify-center gap-5 px-6 text-center">
       <Eyebrow>{t("Contacto", "Contact")}</Eyebrow>
-      <h2 className="text-fg type-title-sm md:type-title-md">{k.title} <span className="text-fg-accent-display">{k.accent}</span>?</h2>
+      <h2 className="text-fg type-title-sm md:type-title-md">{k.title} <span className="text-fg-accent-display">{k.accent}</span></h2>
       <p className="type-body text-fg-secondary">{k.subtitle}</p>
       <div className="flex flex-wrap justify-center gap-3">
         <Button href={k.cta.href} iconRight="arrow">{k.cta.label}</Button>
-        <Button href={link("casos-de-exito-xone")} variant="ghost">{t("Ver casos de éxito", "See success stories")}</Button>
+        <Button href={link("casos-de-uso-home")} variant="ghost">{t("Ver casos de uso", "See use cases")}</Button>
       </div>
       <a href={`mailto:${k.email}`} className="inline-flex items-center gap-1 type-body-sm text-fg-muted hover:text-fg">{t("o escríbenos a", "or email us at")} {k.email}<Icon name="chevron" size={14} /></a>
     </div>
@@ -60,7 +60,7 @@ export function CTA() {
   return (
     <>
       <GridSpacer />
-      <FrameSection label={t("Contacto", "Contact")} labels={["Android", "iOS", "Windows", "Web"]} style={{ height: 4 * GRID_STEP + 1 }} className="hidden lg:block" background={<GridCanvas centerCols={5} topRows={0} lit={3} mirror className="h-full" />}>
+      <FrameSection label={t("Contacto", "Contact")} labels={C.hero.cycle} style={{ height: 4 * GRID_STEP + 1 }} className="hidden lg:block" background={<GridCanvas centerCols={7} topRows={0} lit={3} mirror className="h-full" />}>
         <CTAContent />
       </FrameSection>
       <section aria-label={t("Contacto", "Contact")} className="relative lg:hidden">
@@ -82,24 +82,19 @@ export function SiteLayout({ title, description, children }: { title: string; de
       <Announcement />
       <Navbar menus={C.nav.menus} cta={C.nav.cta} secondary={C.nav.secondary} wiki={C.nav.wiki} featured={C.nav.featured} stories={C.nav.stories} cases={C.cases} />
       <main id="main">{children}</main>
+      {/* fila índice del pie, como las de cada sección */}
+      <GridSpacer />
+      <SectionIndex label={t("Pie de página", "Footer")} />
       <Footer
-        tagline={C.footer.tagline}
-        columns={C.footer.columns}
-        aside={
-          <div className="flex flex-col gap-2 type-body-sm text-fg-muted">
-            <span className="type-overline">{t("Presentes en", "Present in")}</span>
-            <span>{C.contact.cities.join(" · ")}</span>
-          </div>
-        }
-        legal={
-          <>
-            <span>{C.footer.legal.company}</span>
-            <span className="flex flex-wrap gap-4">
-              <a href={C.footer.legal.privacy.href} className="hover:text-fg">{C.footer.legal.privacy.label}</a>
-              <a href={`mailto:${C.contact.email}`} className="hover:text-fg">{C.contact.email}</a>
-            </span>
-          </>
-        }
+        statement={C.footer.statement}
+        cta={C.contact.cta}
+        contact={{ title: C.footer.contactTitle, phone: C.contact.phone, email: C.contact.email, address: C.contact.address }}
+        columns={C.footer.columns.map((c, i, all) => (i === all.length - 1 ? { ...c, links: [...c.links, ...C.footer.external] } : c))}
+        legal={[
+          <Fragment key="c"><span>{C.footer.legal.company}</span><a href={C.footer.legal.privacy.href} className="hover:text-fg">{C.footer.legal.privacy.label}</a></Fragment>,
+          <a key="i" href={C.nav.secondary.href} hrefLang={C.nav.secondary.lang} lang={C.nav.secondary.lang} className="hover:text-fg">{C.nav.secondary.title}</a>,
+          <a key="t" href="#main" className="inline-flex items-center gap-2 hover:text-fg">{C.footer.top}<Icon name="arrow" size={14} className="-rotate-90" /></a>,
+        ]}
       />
     </>
   );

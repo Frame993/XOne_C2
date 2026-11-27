@@ -203,7 +203,6 @@ export function Navbar({ menus = [], links = [], cta, secondary, wiki, featured,
         <div className="flex items-center gap-1.5">
           {wiki && <a href={wiki.href} className="hidden h-8 items-center gap-1 rounded-md px-2.5 type-label text-fg-secondary hover:bg-hover hover:text-fg xl:inline-flex">{wiki.label}<Icon name="external" size={14} /></a>}
           {secondary && <a href={secondary.href} hrefLang={secondary.lang} className="hidden h-8 items-center rounded-md px-2.5 type-label text-fg-secondary hover:bg-hover hover:text-fg sm:inline-flex" lang={secondary.lang} title={secondary.title}>{secondary.label}</a>}
-          <ThemeToggle />
           <Button href={cta.href} size="sm" className="ml-1 max-sm:hidden">{cta.label}</Button>
           <button type="button" className="inline-flex size-9 items-center justify-center rounded-md hover:bg-hover lg:hidden" aria-expanded={mobile} aria-controls="xo-mobile-nav" aria-label={mobile ? t("Cerrar menú", "Close menu") : t("Abrir menú", "Open menu")} onClick={() => setMobile((o) => !o)}>
             <Icon name={mobile ? "close" : "menu"} size={20} />

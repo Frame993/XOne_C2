@@ -1,6 +1,6 @@
 // Lote 3 · Menú «Soluciones» (sin los casos de éxito, que están en casos.ts). Textos reales de xone.es/{slug}/ y /en/ (24-nov-2026).
 // Reescrituras propias (titulares de sección, frases de apertura): ver CONTENT_MAP.md › «Páginas · lote 3».
-import type { Page, PageDoc } from "./types";
+import { G, type Page, type PageDoc } from "./types";
 import { CASES } from "./casos";
 
 const PDF_KIT = "https://xone.es/media/SOLICITUDKITDIGITAL.pdf";
@@ -28,7 +28,7 @@ const kitCrumb = { es: { label: "Kit Digital", slug: "kit-digital" }, en: { labe
 function kitCategory(lang: "es" | "en", o: { slug: string; title: string; accent: string; lead: string; seoTitle: string; goal: string; amount: string; maxLabel: string; offerTitle: string; offerAccent: string; offer: string[]; visual?: "monitor" | "pipeline" }): PageDoc {
   const es = lang === "es";
   return {
-    group: 2, crumb: kitCrumb[lang], related: kitRelated(o.slug, lang),
+    group: G.solucionesXone, crumb: kitCrumb[lang], related: kitRelated(o.slug, lang),
     seo: { title: `${o.seoTitle} | XOne`, description: o.lead },
     hero: { title: o.title, accent: o.accent, lead: o.lead, labels: ["Kit Digital", "Next Gen EU", es ? "Pymes" : "SMEs", es ? "Autónomos" : "Freelancers"], secondary: { label: es ? "Cómo solicitar el Kit Digital (PDF)" : "How to apply for the Kit Digital (PDF)", href: PDF_KIT } },
     blocks: [
@@ -48,7 +48,7 @@ export const soluciones: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   "soluciones-xone": {
     es: {
-      group: 2,
+      group: G.solucionesXone,
       seo: { title: "Soluciones XOne: apps para cada sector y proceso de negocio | XOne", description: "XOne es una plataforma multisectorial y muy versátil que puede optimizar los procesos operativos de cualquier tipo de empresa o negocio." },
       hero: { title: "Soluciones", accent: "XOne", lead: "XOne es una plataforma multisectorial y muy versátil que puede optimizar los procesos operativos de cualquier tipo de empresa o negocio.", labels: ["B2B", "B2C", "B2E", "IA · IoT"], secondary: { label: "Ver casos de éxito", slug: "casos-de-exito-xone" } },
       blocks: [
@@ -62,7 +62,7 @@ export const soluciones: Record<string, Page> = {
       ],
     },
     en: {
-      group: 2,
+      group: G.solucionesXone,
       seo: { title: "XOne solutions: apps for every sector and business process | XOne", description: "XOne is a highly versatile, multi-sector platform that can optimize the operational processes of any type of company or business." },
       hero: { title: "XOne", accent: "solutions", lead: "XOne is a highly versatile, multi-sector platform that can optimize the operational processes of any type of company or business.", labels: ["B2B", "B2C", "B2E", "AI · IoT"], secondary: { label: "See success stories", slug: "casos-de-exito-xone" } },
       blocks: [
@@ -78,57 +78,9 @@ export const soluciones: Record<string, Page> = {
   },
 
   /* ------------------------------------------------------------------ */
-  "casos-de-uso-home": {
-    es: {
-      group: 2,
-      seo: { title: "Casos de uso de XOne: movilidad inteligente con IA | XOne", description: "Las apps XOne dotadas con IA solucionan necesidades reales de los usuarios con soluciones móviles innovadoras, robustas y seguras que ahorran costes operativos." },
-      hero: { title: "Casos de uso", accent: "de XOne", lead: "Las apps XOne dotadas con IA solucionan necesidades reales de los usuarios con soluciones móviles innovadoras, robustas y seguras que ahorran costes operativos.", labels: ["Energía", "Logística", "Seguros", "Ventas"], secondary: { label: "Ver casos de éxito", slug: "casos-de-exito-xone" } },
-      blocks: [
-        { type: "intro", lead: "La movilidad inteligente", accent: "cambia la forma de trabajar.", text: ["Las apps XOne dotadas con IA solucionan los problemas y necesidades reales de los usuarios, aportando soluciones móviles innovadoras altamente probadas, robustas y seguras que optimizan la productividad y ahorran costes operativos."] },
-        {
-          type: "rows", index: "Sectores", eyebrow: "Qué puedes movilizar", title: "Nueve escenarios", accent: "resueltos con XOne",
-          items: [
-            { title: "Optimiza los procesos operativos impulsados con IA", visual: "offline", text: ["La complejidad de servicios y usuarios del sector energético hace necesario llevar procesos operativos a los dispositivos móviles para mejorar la eficacia, dotar de herramientas a las brigadas de campo y resolver uno de sus grandes problemas: la falta de conectividad en muchas zonas, que supone una pérdida importante de productividad.", "Un cambio disruptivo en el que empleados y clientes adoptan una nueva forma de interactuar, con la eficiencia y la productividad como protagonistas."], list: ["Asistencia online con sistemas expertos", "Interacción con nodos IoT", "Seguimiento preventivo de variables biométricas", "Interfaces de RA para asistencia en campo", "Mapas de calor cartográficos", "Predicción meteorológica con machine learning"], link: { label: "Caso de éxito: Iberdrola", slug: "casos-de-exito-xone/iberdrola" } },
-            { title: "Carsharing, la movilidad móvil", text: ["XOne se suma al carsharing, que permite alquilar vehículos eléctricos por minutos: con una aplicación sencilla es posible localizar el vehículo en un mapa, alquilarlo, arrancarlo, pagar y disfrutar… todo al alcance de tu mano."], link: { label: "Caso de éxito: MiniTS", slug: "casos-de-exito-xone/minits" } },
-            { title: "Asistencia online con sistemas expertos y machine learning", text: ["La diversidad de procesos en campo y el nivel de subcontratación del sector energético hacen fundamental centralizar, digitalizar y agilizar todos los procesos operativos.", "Las soluciones de XOne se centran en estimar y aumentar la vida útil restante, y en mejorar la calidad del mantenimiento de los aerogeneradores, con impacto directo en el coste, la calidad y la seguridad de las instalaciones eólicas."], list: ["Guiado por voz del operario", "Checklists sobre el plano del aerogenerador", "Control de incidencias por mapa", "RA integrada con el aerogenerador", "Gestión de material con OCR", "Incidencias con vídeo e imágenes", "Informes gráficos", "EMM en entornos de trabajo", "Estimación de vida útil de materiales", "Planificación inteligente", "Comunicación en streaming", "Pulseras de actividad y alertas de riesgos"], link: { label: "Caso de éxito: Gamesa", slug: "casos-de-exito-xone/gamesa" } },
-            { title: "Servicios técnicos flexibles, adaptados y personalizados", text: ["Para el sector naval, apps a medida que gestionan con eficacia todas las fases de las órdenes de trabajo de los distintos mantenimientos que los técnicos realizan en sus flotas.", "Un servicio técnico que mejora la calidad de las actuaciones y facilita la resolución de incidencias en un sector muy descentralizado."], link: { label: "Caso de éxito: Navantia", slug: "casos-de-exito-xone/navantia" } },
-            { title: "Gestión, visibilidad y control de entregas y recogidas", text: ["Numerosas empresas especializadas en la creación de flujo de efectivo eficiente ponen en manos de XOne la seguridad de sus procesos: apps que gestionan el transporte de fondos y valores con la máxima eficiencia y calidad operativa."], link: { label: "Caso de éxito: Loomis", slug: "casos-de-exito-xone/loomis" } },
-            { title: "Reducir los procesos manuales en logística con IoT", text: ["Somos especialistas en el control y la gestión de flotas: soluciones para mantenerlas conectadas en todo momento y gestionar en tiempo real la carga, la descarga y la localización de los vehículos interconectados.", "Soluciones intuitivas y con todo incluido que permiten a las empresas transportistas ser más productivas y atender a más clientes."], link: { label: "Caso de éxito: JCarrion", slug: "casos-de-exito-xone/jcarrion" } },
-            { title: "Optimización de tareas de valoración y peritaje", text: ["Para las aseguradoras, herramientas de ayuda al peritaje que resuelven todas las fases del proceso en una sola aplicación, con control visual para cuantificar los daños y los datos disponibles con o sin cobertura.", "Se reducen el coste medio y los tiempos de tramitación, con un alto incremento de la satisfacción de usuarios y clientes finales."] },
-            { title: "Dinamiza y aumenta las ventas", text: ["Apps para la fuerza de ventas que movilizan toda la red comercial: planificador de visitas, CRM con catálogo de productos, pedidos, control de gastos, clientes potenciales, optimización de rutas, GPS y mapas, para que los comerciales cierren más ventas."], link: { label: "Caso de éxito: Grupo Orenes", slug: "casos-de-exito-xone/orenes" } },
-            { title: "Soluciones móviles que gestionan mejor las vías públicas", text: ["Soluciones modulares para el estacionamiento regulado de las grandes ciudades que movilizan también las sanciones, las incidencias en la vía pública, las grúas o la localización de vehículos, optimizando la labor de todos los agentes que intervienen."], link: { label: "Caso de éxito: Sacyr", slug: "casos-de-exito-xone/sacyr" } },
-          ],
-        },
-      ],
-    },
-    en: {
-      group: 2,
-      seo: { title: "XOne use cases: smart mobility powered by AI | XOne", description: "AI-powered XOne apps meet real user needs with innovative, robust and secure mobile solutions that cut operating costs." },
-      hero: { title: "XOne", accent: "use cases", lead: "AI-powered XOne apps meet real user needs with innovative, robust and secure mobile solutions that cut operating costs.", labels: ["Energy", "Logistics", "Insurance", "Sales"], secondary: { label: "See success stories", slug: "casos-de-exito-xone" } },
-      blocks: [
-        { type: "intro", lead: "Smart mobility", accent: "changes the way we work.", text: ["AI-powered XOne apps solve users' real problems and needs, delivering highly proven, robust and secure innovative mobile solutions that optimize productivity and cut operating costs."] },
-        {
-          type: "rows", index: "Sectors", eyebrow: "What you can mobilize", title: "Nine scenarios", accent: "solved with XOne",
-          items: [
-            { title: "Optimize operational processes powered by AI", visual: "offline", text: ["The complexity of services and users in the energy sector makes it necessary to bring operational processes onto mobile devices to improve efficiency, equip field crews and solve one of its main problems: the lack of connectivity in many areas, which means a significant loss of productivity.", "A disruptive change in which employees and customers adopt a new way of interacting, with efficiency and productivity taking center stage."], list: ["Online assistance through expert systems", "Interaction with IoT nodes", "Preventive monitoring of biometric variables", "AR interfaces for field assistance", "Cartographic heat maps", "Weather forecasting with machine learning"], link: { label: "Success story: Iberdrola", slug: "casos-de-exito-xone/iberdrola" } },
-            { title: "Carsharing, mobile mobility", text: ["XOne embraces carsharing, which lets you rent electric vehicles by the minute: with a simple app you can locate the vehicle on a map, rent it, start it, pay and enjoy… all at your fingertips."], link: { label: "Success story: MiniTS", slug: "casos-de-exito-xone/minits" } },
-            { title: "Online assistance through expert systems with machine learning", text: ["The diversity of field processes and the level of subcontracting in the energy sector make it essential to centralize, digitize and streamline every operational process.", "XOne's solutions focus on estimating and extending remaining useful life, and on improving the quality of wind turbine maintenance, with a direct impact on the cost, quality and safety of wind farms."], list: ["Voice guidance for operators", "Checklists on the wind turbine plan", "Map-based incident control", "AR integrated with the wind turbine", "Material management with OCR", "Incidents with video and images", "Graphical reports", "EMM in work environments", "Remaining useful life estimation", "Smart planning", "Streaming communication", "Activity bands and risk alerts"], link: { label: "Success story: Gamesa", slug: "casos-de-exito-xone/gamesa" } },
-            { title: "Flexible, tailored and personalized technical services", text: ["For the naval sector, custom apps that efficiently manage every phase of the work orders arising from the different types of maintenance technicians carry out on their fleets.", "A technical service that improves the quality of interventions and makes it easier to resolve incidents in a highly decentralized sector."], link: { label: "Success story: Navantia", slug: "casos-de-exito-xone/navantia" } },
-            { title: "Management, visibility and control of deliveries and pickups", text: ["Many companies specializing in creating efficient cash flow entrust the security of their processes to XOne: apps that manage the transport of cash and valuables with maximum efficiency and operational quality."], link: { label: "Success story: Loomis", slug: "casos-de-exito-xone/loomis" } },
-            { title: "Reducing manual processes in logistics with IoT", text: ["We specialize in fleet control and management: solutions that keep fleets connected at all times and manage loading, unloading and the location of interconnected vehicles in real time.", "Intuitive, all-inclusive solutions that let transport companies be more productive and serve more customers."], link: { label: "Success story: JCarrion", slug: "casos-de-exito-xone/jcarrion" } },
-            { title: "Optimizing appraisal and loss assessment tasks", text: ["For insurers, loss assessment support tools that handle every phase of the process in a single app, with visual control for quantifying damage and data available with or without coverage.", "Average cost and processing times are reduced, with a substantial increase in the satisfaction of users and end customers."] },
-            { title: "Energize and increase sales", text: ["Sales force apps that mobilize the entire sales network: visit planner, CRM with product catalog, orders, expense control, prospects, route optimization, GPS and maps, so that sales reps close more sales."], link: { label: "Success story: Grupo Orenes", slug: "casos-de-exito-xone/orenes" } },
-            { title: "Mobile solutions that better manage public roads", text: ["Modular solutions for regulated parking in large cities that also mobilize fines, incidents on public roads, tow trucks and vehicle location, optimizing the work of every agent involved."], link: { label: "Success story: Sacyr", slug: "casos-de-exito-xone/sacyr" } },
-          ],
-        },
-      ],
-    },
-  },
-
-  /* ------------------------------------------------------------------ */
   "casos-de-exito-xone": {
     es: {
-      group: 2,
+      group: G.recursos,
       seo: { title: "Casos de éxito de XOne | XOne", description: "Casos de éxito de XOne en carsharing, subestaciones eléctricas, fuerza de campo, estacionamiento regulado, mantenimiento, transporte, distribución farmacéutica y prevención de riesgos." },
       hero: { title: "Casos", accent: "de éxito", lead: "Casos de éxito de XOne en carsharing, subestaciones eléctricas, fuerza de campo, estacionamiento regulado, mantenimiento, transporte, distribución farmacéutica y prevención de riesgos.", labels: ["Energía", "Transporte", "Industria", "Servicios"], secondary: { label: "Ver casos de uso", slug: "casos-de-uso-home" } },
       blocks: [
@@ -139,7 +91,7 @@ export const soluciones: Record<string, Page> = {
       ],
     },
     en: {
-      group: 2,
+      group: G.recursos,
       seo: { title: "XOne success stories | XOne", description: "XOne success stories in carsharing, electrical substations, field force, regulated parking, maintenance, transport, pharmaceutical distribution and risk prevention." },
       hero: { title: "Success", accent: "stories", lead: "XOne success stories in carsharing, electrical substations, field force, regulated parking, maintenance, transport, pharmaceutical distribution and risk prevention.", labels: ["Energy", "Transport", "Industry", "Services"], secondary: { label: "See use cases", slug: "casos-de-uso-home" } },
       blocks: [
@@ -154,7 +106,7 @@ export const soluciones: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   "kit-digital": {
     es: {
-      group: 2, related: kitRelated("kit-digital", "es"),
+      group: G.solucionesXone, related: kitRelated("kit-digital", "es"),
       seo: { title: "Ayudas del Kit Digital: XOne, agente digitalizador | XOne", description: "Si necesitas modernizar tu negocio y cumples los requisitos del programa Kit Digital, XOne puede ser tu agente digitalizador en cada fase de tu proyecto." },
       hero: { title: "Ayudas del", accent: "Kit Digital", lead: "Si necesitas modernizar tu negocio y cumples los requisitos del programa Kit Digital, XOne puede ser tu agente digitalizador en cada fase de tu proyecto.", labels: ["Kit Digital", "Next Gen EU", "Pymes", "Autónomos"], secondary: { label: "Cómo solicitar el Kit Digital (PDF)", href: PDF_KIT } },
       blocks: [
@@ -198,7 +150,7 @@ export const soluciones: Record<string, Page> = {
       ],
     },
     en: {
-      group: 2, related: kitRelated("kit-digital", "en"),
+      group: G.solucionesXone, related: kitRelated("kit-digital", "en"),
       seo: { title: "Kit Digital grants: XOne, digitalizing agent | XOne", description: "If you need to modernize your business and meet the Kit Digital program requirements, XOne can be your digitalizing agent at every stage of your project." },
       hero: { title: "Kit Digital", accent: "grants", lead: "If you need to modernize your business and meet the Kit Digital program requirements, XOne can be your digitalizing agent at every stage of your project.", labels: ["Kit Digital", "Next Gen EU", "SMEs", "Freelancers"], secondary: { label: "How to apply for the Kit Digital (PDF)", href: PDF_KIT } },
       blocks: [
@@ -260,7 +212,7 @@ export const soluciones: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   gsat: {
     es: {
-      group: 2,
+      group: G.solucionesXone,
       seo: { title: "XOne SAT para servicio técnico | XOne", description: "XOne SAT permite gestionar el proceso completo de una OT, mejora las actuaciones técnicas y ofrece en todo momento un servicio de respuesta inmediato." },
       hero: { title: "XOne SAT para", accent: "servicio técnico", lead: "XOne SAT permite gestionar el proceso completo de una OT, mejora las actuaciones técnicas y ofrece en todo momento un servicio de respuesta inmediato.", labels: ["XOne SAT", "OT", "Offline", "Wearables"], secondary: { label: "XOne SAT para averías", slug: "isat" } },
       blocks: [
@@ -271,7 +223,7 @@ export const soluciones: Record<string, Page> = {
       ],
     },
     en: {
-      group: 2,
+      group: G.solucionesXone,
       seo: { title: "XOne SAT for technical service | XOne", description: "XOne SAT manages the complete work order process, improves technical interventions and provides an immediate-response service at all times." },
       hero: { title: "XOne SAT for", accent: "technical service", lead: "XOne SAT manages the complete work order process, improves technical interventions and provides an immediate-response service at all times.", labels: ["XOne SAT", "WO", "Offline", "Wearables"], secondary: { label: "XOne SAT for faults", slug: "isat" } },
       blocks: [
@@ -284,7 +236,7 @@ export const soluciones: Record<string, Page> = {
   },
   isat: {
     es: {
-      group: 2,
+      group: G.solucionesXone,
       seo: { title: "XOne SAT para gestión de averías | XOne", description: "XOne SAT permite gestionar el proceso completo de una avería: los técnicos conocen en tiempo real las incidencias y tienen en su móvil toda la información." },
       hero: { title: "XOne SAT para", accent: "gestión de averías", lead: "XOne SAT permite gestionar el proceso completo de una avería: los técnicos conocen en tiempo real las incidencias y tienen en su móvil toda la información.", labels: ["XOne SAT", "BT · MT", "Push", "RA"], secondary: { label: "XOne SAT para servicio técnico", slug: "gsat" } },
       blocks: [
@@ -295,7 +247,7 @@ export const soluciones: Record<string, Page> = {
       ],
     },
     en: {
-      group: 2,
+      group: G.solucionesXone,
       seo: { title: "XOne SAT for fault management | XOne", description: "XOne SAT manages the complete fault process: technicians see incidents in real time and have all the information they need on their mobile device." },
       hero: { title: "XOne SAT for", accent: "fault management", lead: "XOne SAT manages the complete fault process: technicians see incidents in real time and have all the information they need on their mobile device.", labels: ["XOne SAT", "LV · MV", "Push", "AR"], secondary: { label: "XOne SAT for technical service", slug: "gsat" } },
       blocks: [

@@ -1,5 +1,5 @@
 import { useState, type FormEvent } from "react";
-import { Button, Icon, ImgOrPlaceholder, Prose, Section, cn, tocOf } from "../../components/ui";
+import { Button, Icon, IconTile, ImgOrPlaceholder, Prose, Section, cn, tocOf } from "../../components/ui";
 import { FullLine, Reveal } from "../../components/fx";
 import * as C from "../../content/xone";
 import type { Block } from "../../content/pages/types";
@@ -14,7 +14,7 @@ export function Logos({ b }: { b: Extract<Block, { type: "logos" }> }) {
       {b.items.map((l, i) => (
         <Reveal as="li" key={l.name} delay={i % 3} className="group relative flex h-32 items-center justify-center px-6">
           <ImgOrPlaceholder src={l.src} alt={l.name} note={l.name}
-            className={cn("max-h-12 w-auto max-w-[70%] object-contain transition-[opacity,filter] duration-(--xo-duration-base)", b.color ? "" : "opacity-70 grayscale group-hover:opacity-100 group-hover:grayscale-0 dark:invert")} />
+            className={cn("max-h-12 w-auto max-w-[70%] object-contain transition-[opacity,filter] duration-(--xo-duration-base)", b.color ? "" : "opacity-70 grayscale group-hover:opacity-100 dark:invert")} />
           {!b.color && <span aria-hidden className="absolute inset-x-0 bottom-0 h-0.5 origin-left scale-x-0 bg-accent transition-transform duration-(--xo-duration-slow) ease-(--xo-easing-out) group-hover:scale-x-100" />}
         </Reveal>
       ))}
@@ -91,7 +91,7 @@ export function Contact() {
         <div className="xo-curvy flex flex-col border-b border-line-faint lg:border-r lg:border-b-0">
           {channels.map((c) => (
             <a key={c.label} href={c.href} className="group flex items-center gap-4 border-b border-line-faint p-7 transition-colors hover:bg-surface md:px-10">
-              <span className="inline-flex size-10 items-center justify-center rounded-md border border-accent-border bg-accent-subtle text-accent-subtle-fg"><Icon name={c.icon} size={18} /></span>
+              <IconTile icon={c.icon} size="md" />
               <span className="flex flex-col"><span className="type-overline text-fg-muted">{c.label}</span><span className="type-item text-fg group-hover:text-fg-accent">{c.value}</span></span>
             </a>
           ))}

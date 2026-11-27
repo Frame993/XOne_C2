@@ -3,7 +3,7 @@ import { Icon, ImgOrPlaceholder, Prose, Section, cn } from "../../components/ui"
 import { FullLine } from "../../components/fx";
 import { NEWS, type NewsMeta } from "../../content/news/meta";
 import { link, locale, t } from "../../i18n";
-import type { PageDoc } from "../../content/pages/types";
+import { G, type PageDoc } from "../../content/pages/types";
 
 /* Cuerpos de las noticias: un chunk por fichero, sólo se carga el que se abre. */
 const BODIES = import.meta.glob<string>("../../content/news/*/*.md", { query: "?raw", import: "default" });
@@ -133,7 +133,7 @@ export function articleDoc(slug: string): PageDoc {
   const n = newsBySlug(slug)!;
   const title = newsTitle(n);
   return {
-    group: 4,
+    group: G.recursos,
     crumb: { label: t("Noticias", "News"), slug: "noticias" },
     seo: { title: `${title} | XOne`, description: `${formatDate(n.date)} · ${title}` },
     hero: { title, lead: formatDate(n.date), labels: [t("Noticias", "News"), n.date.slice(0, 4), "XOne", t("Archivo", "Archive")], secondary: { label: t("Todas las noticias", "All news"), slug: "noticias" } },

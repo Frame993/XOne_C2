@@ -1,7 +1,7 @@
 // Lote 3 · Casos de éxito. Textos reales de xone.es/casos-de-exito-xone/{caso}/ y su versión /en/ (24-nov-2026).
 // Reescrituras propias (titulares de sección): ver CONTENT_MAP.md › «Páginas · lote 3».
 import type { IconName } from "../../components/ui/Icon";
-import type { Page, PageDoc } from "./types";
+import { G, type Page, type PageDoc } from "./types";
 
 const PDF = (f: string) => `https://xone.es/media/${f}`;
 const LIST = "casos-de-exito-xone";
@@ -33,7 +33,7 @@ export const casos: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   [`${LIST}/minits`]: {
     es: {
-      group: 2, crumb: crumb.es, relatedTitle: { title: "Otros clientes", accent: "que confían en XOne" }, related: nextCases("minits", "es"),
+      group: G.recursos, crumb: crumb.es, relatedTitle: { title: "Otros clientes", accent: "que confían en XOne" }, related: nextCases("minits", "es"),
       seo: { title: "Caso de éxito: app de carsharing eléctrico para MiniTS | XOne", description: "XOne desarrolló para MiniTS (Grupo Ruiz) una app móvil que gestiona todo el servicio de carsharing eléctrico: reserva, acceso al vehículo y facturación." },
       hero: { title: "App de carsharing eléctrico", accent: "para MiniTS", lead: "XOne desarrolló para MiniTS (Grupo Ruiz) una app móvil que gestiona todo el servicio de carsharing eléctrico: reserva, acceso al vehículo y facturación.", labels: ["MiniTS", "Carsharing", "Bluetooth", "OCR"], secondary: { label: "Descargar el caso en PDF", href: PDF("CASOUSOMINITS.pdf") } },
       blocks: [
@@ -55,7 +55,7 @@ export const casos: Record<string, Page> = {
       ],
     },
     en: {
-      group: 2, crumb: crumb.en, relatedTitle: { title: "Other customers", accent: "who trust XOne" }, related: nextCases("minits", "en"),
+      group: G.recursos, crumb: crumb.en, relatedTitle: { title: "Other customers", accent: "who trust XOne" }, related: nextCases("minits", "en"),
       seo: { title: "Success story: electric carsharing app for MiniTS | XOne", description: "XOne developed a mobile app for MiniTS (Grupo Ruiz) that manages the entire electric carsharing service: booking, vehicle access and billing." },
       hero: { title: "Electric carsharing app", accent: "for MiniTS", lead: "XOne developed a mobile app for MiniTS (Grupo Ruiz) that manages the entire electric carsharing service: booking, vehicle access and billing.", labels: ["MiniTS", "Carsharing", "Bluetooth", "OCR"], secondary: { label: "Download the case study (PDF)", href: PDF("CASOUSOMINITS.pdf") } },
       blocks: [
@@ -81,7 +81,7 @@ export const casos: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   [`${LIST}/iberdrola`]: {
     es: {
-      group: 2, crumb: crumb.es, relatedTitle: { title: "Otros clientes", accent: "que confían en XOne" }, related: nextCases("iberdrola", "es"),
+      group: G.recursos, crumb: crumb.es, relatedTitle: { title: "Otros clientes", accent: "que confían en XOne" }, related: nextCases("iberdrola", "es"),
       seo: { title: "Caso de éxito: apps de mantenimiento e incidencias en subestaciones para Iberdrola | XOne", description: "Iberdrola movilizó con XOne sus procesos de mantenimiento e incidencias en subestaciones eléctricas: siete apps, más de 2.000 dispositivos y un 30 % de ahorro." },
       hero: { title: "Mantenimiento e incidencias en subestaciones", accent: "para Iberdrola", lead: "Iberdrola movilizó con XOne sus procesos de mantenimiento e incidencias en subestaciones eléctricas: siete apps, más de 2.000 dispositivos y un 30 % de ahorro.", labels: ["Iberdrola", "Oracle", "JIRA", "Offline"], secondary: { label: "Descargar el caso en PDF", href: PDF("CASODEUSOIBERDROLA-copia.pdf") } },
       blocks: [
@@ -115,7 +115,7 @@ export const casos: Record<string, Page> = {
       ],
     },
     en: {
-      group: 2, crumb: crumb.en, relatedTitle: { title: "Other customers", accent: "who trust XOne" }, related: nextCases("iberdrola", "en"),
+      group: G.recursos, crumb: crumb.en, relatedTitle: { title: "Other customers", accent: "who trust XOne" }, related: nextCases("iberdrola", "en"),
       seo: { title: "Success story: maintenance and incident apps for Iberdrola substations | XOne", description: "Iberdrola mobilized its substation maintenance and incident processes with XOne: seven apps, more than 2,000 devices and 30% savings." },
       hero: { title: "Substation maintenance and incidents", accent: "for Iberdrola", lead: "Iberdrola mobilized its substation maintenance and incident processes with XOne: seven apps, more than 2,000 devices and 30% savings.", labels: ["Iberdrola", "Oracle", "JIRA", "Offline"], secondary: { label: "Download the case study (PDF)", href: PDF("CASODEUSOIBERDROLA-copia.pdf") } },
       blocks: [
@@ -153,7 +153,7 @@ export const casos: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   [`${LIST}/gamesa`]: {
     es: {
-      group: 2, crumb: crumb.es, relatedTitle: { title: "Otros clientes", accent: "que confían en XOne" }, related: nextCases("gamesa", "es"),
+      group: G.recursos, crumb: crumb.es, relatedTitle: { title: "Otros clientes", accent: "que confían en XOne" }, related: nextCases("gamesa", "es"),
       seo: { title: "Caso de éxito: movilización del trabajo de campo para Siemens Gamesa | XOne", description: "Siemens Gamesa gestiona, automatiza y monitoriza en tiempo real la operativa de sus técnicos de campo con XOne SAT, en más de 3.600 dispositivos." },
       hero: { title: "El trabajo de campo, movilizado", accent: "para Siemens Gamesa", lead: "Siemens Gamesa gestiona, automatiza y monitoriza en tiempo real la operativa de sus técnicos de campo con XOne SAT, en más de 3.600 dispositivos.", labels: ["Gamesa", "XOne SAT", "SAP", "OFSC"], secondary: { label: "Descargar el caso en PDF", href: PDF("CASOUSOGAMESA-1.pdf") } },
       blocks: [
@@ -186,7 +186,7 @@ export const casos: Record<string, Page> = {
       ],
     },
     en: {
-      group: 2, crumb: crumb.en, relatedTitle: { title: "Other customers", accent: "who trust XOne" }, related: nextCases("gamesa", "en"),
+      group: G.recursos, crumb: crumb.en, relatedTitle: { title: "Other customers", accent: "who trust XOne" }, related: nextCases("gamesa", "en"),
       seo: { title: "Success story: field work mobilization for Siemens Gamesa | XOne", description: "Siemens Gamesa manages, automates and monitors its field technicians' operations in real time with XOne SAT, on more than 3,600 devices." },
       hero: { title: "Field work, mobilized", accent: "for Siemens Gamesa", lead: "Siemens Gamesa manages, automates and monitors its field technicians' operations in real time with XOne SAT, on more than 3,600 devices.", labels: ["Gamesa", "XOne SAT", "SAP", "OFSC"], secondary: { label: "Download the case study (PDF)", href: PDF("CASOUSOGAMESA-1.pdf") } },
       blocks: [
@@ -223,7 +223,7 @@ export const casos: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   [`${LIST}/sacyr`]: {
     es: {
-      group: 2, crumb: crumb.es, relatedTitle: { title: "Otros clientes", accent: "que confían en XOne" }, related: nextCases("sacyr", "es"),
+      group: G.recursos, crumb: crumb.es, relatedTitle: { title: "Otros clientes", accent: "que confían en XOne" }, related: nextCases("sacyr", "es"),
       seo: { title: "Caso de éxito: apps de gestión de zona azul y de rutas para Sacyr | XOne", description: "Sacyr movilizó con XOne la gestión del estacionamiento regulado (sanciones y grúas) y la recaudación de parquímetros con dos apps de movilidad." },
       hero: { title: "Zona azul y gestión de rutas", accent: "para Sacyr", lead: "Sacyr movilizó con XOne la gestión del estacionamiento regulado (sanciones y grúas) y la recaudación de parquímetros con dos apps de movilidad.", labels: ["Sacyr", "SQL Server", "Android", "Offline"], secondary: { label: "Descargar el caso en PDF", href: PDF("CASOUSOSACYR-1.pdf") } },
       blocks: [
@@ -250,7 +250,7 @@ export const casos: Record<string, Page> = {
       ],
     },
     en: {
-      group: 2, crumb: crumb.en, relatedTitle: { title: "Other customers", accent: "who trust XOne" }, related: nextCases("sacyr", "en"),
+      group: G.recursos, crumb: crumb.en, relatedTitle: { title: "Other customers", accent: "who trust XOne" }, related: nextCases("sacyr", "en"),
       seo: { title: "Success story: blue zone parking and route management apps for Sacyr | XOne", description: "With XOne, Sacyr mobilized regulated parking management (fines and towing) and parking meter collection with two mobility apps." },
       hero: { title: "Blue zone parking and route management", accent: "for Sacyr", lead: "With XOne, Sacyr mobilized regulated parking management (fines and towing) and parking meter collection with two mobility apps.", labels: ["Sacyr", "SQL Server", "Android", "Offline"], secondary: { label: "Download the case study (PDF)", href: PDF("CASOUSOSACYR-1.pdf") } },
       blocks: [
@@ -281,7 +281,7 @@ export const casos: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   [`${LIST}/navantia`]: {
     es: {
-      group: 2, crumb: crumb.es, relatedTitle: { title: "Otros clientes", accent: "que confían en XOne" }, related: nextCases("navantia", "es"),
+      group: G.recursos, crumb: crumb.es, relatedTitle: { title: "Otros clientes", accent: "que confían en XOne" }, related: nextCases("navantia", "es"),
       seo: { title: "Caso de éxito: servicio técnico de mantenimiento de astilleros para Navantia | XOne", description: "Con XOne, Navantia moviliza las órdenes de trabajo del mantenimiento preventivo y correctivo de sus astilleros, integradas con SAP R3." },
       hero: { title: "Mantenimiento de astilleros", accent: "para Navantia", lead: "Con XOne, Navantia moviliza las órdenes de trabajo del mantenimiento preventivo y correctivo de sus astilleros, integradas con SAP R3.", labels: ["Navantia", "SAP R3", "Windows", "Android"], secondary: { label: "Descargar el caso en PDF", href: PDF("CASOUSONAVANTIA-1.pdf") } },
       blocks: [
@@ -304,7 +304,7 @@ export const casos: Record<string, Page> = {
       ],
     },
     en: {
-      group: 2, crumb: crumb.en, relatedTitle: { title: "Other customers", accent: "who trust XOne" }, related: nextCases("navantia", "en"),
+      group: G.recursos, crumb: crumb.en, relatedTitle: { title: "Other customers", accent: "who trust XOne" }, related: nextCases("navantia", "en"),
       seo: { title: "Success story: shipyard maintenance technical service for Navantia | XOne", description: "With XOne, Navantia mobilizes the work orders for preventive and corrective maintenance at its shipyards, integrated with SAP R3." },
       hero: { title: "Shipyard maintenance", accent: "for Navantia", lead: "With XOne, Navantia mobilizes the work orders for preventive and corrective maintenance at its shipyards, integrated with SAP R3.", labels: ["Navantia", "SAP R3", "Windows", "Android"], secondary: { label: "Download the case study (PDF)", href: PDF("CASOUSONAVANTIA-1.pdf") } },
       blocks: [
@@ -331,7 +331,7 @@ export const casos: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   [`${LIST}/orenes`]: {
     es: {
-      group: 2, crumb: crumb.es, relatedTitle: { title: "Otros clientes", accent: "que confían en XOne" }, related: nextCases("orenes", "es"),
+      group: G.recursos, crumb: crumb.es, relatedTitle: { title: "Otros clientes", accent: "que confían en XOne" }, related: nextCases("orenes", "es"),
       seo: { title: "Caso de éxito: apps comerciales, de recaudación y de clientes para Grupo Orenes | XOne", description: "Con XOne, Grupo Orenes moviliza su red de comerciales, recaudadores y clientes con tres apps: E-Agenda, Recaudaciones y Orenes Grupo Clientes." },
       hero: { title: "Comerciales, recaudación y clientes", accent: "para Grupo Orenes", lead: "Con XOne, Grupo Orenes moviliza su red de comerciales, recaudadores y clientes con tres apps: E-Agenda, Recaudaciones y Orenes Grupo Clientes.", labels: ["Orenes", "SQL Server", "iOS", "Android"], secondary: { label: "Descargar el caso en PDF", href: PDF("CASOUSOORENES-1.pdf") } },
       blocks: [
@@ -361,7 +361,7 @@ export const casos: Record<string, Page> = {
       ],
     },
     en: {
-      group: 2, crumb: crumb.en, relatedTitle: { title: "Other customers", accent: "who trust XOne" }, related: nextCases("orenes", "en"),
+      group: G.recursos, crumb: crumb.en, relatedTitle: { title: "Other customers", accent: "who trust XOne" }, related: nextCases("orenes", "en"),
       seo: { title: "Success story: sales, collection and customer apps for Grupo Orenes | XOne", description: "With XOne, Grupo Orenes mobilizes its sales reps, collectors and customers with three apps: E-Agenda, Recaudaciones and Orenes Grupo Clientes." },
       hero: { title: "Sales, collection and customers", accent: "for Grupo Orenes", lead: "With XOne, Grupo Orenes mobilizes its sales reps, collectors and customers with three apps: E-Agenda, Recaudaciones and Orenes Grupo Clientes.", labels: ["Orenes", "SQL Server", "iOS", "Android"], secondary: { label: "Download the case study (PDF)", href: PDF("CASOUSOORENES-1.pdf") } },
       blocks: [
@@ -395,7 +395,7 @@ export const casos: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   [`${LIST}/loomis`]: {
     es: {
-      group: 2, crumb: crumb.es, relatedTitle: { title: "Otros clientes", accent: "que confían en XOne" }, related: nextCases("loomis", "es"),
+      group: G.recursos, crumb: crumb.es, relatedTitle: { title: "Otros clientes", accent: "que confían en XOne" }, related: nextCases("loomis", "es"),
       seo: { title: "Caso de éxito: movilización del traslado de fondos y valores para Loomis | XOne", description: "Con XOne, Loomis moviliza el traslado de fondos y valores con una app que sincroniza los datos con la central y sigue funcionando sin conexión." },
       hero: { title: "Traslado de fondos y valores", accent: "para Loomis", lead: "Con XOne, Loomis moviliza el traslado de fondos y valores con una app que sincroniza los datos con la central y sigue funcionando sin conexión.", labels: ["Loomis", "Réplica", "SQL Server", "Push"], secondary: { label: "Descargar el caso en PDF", href: PDF("CASOUSOLOOMIS.pdf") } },
       blocks: [
@@ -424,7 +424,7 @@ export const casos: Record<string, Page> = {
       ],
     },
     en: {
-      group: 2, crumb: crumb.en, relatedTitle: { title: "Other customers", accent: "who trust XOne" }, related: nextCases("loomis", "en"),
+      group: G.recursos, crumb: crumb.en, relatedTitle: { title: "Other customers", accent: "who trust XOne" }, related: nextCases("loomis", "en"),
       seo: { title: "Success story: mobilizing cash and valuables transport for Loomis | XOne", description: "With XOne, Loomis mobilizes cash and valuables transport with an app that syncs data with headquarters and keeps working offline." },
       hero: { title: "Cash and valuables transport", accent: "for Loomis", lead: "With XOne, Loomis mobilizes cash and valuables transport with an app that syncs data with headquarters and keeps working offline.", labels: ["Loomis", "Replication", "SQL Server", "Push"], secondary: { label: "Download the case study (PDF)", href: PDF("CASOUSOLOOMIS.pdf") } },
       blocks: [
@@ -457,7 +457,7 @@ export const casos: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   [`${LIST}/istobal`]: {
     es: {
-      group: 2, crumb: crumb.es, relatedTitle: { title: "Otros clientes", accent: "que confían en XOne" }, related: nextCases("istobal", "es"),
+      group: G.recursos, crumb: crumb.es, relatedTitle: { title: "Otros clientes", accent: "que confían en XOne" }, related: nextCases("istobal", "es"),
       seo: { title: "Caso de éxito: app de servicio técnico iSAT para Istobal | XOne", description: "Con XOne, Istobal gestiona el mantenimiento y las incidencias de su red de centros de lavado de vehículos con las apps de servicio técnico Istoservices e iSAT." },
       hero: { title: "Servicio técnico iSAT", accent: "para Istobal", lead: "Con XOne, Istobal gestiona el mantenimiento y las incidencias de su red de centros de lavado de vehículos con las apps de servicio técnico Istoservices e iSAT.", labels: ["Istobal", "iSAT", "Web services", "SLA"], secondary: { label: "Descargar el caso en PDF", href: PDF("CASOUSOISTOBAL-1.pdf") } },
       blocks: [
@@ -486,7 +486,7 @@ export const casos: Record<string, Page> = {
       ],
     },
     en: {
-      group: 2, crumb: crumb.en, relatedTitle: { title: "Other customers", accent: "who trust XOne" }, related: nextCases("istobal", "en"),
+      group: G.recursos, crumb: crumb.en, relatedTitle: { title: "Other customers", accent: "who trust XOne" }, related: nextCases("istobal", "en"),
       seo: { title: "Success story: iSAT technical service app for Istobal | XOne", description: "With XOne, Istobal manages maintenance and incidents across its network of car wash centers with the Istoservices and iSAT technical service apps." },
       hero: { title: "iSAT technical service", accent: "for Istobal", lead: "With XOne, Istobal manages maintenance and incidents across its network of car wash centers with the Istoservices and iSAT technical service apps.", labels: ["Istobal", "iSAT", "Web services", "SLA"], secondary: { label: "Download the case study (PDF)", href: PDF("CASOUSOISTOBAL-1.pdf") } },
       blocks: [
@@ -519,7 +519,7 @@ export const casos: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   [`${LIST}/jcarrion`]: {
     es: {
-      group: 2, crumb: crumb.es, relatedTitle: { title: "Otros clientes", accent: "que confían en XOne" }, related: nextCases("jcarrion", "es"),
+      group: G.recursos, crumb: crumb.es, relatedTitle: { title: "Otros clientes", accent: "que confían en XOne" }, related: nextCases("jcarrion", "es"),
       seo: { title: "Caso de éxito: gestión de órdenes de transporte para JCarrion | XOne", description: "Con XOne, JCarrion gestiona las órdenes de transporte, tareas y subtareas de su flota de vehículos pesados con una app integrada con SAP R3 sobre HANA." },
       hero: { title: "Órdenes de transporte", accent: "para JCarrion", lead: "Con XOne, JCarrion gestiona las órdenes de transporte, tareas y subtareas de su flota de vehículos pesados con una app integrada con SAP R3 sobre HANA.", labels: ["JCarrion", "SAP HANA", "IoT", "Offline"], secondary: { label: "Descargar el caso en PDF", href: PDF("CASOUSOJCARRION-2.pdf") } },
       blocks: [
@@ -554,7 +554,7 @@ export const casos: Record<string, Page> = {
       ],
     },
     en: {
-      group: 2, crumb: crumb.en, relatedTitle: { title: "Other customers", accent: "who trust XOne" }, related: nextCases("jcarrion", "en"),
+      group: G.recursos, crumb: crumb.en, relatedTitle: { title: "Other customers", accent: "who trust XOne" }, related: nextCases("jcarrion", "en"),
       seo: { title: "Success story: transport order management for JCarrion | XOne", description: "With XOne, JCarrion manages transport orders, tasks and subtasks for its heavy vehicle fleet with an app integrated with SAP R3 on HANA." },
       hero: { title: "Transport orders", accent: "for JCarrion", lead: "With XOne, JCarrion manages transport orders, tasks and subtasks for its heavy vehicle fleet with an app integrated with SAP R3 on HANA.", labels: ["JCarrion", "SAP HANA", "IoT", "Offline"], secondary: { label: "Download the case study (PDF)", href: PDF("CASOUSOJCARRION-2.pdf") } },
       blocks: [
@@ -593,7 +593,7 @@ export const casos: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   [`${LIST}/cofares`]: {
     es: {
-      group: 2, crumb: crumb.es, relatedTitle: { title: "Otros clientes", accent: "que confían en XOne" }, related: nextCases("cofares", "es"),
+      group: G.recursos, crumb: crumb.es, relatedTitle: { title: "Otros clientes", accent: "que confían en XOne" }, related: nextCases("cofares", "es"),
       seo: { title: "Caso de éxito: visión artificial móvil para Cofares | XOne", description: "Cofares moviliza con XOne sus entregas y recogidas desde 2008 y, desde 2019, incorpora visión artificial, realidad aumentada e IA a su app de distribución." },
       hero: { title: "Visión artificial móvil", accent: "para Cofares", lead: "Cofares moviliza con XOne sus entregas y recogidas desde 2008 y, desde 2019, incorpora visión artificial, realidad aumentada e IA a su app de distribución.", labels: ["Cofares", "Scandit", "RA", "Face ID"], secondary: { label: "Descargar el caso en PDF", href: PDF("CASOUSOCOFARES.pdf") } },
       blocks: [
@@ -631,7 +631,7 @@ export const casos: Record<string, Page> = {
       ],
     },
     en: {
-      group: 2, crumb: crumb.en, relatedTitle: { title: "Other customers", accent: "who trust XOne" }, related: nextCases("cofares", "en"),
+      group: G.recursos, crumb: crumb.en, relatedTitle: { title: "Other customers", accent: "who trust XOne" }, related: nextCases("cofares", "en"),
       seo: { title: "Success story: mobile computer vision for Cofares | XOne", description: "Cofares has run its deliveries and pickups on XOne since 2008 and, since 2019, has added computer vision, AR and AI to its distribution app." },
       hero: { title: "Mobile computer vision", accent: "for Cofares", lead: "Cofares has run its deliveries and pickups on XOne since 2008 and, since 2019, has added computer vision, AR and AI to its distribution app.", labels: ["Cofares", "Scandit", "AR", "Face ID"], secondary: { label: "Download the case study (PDF)", href: PDF("CASOUSOCOFARES.pdf") } },
       blocks: [
@@ -673,7 +673,7 @@ export const casos: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   [`${LIST}/ingeteam`]: {
     es: {
-      group: 2, crumb: crumb.es, relatedTitle: { title: "Otros clientes", accent: "que confían en XOne" }, related: nextCases("ingeteam", "es"),
+      group: G.recursos, crumb: crumb.es, relatedTitle: { title: "Otros clientes", accent: "que confían en XOne" }, related: nextCases("ingeteam", "es"),
       seo: { title: "Caso de éxito: app de prevención de riesgos laborales para Ingeteam | XOne", description: "Ingeteam adquirió la plataforma XOne para crear Ingeteam Services, su app de mantenimiento de parques eólicos y de gestión de la prevención de riesgos laborales." },
       hero: { title: "Prevención de riesgos laborales", accent: "para Ingeteam", lead: "Ingeteam adquirió la plataforma XOne para crear Ingeteam Services, su app de mantenimiento de parques eólicos y de gestión de la prevención de riesgos laborales.", labels: ["Ingeteam", "PRL", "Push", "GPS"], secondary: { label: "Descargar el caso en PDF", href: PDF("CASOUSOINGETEAM-2.pdf") } },
       blocks: [
@@ -695,7 +695,7 @@ export const casos: Record<string, Page> = {
       ],
     },
     en: {
-      group: 2, crumb: crumb.en, relatedTitle: { title: "Other customers", accent: "who trust XOne" }, related: nextCases("ingeteam", "en"),
+      group: G.recursos, crumb: crumb.en, relatedTitle: { title: "Other customers", accent: "who trust XOne" }, related: nextCases("ingeteam", "en"),
       seo: { title: "Success story: occupational risk prevention app for Ingeteam | XOne", description: "Ingeteam acquired the XOne platform to build Ingeteam Services, its app for wind farm maintenance and occupational risk prevention management." },
       hero: { title: "Occupational risk prevention", accent: "for Ingeteam", lead: "Ingeteam acquired the XOne platform to build Ingeteam Services, its app for wind farm maintenance and occupational risk prevention management.", labels: ["Ingeteam", "OHS", "Push", "GPS"], secondary: { label: "Download the case study (PDF)", href: PDF("CASOUSOINGETEAM-2.pdf") } },
       blocks: [
@@ -721,7 +721,7 @@ export const casos: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   [`${LIST}/tubasa-buskme`]: {
     es: {
-      group: 2, crumb: crumb.es, relatedTitle: { title: "Otros clientes", accent: "que confían en XOne" }, related: nextCases("tubasa-buskme", "es"),
+      group: G.recursos, crumb: crumb.es, relatedTitle: { title: "Otros clientes", accent: "que confían en XOne" }, related: nextCases("tubasa-buskme", "es"),
       seo: { title: "Caso de éxito: app «Muévete por Badajoz» para Tubasa | XOne", description: "Con XOne, Tubasa modernizó el pago del autobús urbano de Badajoz con una app de movilidad que incluye recargas, compra de billetes y el servicio de bus a demanda Buskme." },
       hero: { title: "App «Muévete por Badajoz»", accent: "para Tubasa", lead: "Con XOne, Tubasa modernizó el pago del autobús urbano de Badajoz con una app de movilidad que incluye recargas, compra de billetes y el servicio de bus a demanda Buskme.", labels: ["Tubasa", "Buskme", "Pagos", "Tiempo real"], secondary: { label: "Descargar el caso en PDF", href: PDF("CASODEUSOBUSKME.pdf") } },
       blocks: [
@@ -746,7 +746,7 @@ export const casos: Record<string, Page> = {
       ],
     },
     en: {
-      group: 2, crumb: crumb.en, relatedTitle: { title: "Other customers", accent: "who trust XOne" }, related: nextCases("tubasa-buskme", "en"),
+      group: G.recursos, crumb: crumb.en, relatedTitle: { title: "Other customers", accent: "who trust XOne" }, related: nextCases("tubasa-buskme", "en"),
       seo: { title: "Success story: “Muévete por Badajoz” app for Tubasa | XOne", description: "With XOne, Tubasa modernized Badajoz city bus payments with a mobility app offering top-ups, ticket purchases and the Buskme on-demand bus service." },
       hero: { title: "“Muévete por Badajoz” app", accent: "for Tubasa", lead: "With XOne, Tubasa modernized Badajoz city bus payments with a mobility app offering top-ups, ticket purchases and the Buskme on-demand bus service.", labels: ["Tubasa", "Buskme", "Payments", "Real time"], secondary: { label: "Download the case study (PDF)", href: PDF("CASODEUSOBUSKME.pdf") } },
       blocks: [

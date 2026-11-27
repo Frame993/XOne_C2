@@ -1,10 +1,10 @@
 import { Fragment, useLayoutEffect, useRef, useState, type ReactNode } from "react";
-import { Button, CardLead, Icon, Logo, Section, SectionHeading, SectionIndex, cn, type IconName } from "../components/ui";
+import { Button, CardLead, Icon, IconTile, Logo, Section, SectionHeading, SectionIndex, cn, type IconName } from "../components/ui";
 import { AIShowcase, DotMatrix, SCENES, type SceneName, FrameSection, FullLine, GRID_STEP, GridCanvas, GridSpacer, Reveal } from "../components/fx";
 import { CTA, SiteLayout } from "../components/layout/SiteLayout";
 import { Heading } from "../components/layout/Heading";
 import * as C from "../content/xone";
-import type { Block, PageDoc, PageLink } from "../content/pages/types";
+import type { Block, GroupKey, PageDoc, PageLink } from "../content/pages/types";
 import { currentSlug, link, t } from "../i18n";
 import { Contact, Doc, Logos, Testimonials } from "./blocks/Extra";
 import { NewsArticle, NewsList } from "./blocks/News";
@@ -51,7 +51,7 @@ function PageHero({ doc, group }: { doc: PageDoc; group: string }) {
     return () => ro.disconnect();
   }, []);
   return (
-    <FrameSection label={t("Presentación", "Introduction")} className="border-b border-line-faint lg:border-b-0" style={{ minHeight: minH }} labels={h.labels ?? ["MXDP", "Native", "Offline", "Low-code"]} background={<GridCanvas centerCols={9} className="h-full" />}>
+    <FrameSection label={t("Presentación", "Introduction")} className="border-b border-line-faint lg:border-b-0" style={{ minHeight: minH }} labels={h.labels ?? [t("Entender", "Understand"), t("Construir", "Build"), t("Operar", "Operate"), t("Mejorar", "Improve")]} background={<GridCanvas centerCols={9} className="h-full" />}>
       <div className="xo-container xo-rails relative lg:border-x-0">
         <div ref={content} className="relative flex flex-col items-center gap-8 px-5 pt-14 pb-14 text-center lg:mx-auto lg:max-w-[909px] lg:px-10 lg:pt-[calc(101px+48px)] lg:pb-28">
           <Reveal>
@@ -129,11 +129,11 @@ function Cells({ b }: { b: Extract<Block, { type: "cells" }> }) {
   return (
     <ul className={cn("xo-cells", cols === 2 && "md:grid-cols-2", cols === 3 && "md:grid-cols-2 lg:grid-cols-3", cols === 4 && "sm:grid-cols-2 lg:grid-cols-4")}>
       {b.items.map((it, i) => (
-        <Reveal as="li" key={it.label} delay={i % cols} className="flex flex-col">
+        <Reveal as="li" key={`${i}-${it.label}`} delay={i % cols} className="flex flex-col">
           <div className={cn("flex flex-1 flex-col gap-5 p-7", cols === 4 ? "md:p-8" : "md:p-10")}>
           <div className="flex items-center justify-between gap-4">
-            <span className="inline-flex items-center gap-2 type-overline text-fg-muted">
-              {it.icon && <span className="inline-flex size-6 items-center justify-center rounded-sm border border-accent-border bg-accent-subtle text-accent-subtle-fg"><Icon name={it.icon} size={14} /></span>}
+            <span className="inline-flex min-w-0 items-center gap-3 type-label text-fg">
+              {it.icon && <IconTile icon={it.icon} />}
               {it.label}
             </span>
             <span aria-hidden className="font-mono text-xs text-fg-muted">{pad(i + 1)}</span>
@@ -156,7 +156,7 @@ function Rows({ b }: { b: Extract<Block, { type: "rows" }> }) {
   return (
     <ol>
       {b.items.map((it, i) => (
-        <li key={it.title} className="grid border-b border-line-faint lg:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)]">
+        <li key={`${i}-${it.title}`} className="grid border-b border-line-faint lg:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)]">
           <Reveal className="xo-curvy flex flex-col gap-3 p-7 md:px-10 md:pt-10 md:pb-6 lg:border-r lg:border-line-faint lg:pb-10">
             <span aria-hidden className="font-mono text-xs text-fg-accent">{pad(i + 1)}</span>
             <h3 className="text-balance text-fg type-heading">{it.title}</h3>
@@ -166,7 +166,7 @@ function Rows({ b }: { b: Extract<Block, { type: "rows" }> }) {
             {it.text.map((p, k) => <p key={k} className={cn("text-pretty", k === 0 ? "type-body text-fg md:type-lead" : "type-body text-fg-secondary")}>{p}</p>)}
             {it.list && (
               <ul className="grid gap-2 sm:grid-cols-2">
-                {it.list.map((x) => <li key={x} className="flex items-start gap-2 type-body-sm text-fg-secondary"><i aria-hidden className="mt-2 size-1 shrink-0 bg-accent" />{x}</li>)}
+                {it.list.map((x, j) => <li key={`${j}-${x}`} className="flex items-start gap-2 type-body-sm text-fg-secondary"><i aria-hidden className="mt-2 size-1 shrink-0 bg-accent" />{x}</li>)}
               </ul>
             )}
             {it.note && <p className="border-l-2 border-accent pl-4 type-body font-medium text-fg">{it.note}</p>}
@@ -202,7 +202,7 @@ function Diagram({ b }: { b: Extract<Block, { type: "diagram" }> }) {
     <Reveal className={cn("xo-curvy flex flex-col gap-4 p-7 md:p-8", align === "left" ? "border-b border-line-faint lg:border-r lg:border-b-0" : "border-t border-line-faint lg:border-l lg:border-t-0")}>
       <span className="type-overline text-fg-muted">{s.title}</span>
       <ul className="flex flex-col gap-2.5">
-        {s.items.map((x) => <li key={x} className="flex items-center gap-2 type-body-sm text-fg-secondary"><i aria-hidden className="size-1 shrink-0 bg-accent" />{x}</li>)}
+        {s.items.map((x, j) => <li key={`${j}-${x}`} className="flex items-center gap-2 type-body-sm text-fg-secondary"><i aria-hidden className="size-1 shrink-0 bg-accent" />{x}</li>)}
       </ul>
     </Reveal>
   );
@@ -215,7 +215,7 @@ function Diagram({ b }: { b: Extract<Block, { type: "diagram" }> }) {
             <Reveal as="li" key={q.title} delay={i} className={cn("flex flex-col gap-4 p-7 md:p-8", i < 2 ? "sm:pb-16" : "sm:pt-16", i % 2 === 0 ? "sm:pr-16" : "sm:pl-16")}>
               <span className="inline-flex items-center gap-2 type-overline text-fg-accent"><span aria-hidden className="font-mono text-fg-muted">{pad(i + 1)}</span>{q.title}</span>
               <ul className="flex flex-wrap gap-2">
-                {q.items.map((x) => <li key={x} className="rounded-pill border border-line bg-surface px-3 py-1 type-label-sm text-fg-secondary">{x}</li>)}
+                {q.items.map((x, j) => <li key={`${j}-${x}`} className="rounded-pill border border-line bg-surface px-3 py-1 type-label-sm text-fg-secondary">{x}</li>)}
               </ul>
             </Reveal>
           ))}
@@ -263,8 +263,8 @@ function Indexed({ n, total, b, afterColor, children }: { n: number; total: numb
   );
 }
 
-function Related({ n, total, group, own, head }: { n: number; total: number; group: number; own?: PageDoc["related"]; head?: PageDoc["relatedTitle"] }) {
-  const menu = C.nav.menus[group];
+function Related({ n, total, group, own, head }: { n: number; total: number; group: GroupKey; own?: PageDoc["related"]; head?: PageDoc["relatedTitle"] }) {
+  const menu = C.groups[group];
   const items = own ? own.map((r) => ({ label: r.label, desc: r.desc, href: link(r.slug), icon: r.icon ?? "arrow" })) : menu.items.filter((it) => !it.href.endsWith(`/${currentSlug}/`));
   return (
     <>
@@ -276,7 +276,7 @@ function Related({ n, total, group, own, head }: { n: number; total: number; gro
           {items.map((it, i) => (
             <Reveal as="li" key={it.href} delay={i % 3}>
               <a href={it.href} className="group flex h-full items-start gap-4 p-7 transition-colors duration-(--xo-duration-base) hover:bg-surface">
-                <span className="inline-flex size-9 shrink-0 items-center justify-center rounded-md bg-hover text-fg-secondary transition-colors group-hover:bg-accent-subtle group-hover:text-accent-subtle-fg"><Icon name={it.icon as IconName} size={18} /></span>
+                <IconTile icon={it.icon as IconName} size="md" tone="neutral" className="group-hover:border-accent-border group-hover:bg-accent-subtle group-hover:text-accent-subtle-fg" />
                 <span className="flex flex-1 flex-col gap-1">
                   <span className="type-item text-fg">{it.label}</span>
                   <span className="type-body-sm text-fg-muted">{it.desc}</span>
@@ -302,7 +302,7 @@ export function ContentPage({ doc }: { doc: PageDoc }) {
   let n = 0;
   return (
     <SiteLayout title={doc.seo.title} description={doc.seo.description}>
-      <PageHero doc={doc} group={C.nav.menus[doc.group].label} />
+      <PageHero doc={doc} group={C.groups[doc.group].label} />
       {doc.blocks.map((b, i) => {
         const afterColor = doc.blocks[i - 1]?.type === "quote";
         if (b.type === "intro") return <Intro key={i} b={b} />;

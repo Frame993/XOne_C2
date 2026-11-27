@@ -1,6 +1,6 @@
 // Lote 1 · Menú «Plataforma». Textos reales de xone.es/{slug}/ y xone.es/en/{slug}/ (24-nov-2026).
 // Reescrituras propias (titulares de sección, frases de apertura): ver CONTENT_MAP.md › «Páginas · lote 1».
-import type { Page } from "./types";
+import { G, type Page } from "./types";
 
 const PDF_ASSIST = "https://xone.es/media/XONEASSISTBRIEFINGes.pdf";
 const ANDROID_FW = "https://play.google.com/store/apps/details?id=com.xone.android.developer.framework";
@@ -9,7 +9,7 @@ export const plataforma: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   "que-es-xone": {
     es: {
-      group: 0,
+      group: G.plataforma,
       seo: { title: "Qué es XOne: plataforma de desarrollo multiexperiencia | XOne", description: "XOne es una plataforma de desarrollo multiexperiencia para crear apps corporativas de movilidad en todos los dispositivos y sistemas operativos del mercado." },
       hero: { title: "Qué es XOne:", accent: "plataforma de desarrollo multiexperiencia", lead: "XOne es una plataforma de desarrollo multiexperiencia para crear apps corporativas de movilidad en todos los dispositivos y sistemas operativos del mercado.", secondary: { label: "Ver la marketectura", slug: "marketectura" } },
       blocks: [
@@ -41,7 +41,7 @@ export const plataforma: Record<string, Page> = {
       ],
     },
     en: {
-      group: 0,
+      group: G.plataforma,
       seo: { title: "What is XOne: multiexperience development platform | XOne", description: "XOne is a multiexperience development platform for building corporate mobility apps on every device and operating system on the market." },
       hero: { title: "What is XOne:", accent: "multiexperience development platform", lead: "XOne is a multiexperience development platform for building corporate mobility apps on every device and operating system on the market.", secondary: { label: "See the marketecture", slug: "marketectura" } },
       blocks: [
@@ -77,7 +77,7 @@ export const plataforma: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   marketectura: {
     es: {
-      group: 0,
+      group: G.plataforma,
       seo: { title: "Marketectura XOne | XOne", description: "Así ofertamos XOne al mercado: núcleo de capacidades principales, módulo multiexperiencia, herramientas de desarrollo y servicios profesionales." },
       hero: { title: "Marketectura", accent: "XOne", lead: "Así ofertamos XOne al mercado: núcleo de capacidades principales, módulo multiexperiencia, herramientas de desarrollo y servicios profesionales.", secondary: { label: "Qué es XOne", slug: "que-es-xone" } },
       blocks: [
@@ -96,7 +96,7 @@ export const plataforma: Record<string, Page> = {
       ],
     },
     en: {
-      group: 0,
+      group: G.plataforma,
       seo: { title: "XOne marketecture | XOne", description: "How we offer XOne to the market: a core of key capabilities, a multiexperience module, development tools and professional services." },
       hero: { title: "XOne", accent: "marketecture", lead: "How we offer XOne to the market: a core of key capabilities, a multiexperience module, development tools and professional services.", secondary: { label: "What is XOne", slug: "que-es-xone" } },
       blocks: [
@@ -119,7 +119,7 @@ export const plataforma: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   "como-asiste-xone-desarolladores": {
     es: {
-      group: 0,
+      group: G.plataforma,
       seo: { title: "Herramientas de desarrollo low-code | XOne", description: "Conoce las herramientas rápidas de desarrollo low-code de XOne para escalar y acelerar la entrega de apps móviles nativas en cualquier plataforma del mercado." },
       hero: { title: "Herramientas de desarrollo", accent: "low-code", lead: "Conoce las herramientas rápidas de desarrollo low-code de XOne para escalar y acelerar la entrega de apps móviles nativas en cualquier plataforma del mercado.", secondary: { label: "Conoce XOne Cloud Studio", slug: "herramientas-rapidas-de-desarrollo-xonecloud" } },
       blocks: [
@@ -138,7 +138,7 @@ export const plataforma: Record<string, Page> = {
       ],
     },
     en: {
-      group: 0,
+      group: G.plataforma,
       seo: { title: "Low-code development tools | XOne", description: "Discover XOne's rapid low-code development tools to scale and accelerate the delivery of native mobile apps on any platform on the market." },
       hero: { title: "Low-code", accent: "development tools", lead: "Discover XOne's rapid low-code development tools to scale and accelerate the delivery of native mobile apps on any platform on the market.", secondary: { label: "Discover XOne Cloud Studio", slug: "herramientas-rapidas-de-desarrollo-xonecloud" } },
       blocks: [
@@ -161,7 +161,7 @@ export const plataforma: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   "servicios-y-soporte": {
     es: {
-      group: 0,
+      group: G.plataforma,
       seo: { title: "Servicios profesionales | XOne", description: "Nuestros servicios van desde implementaciones simples hasta soluciones personalizadas, altamente complejas, totalmente integradas y adaptadas a cada cliente." },
       hero: { title: "Servicios", accent: "profesionales", lead: "Nuestros servicios van desde implementaciones simples hasta soluciones personalizadas, altamente complejas, totalmente integradas y adaptadas a cada cliente.", secondary: { label: "Quiénes somos", slug: "sobre-nosotros" } },
       blocks: [
@@ -185,7 +185,7 @@ export const plataforma: Record<string, Page> = {
       ],
     },
     en: {
-      group: 0,
+      group: G.plataforma,
       seo: { title: "Professional services | XOne", description: "Our services range from simple implementations to highly complex custom solutions, fully integrated and tailored to each client." },
       hero: { title: "Professional", accent: "services", lead: "Our services range from simple implementations to highly complex custom solutions, fully integrated and tailored to each client.", secondary: { label: "About us", slug: "sobre-nosotros" } },
       blocks: [
@@ -213,7 +213,7 @@ export const plataforma: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   "que-nos-hace-unicos-xone": {
     es: {
-      group: 0,
+      group: G.plataforma,
       seo: { title: "Características de XOne | XOne", description: "XOne es una plataforma de desarrollo low-code con la que es posible desarrollar aplicaciones reduciendo al mínimo el desarrollo de código de forma manual." },
       hero: { title: "Características de", accent: "XOne", lead: "XOne es una plataforma de desarrollo low-code con la que es posible desarrollar aplicaciones reduciendo al mínimo el desarrollo de código de forma manual.", secondary: { label: "Ver herramientas y módulos", slug: "requisitos-funcionalidades-xone" } },
       blocks: [
@@ -234,7 +234,7 @@ export const plataforma: Record<string, Page> = {
       ],
     },
     en: {
-      group: 0,
+      group: G.plataforma,
       seo: { title: "XOne features | XOne", description: "XOne is a low-code development platform that lets you build applications while keeping manual coding to a minimum." },
       hero: { title: "XOne", accent: "features", lead: "XOne is a low-code development platform that lets you build applications while keeping manual coding to a minimum.", secondary: { label: "See tools and modules", slug: "requisitos-funcionalidades-xone" } },
       blocks: [
@@ -259,7 +259,7 @@ export const plataforma: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   "como-resolvemos-la-movilidad": {
     es: {
-      group: 0,
+      group: G.plataforma,
       seo: { title: "Cómo resolvemos la movilidad | XOne", description: "XOne es una plataforma de desarrollo low-code con SDK y una amplia gama de API para ayudar a los desarrolladores a integrarla en su canal existente de DevOps." },
       hero: { title: "Cómo resolvemos", accent: "la movilidad", lead: "XOne es una plataforma de desarrollo low-code con SDK y una amplia gama de API para ayudar a los desarrolladores a integrarla en su canal existente de DevOps.", secondary: { label: "Ver la metodología DevOps", slug: "devops" } },
       blocks: [
@@ -281,7 +281,7 @@ export const plataforma: Record<string, Page> = {
       ],
     },
     en: {
-      group: 0,
+      group: G.plataforma,
       seo: { title: "How we solve mobility | XOne", description: "XOne is a low-code development platform with an SDK and a wide range of APIs to help developers integrate it into their existing DevOps pipeline." },
       hero: { title: "How we solve", accent: "mobility", lead: "XOne is a low-code development platform with an SDK and a wide range of APIs to help developers integrate it into their existing DevOps pipeline.", secondary: { label: "See the DevOps methodology", slug: "devops" } },
       blocks: [
@@ -307,7 +307,7 @@ export const plataforma: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   devops: {
     es: {
-      group: 0,
+      group: G.plataforma,
       seo: { title: "Metodología DevOps | XOne", description: "DevOps respalda la entrega continua y permite desarrollar software de mayor calidad, a menor coste y más rápido que con las metodologías tradicionales." },
       hero: { title: "Metodología", accent: "DevOps", lead: "DevOps respalda la entrega continua y permite desarrollar software de mayor calidad, a menor coste y más rápido que con las metodologías tradicionales.", secondary: { label: "Cómo resolvemos la movilidad", slug: "como-resolvemos-la-movilidad" } },
       blocks: [
@@ -327,7 +327,7 @@ export const plataforma: Record<string, Page> = {
       ],
     },
     en: {
-      group: 0,
+      group: G.plataforma,
       seo: { title: "DevOps methodology | XOne", description: "DevOps supports continuous delivery and enables higher-quality software to be developed at lower cost and faster than with traditional methodologies." },
       hero: { title: "DevOps", accent: "methodology", lead: "DevOps supports continuous delivery and enables higher-quality software to be developed at lower cost and faster than with traditional methodologies.", secondary: { label: "How we solve mobility", slug: "como-resolvemos-la-movilidad" } },
       blocks: [

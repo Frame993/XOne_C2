@@ -1,0 +1,8 @@
+Casos de uso XOne - paquete para la web
+
+Esta carpeta contiene las 11 páginas de casos de uso (HTML) y sus 11 fichas descargables (PDF).
+
+IMPORTANTE: subid todos los archivos juntos, en la misma carpeta del servidor.
+El botón "Descargar ficha PDF" de cada página busca su PDF en esa misma carpeta,
+con el nombre exacto que aparece aquí (por ejemplo, Ficha_03_Atencion_inmediata_de_siniestros.pdf).
+Si se cambia el nombre de un PDF o se mueve a otra carpeta, hay que actualizar el enlace del botón en su página.

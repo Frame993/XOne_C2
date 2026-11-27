@@ -2,6 +2,27 @@
 
 Todo el contenido sale de xone.es (consultado el 24-nov-2026). Imágenes y logos se enlazan desde xone.es (`https://xone.es/media/...`); si no cargan se muestra un placeholder con la descripción.
 
+## 0. Nuevo mensaje ASDD (nov-2026)
+Fuentes: documento de visión [docs/vision-asdd.md](docs/vision-asdd.md) y las 11 fichas de [docs/casos-de-uso/](docs/casos-de-uso/). Reglas de voz: skill `.claude/skills/xone-voz/`. **No se inventa texto**: todo lo nuevo es literal de esas fuentes (el EN es traducción nuestra).
+
+**Hecho (tanda 2):**
+- Menú del apartado 12.1: Soluciones (ASDD, XOne EMM) · Productos (XOne, XOneCode, NappAI, NappAI Voice) · Casos de uso (11) · Casos de éxito · Empresa. CTA del header: «Solicitar una demo».
+- Páginas antiguas fuera del menú pero vivas (migas y relacionados vía `groups`): Plataforma, los productos antiguos (ahora agrupados bajo «XOne EMM», y enlazados desde `/xone-emm/`), Soluciones XOne (Kit Digital, GSAT, iSAT…), Comunidad y Recursos.
+- Páginas nuevas: `/asdd/`, `/xone-emm/`, `/nappai/`, `/nappai-voice/`, `/casos-de-uso-home/` (reescrito) y 11 fichas en `/casos-de-uso-home/<slug>/` con su PDF (`public/casos-de-uso/`).
+- Home rehecha con el apartado 12 (hero, qué es, ciclo, piezas, bucle, dos soluciones, casos de uso, por qué XOne, evento, cierre). Se mantienen logos, casos de éxito y opiniones. Fuera: pilares multiplataforma, pasos de IA, rejilla de productos, banda «70 %», servicios y FAQ.
+- «NappAI Voz» (fichas) → «NappAI Voice» (documento) en toda la web.
+- Hero acortado tras revisar a la competencia (OutSystems, Mendix, Praxedo, Retell, ServiceTitan: titulares de 4–9 palabras, subtítulo de una frase): titular alternativo 3 del apartado 12.2 («La plataforma donde los agentes hacen avanzar tu operación») + frase del apartado 5 como subtítulo. La barra superior pasa a anunciar el evento de Valencia (como OutSystems con su World Tour).
+
+**[PENDIENTE] — preguntas para el cliente:**
+- Evento de Valencia: fecha y enlace. «Reservar plaza» lleva de momento a /contacto/.
+- Paso «Mejorar» del ciclo: validar con producto (aviso del propio documento, apartado 4).
+- NappAI en infraestructura propia del cliente y modelos de IA: «a validar con producto» → no publicado.
+- Qué otros productos de la suite NappAI se nombran (apartado 5).
+- «NappAI Voz» vs «NappAI Voice»: confirmar el nombre en español.
+- Páginas antiguas con el mensaje anterior («multiexperiencia», «MXDP», cifras): Plataforma (`plataforma.ts`), productos de XOne EMM (`productos.ts`), Soluciones XOne, Sobre nosotros (`empresa.ts`) y noticias. No se han reescrito porque no hay texto nuevo: ¿se mantienen, se reescriben o se retiran?
+- Opiniones de la Home con cifras («85 %», «50 %») y el reconocimiento «Gartner · Cuadrante Mágico MXDP»: son citas y premios reales; confirmar si se mantienen.
+- Fichas 07 y 08: sus títulos de sección «Elige tu sector y mira cómo funciona» / «Elige una incidencia y mira qué pasa» venían de piezas interactivas; en la web son estáticas.
+
 ## 1. Mapa: de xone.es a cada sección
 
 | # | Sección (estructura firecrawl) | Contenido | Origen en xone.es |

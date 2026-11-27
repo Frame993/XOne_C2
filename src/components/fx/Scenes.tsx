@@ -636,35 +636,37 @@ export function ScanIllo() {
 }
 
 /* ───────────── Rutas de transporte: la orden avanza parada a parada ───────────── */
-const STOPS = [[40, 196], [106, 128], [184, 176], [250, 84], [334, 132]] as const;
+// Ruta de reparto: el mapa (izquierda) y la orden de carga (derecha) van en zonas separadas → nunca se solapan.
+const STOPS = [[28, 176], [92, 104], [156, 152], [220, 72], [284, 124]] as const;
 const STOP_NAMES = t(["Carga · Almacén", "Cliente A", "Cliente B", "Cliente C", "Descarga final"], ["Loading · Warehouse", "Customer A", "Customer B", "Customer C", "Final unloading"]);
+const ROUTE_D = `M${STOPS.map((p) => p.join(" ")).join(" L")}`;
 
 export function RouteIllo() {
   const [ref, step, reduced] = useLoop(8, 1100);
-  const at = reduced ? 4 : Math.min(step, 4);
-  const [x, y] = STOPS[at];
+  // at = paradas completadas (0…5); la parada «at» es la que está en curso
+  const at = reduced ? STOPS.length : Math.min(step, STOPS.length);
+  const reached = Math.min(at, STOPS.length - 1);
+  const done = `M${STOPS.slice(0, reached + 1).map((p) => p.join(" ")).join(" L")}`;
   return (
-    <div ref={ref} className={panel} aria-hidden>
+    <div ref={ref} className={cn(panel, "flex items-center gap-3 p-3")} aria-hidden>
       <DotBg />
-      <svg viewBox={VB} className="absolute inset-0 size-full" preserveAspectRatio="xMidYMid meet">
-        <path d={`M${STOPS.map((p) => p.join(" ")).join(" L")}`} fill="none" stroke={C.loud} strokeWidth="1.5" strokeDasharray="4 4" className="xo-flow" />
-        {STOPS.map(([sx, sy], k) => (
-          <g key={k}>
-            <circle cx={sx} cy={sy} r="9" fill={k <= at ? C.acc : C.surf} stroke={k <= at ? C.accB : C.line} style={{ transition: "fill 300ms, stroke 300ms" }} />
-            {k < at ? <path d={`M${sx - 4} ${sy} l3 3 l5 -6`} fill="none" stroke={C.ok} strokeWidth="1.5" /> : <circle cx={sx} cy={sy} r="2.5" fill={k === at ? C.glyph : C.loud} />}
-          </g>
-        ))}
-        <g style={{ transform: `translate(${x}px, ${y - 22}px)`, transition: `transform 1000ms ${ease}` }}>
-          <rect x="-15" y="-9" width="30" height="16" rx="4" fill={C.glyph} />
-          <rect x="7" y="-6" width="6" height="7" rx="1" fill={C.surf} />
-          <circle cx="-8" cy="8" r="3" fill={C.surf} stroke={C.glyph} strokeWidth="1.5" />
-          <circle cx="8" cy="8" r="3" fill={C.surf} stroke={C.glyph} strokeWidth="1.5" />
-        </g>
-      </svg>
-      <ul className="absolute top-3 right-3 flex w-[34%] flex-col gap-1 rounded-lg border border-line bg-surface p-2 shadow-card">
-        <li className="mb-0.5 px-1 font-mono text-2xs tracking-wider text-fg-muted">{t("ORDEN DE CARGA", "LOADING ORDER")} · {at}/4</li>
+      <div className="relative h-full min-w-0 flex-1">
+        <svg viewBox="0 0 312 248" className="absolute inset-0 size-full" preserveAspectRatio="xMidYMid meet">
+          <path d={ROUTE_D} fill="none" stroke={C.loud} strokeWidth="1.5" strokeDasharray="4 4" />
+          <path d={done} fill="none" stroke={C.glyph} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          {STOPS.map(([sx, sy], k) => (
+            <g key={k}>
+              {k === at && <circle cx={sx} cy={sy} r="15" fill="none" stroke={C.glyph} strokeOpacity="0.5" className="xo-pulse" />}
+              <circle cx={sx} cy={sy} r="9" fill={k <= at ? C.acc : C.surf} stroke={k <= at ? C.accB : C.line} style={{ transition: "fill 300ms, stroke 300ms" }} />
+              {k < at ? <path d={`M${sx - 4} ${sy} l3 3 l5 -6`} fill="none" stroke={C.ok} strokeWidth="1.5" /> : <circle cx={sx} cy={sy} r="2.5" fill={k === at ? C.glyph : C.loud} />}
+            </g>
+          ))}
+        </svg>
+      </div>
+      <ul className="relative flex w-[40%] max-w-52 shrink-0 flex-col gap-1 rounded-lg border border-line bg-surface p-2 shadow-card">
+        <li className="mb-0.5 flex items-center justify-between px-1 font-mono text-2xs tracking-wider text-fg-muted"><span>{t("ORDEN DE CARGA", "LOADING ORDER")}</span><span>{at}/{STOPS.length}</span></li>
         {STOP_NAMES.map((n, k) => (
-          <li key={n} className={cn("flex items-center justify-between rounded-sm px-1.5 py-0.5 text-2xs transition-colors duration-(--xo-duration-base)", k === at ? "bg-accent-subtle text-accent-subtle-fg" : k < at ? "text-fg-secondary" : "text-fg-muted")}>
+          <li key={n} className={cn("flex items-center justify-between gap-2 rounded-sm px-1.5 py-0.5 text-2xs transition-colors duration-(--xo-duration-base)", k === at ? "bg-accent-subtle text-accent-subtle-fg" : k < at ? "text-fg-secondary" : "text-fg-muted")}>
             <span className="truncate">{n}</span>
             {k < at ? <Icon name="check" size={10} className="shrink-0 text-success" /> : k === at ? <i className="size-1.5 shrink-0 rounded-pill bg-accent xo-pulse" /> : null}
           </li>

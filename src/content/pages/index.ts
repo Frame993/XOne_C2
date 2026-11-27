@@ -5,11 +5,15 @@ import { soluciones } from "./soluciones";
 import { casos } from "./casos";
 import { empresa } from "./empresa";
 import { recursos } from "./recursos";
+import { asdd } from "./asdd";
+import { usosA } from "./usos-a";
+import { usosB } from "./usos-b";
+import { usosC } from "./usos-c";
 import { BUILT_SLUGS } from "./slugs";
 import { BUILT_NEWS } from "../news/meta";
 
 /** Todas las páginas de contenido por slug (se amplía en cada lote). */
-export const PAGES: Record<string, Page> = { ...plataforma, ...productos, ...soluciones, ...casos, ...empresa, ...recursos };
+export const PAGES: Record<string, Page> = { ...plataforma, ...productos, ...soluciones, ...casos, ...empresa, ...recursos, ...asdd, ...usosA, ...usosB, ...usosC };
 
 // cada slug construido debe tener su página y viceversa
 if (import.meta.env.DEV) {

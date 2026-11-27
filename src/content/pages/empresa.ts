@@ -1,7 +1,7 @@
 // Lote 4 · Menús «Comunidad» y «Empresa», contacto y textos legales. Textos reales de xone.es/{slug}/ y /en/ (24-nov-2026).
 // Los textos legales y la política de seguridad son literales y viven en src/content/docs/*.md.
 // Reescrituras propias (titulares de sección): ver CONTENT_MAP.md › «Páginas · lote 4».
-import type { Page, PageDoc } from "./types";
+import { G, type Page, type PageDoc } from "./types";
 import legalEs from "../docs/legal.es.md?raw";
 import legalEn from "../docs/legal.en.md?raw";
 import policyEs from "../docs/politica-seguridad.es.md?raw";
@@ -61,7 +61,7 @@ function becomePartner(lang: "es" | "en", form: boolean): PageDoc {
       ? ["Because we are market leaders", "Because we are experts in mobility technologies and multiexperience development", "Because we offer high-quality, high-productivity solutions at every level", "Because we prioritize the mobile technologies that will have a major impact on organizations", "Because our technology is flexible and adaptable", "Because we are revolutionizing the market"]
       : ["Because we are market leaders", "Because we are experts in mobility and multiexperience", "Because we offer high-quality, high-productivity solutions", "Because XOne is flexible and adaptable", "Because we are revolutionizing the market", "Because we prioritize mobility, which will have a major impact on companies", "Because we provide our Partners with the best tools"]);
   return {
-    group: 3,
+    group: G.comunidad,
     ...(form ? { crumb: partnerCrumb[lang] } : {}),
     seo: form
       ? { title: es ? "Por qué hacerse partner de XOne | XOne" : "Why become an XOne partner | XOne", description: es ? "Somos líderes del mercado y expertos en tecnologías de movilidad y desarrollos multiexperiencia. Descubre por qué hacerte Partner de XOne." : "We are market leaders and experts in mobility technologies and multiexperience development. Find out why you should become an XOne Partner." }
@@ -86,7 +86,7 @@ export const empresa: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   "nuestros-clientes-xone": {
     es: {
-      group: 3,
+      group: G.comunidad,
       seo: { title: "Nuestros clientes | XOne", description: "La base de nuestros clientes la forman corporaciones y entidades de diferentes sectores, a las que ofrecemos un enfoque práctico y un impacto real." },
       hero: { title: "Nuestros", accent: "clientes", lead: "La base de nuestros clientes la forman corporaciones y entidades de diferentes sectores, a las que ofrecemos un enfoque práctico y un impacto real.", labels: ["Energía", "Industria", "Servicios", "Transporte"], secondary: { label: "Ver casos de éxito", slug: "casos-de-exito-xone" } },
       blocks: [
@@ -95,7 +95,7 @@ export const empresa: Record<string, Page> = {
       ],
     },
     en: {
-      group: 3,
+      group: G.comunidad,
       seo: { title: "Our clients | XOne", description: "Our client base is made up of corporations and organizations from different sectors, to whom we offer a practical approach and real impact." },
       hero: { title: "Our", accent: "clients", lead: "Our client base is made up of corporations and organizations from different sectors, to whom we offer a practical approach and real impact.", labels: ["Energy", "Industry", "Services", "Transport"], secondary: { label: "See success stories", slug: "casos-de-exito-xone" } },
       blocks: [
@@ -108,7 +108,7 @@ export const empresa: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   "comentarios-clientes": {
     es: {
-      group: 3,
+      group: G.comunidad,
       seo: { title: "Opiniones de nuestros clientes | XOne", description: "Opiniones de clientes de XOne: trabajar con la herramienta XOne permite afrontar los proyectos de movilidad centrándose solo en las necesidades del cliente." },
       hero: { title: "Opiniones de", accent: "nuestros clientes", lead: "Opiniones de clientes de XOne: trabajar con la herramienta XOne permite afrontar los proyectos de movilidad centrándose solo en las necesidades del cliente.", labels: ["JSV", "Pavapark", "Tervalis", "Fujitsu"], secondary: { label: "Conoce a nuestros clientes", slug: "nuestros-clientes-xone" } },
       blocks: [
@@ -116,7 +116,7 @@ export const empresa: Record<string, Page> = {
       ],
     },
     en: {
-      group: 3,
+      group: G.comunidad,
       seo: { title: "What our customers say | XOne", description: "XOne customer reviews: working with the XOne tool lets teams tackle mobility projects by focusing solely on the customer's needs." },
       hero: { title: "What our", accent: "customers say", lead: "XOne customer reviews: working with the XOne tool lets teams tackle mobility projects by focusing solely on the customer's needs.", labels: ["JSV", "Pavapark", "Tervalis", "Fujitsu"], secondary: { label: "Meet our customers", slug: "nuestros-clientes-xone" } },
       blocks: [
@@ -128,7 +128,7 @@ export const empresa: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   "socios-estrategicos-xone": {
     es: {
-      group: 3,
+      group: G.comunidad,
       seo: { title: "Socios estratégicos y entidades colaboradoras | XOne", description: "En XOne estrechamos lazos para crear las mejores soluciones posibles, compartiendo objetivos y con el compromiso de mantenernos a la vanguardia tecnológica." },
       hero: { title: "Socios estratégicos y", accent: "entidades colaboradoras", lead: "En XOne estrechamos lazos para crear las mejores soluciones posibles, compartiendo objetivos y con el compromiso de mantenernos a la vanguardia tecnológica.", labels: ["Alianzas", "Tecnología", "Comunicaciones", "Hardware"], secondary: { label: "Hazte partner", slug: "hazte-partner-xone" } },
       blocks: [
@@ -137,7 +137,7 @@ export const empresa: Record<string, Page> = {
       ],
     },
     en: {
-      group: 3,
+      group: G.comunidad,
       seo: { title: "Strategic partners and collaborating organizations | XOne", description: "At XOne we build close ties to create the best possible solutions, sharing goals and committed to staying at the technological forefront." },
       hero: { title: "Strategic partners and", accent: "collaborating organizations", lead: "At XOne we build close ties to create the best possible solutions, sharing goals and committed to staying at the technological forefront.", labels: ["Alliances", "Technology", "Telecoms", "Hardware"], secondary: { label: "Become a partner", slug: "hazte-partner-xone" } },
       blocks: [
@@ -150,7 +150,7 @@ export const empresa: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   partners: {
     es: {
-      group: 3,
+      group: G.comunidad,
       seo: { title: "Partners de XOne | XOne", description: "Nuestros Partners están autorizados a distribuir y comercializar la tecnología XOne entre sus clientes, y ofertar soporte, formación y consultoría." },
       hero: { title: "Partners", accent: "de XOne", lead: "Nuestros Partners están autorizados a distribuir y comercializar la tecnología XOne entre sus clientes, y ofertar soporte, formación y consultoría.", labels: ["Canal", "Soporte", "Formación", "Consultoría"], secondary: { label: "Hazte partner", slug: "hazte-partner-xone" } },
       blocks: [
@@ -159,7 +159,7 @@ export const empresa: Record<string, Page> = {
       ],
     },
     en: {
-      group: 3,
+      group: G.comunidad,
       seo: { title: "XOne Partners | XOne", description: "Our Partners are authorized to distribute and market XOne technology to their customers and to offer support, training and consulting." },
       hero: { title: "XOne", accent: "Partners", lead: "Our Partners are authorized to distribute and market XOne technology to their customers and to offer support, training and consulting.", labels: ["Channel", "Support", "Training", "Consulting"], secondary: { label: "Become a partner", slug: "hazte-partner-xone" } },
       blocks: [
@@ -176,7 +176,7 @@ export const empresa: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   programadepartners: {
     es: {
-      group: 3,
+      group: G.comunidad,
       seo: { title: "Programa de partners | XOne", description: "Si buscas un modelo de negocio rentable, atractivo y con múltiples oportunidades de crecimiento, únete a nuestro ecosistema de Partners y conoce XOne." },
       hero: { title: "Programa", accent: "de partners", lead: "Si buscas un modelo de negocio rentable, atractivo y con múltiples oportunidades de crecimiento, únete a nuestro ecosistema de Partners y conoce XOne.", labels: ["Canal", "Formación", "Soporte", "DevOps"], secondary: { label: "Hazte partner", slug: "hazte-partner-formulario" } },
       blocks: [
@@ -224,7 +224,7 @@ export const empresa: Record<string, Page> = {
       ],
     },
     en: {
-      group: 3,
+      group: G.comunidad,
       seo: { title: "Partner program | XOne", description: "If you are looking for a profitable, attractive business model with many growth opportunities, join our Partner ecosystem and discover XOne." },
       hero: { title: "Partner", accent: "program", lead: "If you are looking for a profitable, attractive business model with many growth opportunities, join our Partner ecosystem and discover XOne.", labels: ["Channel", "Training", "Support", "DevOps"], secondary: { label: "Become a partner", slug: "hazte-partner-formulario" } },
       blocks: [
@@ -276,7 +276,7 @@ export const empresa: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   "sobre-nosotros": {
     es: {
-      group: 5,
+      group: G.empresa,
       seo: { title: "Sobre nosotros | XOne", description: "XOne es una empresa española dedicada al desarrollo de apps nativas de movilidad a medida, optimizadas según los más altos estándares internacionales." },
       hero: { title: "Sobre", accent: "nosotros", lead: "XOne es una empresa española dedicada al desarrollo de apps nativas de movilidad a medida, optimizadas según los más altos estándares internacionales.", labels: ["+20 años", "Badajoz", "I+D+i", "Internacional"], secondary: { label: "Certificaciones", slug: "certificaciones" } },
       blocks: [
@@ -310,7 +310,7 @@ export const empresa: Record<string, Page> = {
       ],
     },
     en: {
-      group: 5,
+      group: G.empresa,
       seo: { title: "About us | XOne", description: "XOne is a Spanish company dedicated to developing custom native mobility apps, optimized to the highest international standards." },
       hero: { title: "About", accent: "us", lead: "XOne is a Spanish company dedicated to developing custom native mobility apps, optimized to the highest international standards.", labels: ["20+ years", "Badajoz", "R&D&I", "International"], secondary: { label: "Certifications", slug: "certificaciones" } },
       blocks: [
@@ -348,7 +348,7 @@ export const empresa: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   certificaciones: {
     es: {
-      group: 5,
+      group: G.empresa,
       seo: { title: "Certificaciones: ENS e ISO/IEC 27001 | XOne", description: "XOne está certificada conforme al Esquema Nacional de Seguridad (ENS), categoría media, y a la norma ISO/IEC 27001:2022 por entidad de certificación acreditada." },
       hero: { title: "Certificaciones", accent: "de seguridad", lead: "XOne está certificada conforme al Esquema Nacional de Seguridad (ENS), categoría media, y a la norma ISO/IEC 27001:2022 por entidad de certificación acreditada.", labels: ["ENS", "ISO 27001", "ACCM", "ENAC"], secondary: { label: "Ver ciberseguridad", slug: "ciberseguridad" } },
       blocks: [
@@ -364,7 +364,7 @@ export const empresa: Record<string, Page> = {
       ],
     },
     en: {
-      group: 5,
+      group: G.empresa,
       seo: { title: "Certifications: ENS and ISO/IEC 27001 | XOne", description: "XOne is certified under Spain's National Security Framework (ENS), medium category, and ISO/IEC 27001:2022 by an accredited certification body." },
       hero: { title: "Security", accent: "certifications", lead: "XOne is certified under Spain's National Security Framework (ENS), medium category, and ISO/IEC 27001:2022 by an accredited certification body.", labels: ["ENS", "ISO 27001", "ACCM", "ENAC"], secondary: { label: "See cybersecurity", slug: "ciberseguridad" } },
       blocks: [
@@ -384,7 +384,7 @@ export const empresa: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   "financiacion-europea": {
     es: {
-      group: 5,
+      group: G.empresa,
       seo: { title: "Financiación europea | XOne", description: "COMPUTER GLOBAL SOFTWARE, S.L. ha sido beneficiaria de una ayuda del programa CONSOLIDAPYME para implantar y certificar el Esquema Nacional de Seguridad." },
       hero: { title: "Financiación", accent: "europea", lead: "COMPUTER GLOBAL SOFTWARE, S.L. ha sido beneficiaria de una ayuda del programa CONSOLIDAPYME para implantar y certificar el Esquema Nacional de Seguridad.", labels: ["FEDER", "CONSOLIDAPYME", "Extremadura", "ENS"], secondary: { label: "Ver certificaciones", slug: "certificaciones" } },
       blocks: [
@@ -399,7 +399,7 @@ export const empresa: Record<string, Page> = {
       ],
     },
     en: {
-      group: 5,
+      group: G.empresa,
       seo: { title: "European funding | XOne", description: "COMPUTER GLOBAL SOFTWARE, S.L. received a CONSOLIDAPYME grant to implement and certify Spain's Esquema Nacional de Seguridad." },
       hero: { title: "European", accent: "funding", lead: "COMPUTER GLOBAL SOFTWARE, S.L. received a CONSOLIDAPYME grant to implement and certify Spain's Esquema Nacional de Seguridad.", labels: ["ERDF", "CONSOLIDAPYME", "Extremadura", "ENS"], secondary: { label: "See certifications", slug: "certificaciones" } },
       blocks: [
@@ -418,13 +418,13 @@ export const empresa: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   contacto: {
     es: {
-      group: 5, cta: false,
+      group: G.empresa, cta: false,
       seo: { title: "Contacto | XOne", description: "Cuéntanos qué necesitas y te ayudamos a llevarlo a la movilidad empresarial." },
       hero: { title: "Hablemos de", accent: "tu proyecto", lead: "Cuéntanos qué necesitas y te ayudamos a llevarlo a la movilidad empresarial.", labels: ["Email", "Teléfono", "Badajoz", "España"], primary: false, secondary: { label: "comercial@xone.es", href: "mailto:comercial@xone.es" } },
       blocks: [{ type: "contact" }],
     },
     en: {
-      group: 5, cta: false,
+      group: G.empresa, cta: false,
       seo: { title: "Contact | XOne", description: "Tell us what you need and we will help you take it to enterprise mobility." },
       hero: { title: "Let's talk about", accent: "your project", lead: "Tell us what you need and we will help you take it to enterprise mobility.", labels: ["Email", "Phone", "Badajoz", "Spain"], primary: false, secondary: { label: "comercial@xone.es", href: "mailto:comercial@xone.es" } },
       blocks: [{ type: "contact" }],
@@ -434,13 +434,13 @@ export const empresa: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   "uso-de-cookies-y-politica-de-privacidad": {
     es: {
-      group: 5,
+      group: G.empresa,
       seo: { title: "Aviso legal, cookies y privacidad | XOne", description: "Aviso legal, política de cookies y política de privacidad de XOne (COMPUTER GLOBAL SOFTWARE SL) y de XOne MDM, en cumplimiento de la LSSICE." },
       hero: { title: "Aviso legal,", accent: "cookies y privacidad", lead: "Aviso legal, política de cookies y política de privacidad de XOne (COMPUTER GLOBAL SOFTWARE SL) y de XOne MDM, en cumplimiento de la LSSICE.", labels: ["LSSICE", "RGPD", "LOPDGDD", "Sin cookies"] },
       blocks: [{ type: "doc", md: legalEs }],
     },
     en: {
-      group: 5,
+      group: G.empresa,
       seo: { title: "Legal notice, cookies and privacy | XOne", description: "Legal notice, cookie policy and privacy policy of XOne (COMPUTER GLOBAL SOFTWARE SL) and XOne MDM, in compliance with the LSSICE." },
       hero: { title: "Legal notice,", accent: "cookies and privacy", lead: "Legal notice, cookie policy and privacy policy of XOne (COMPUTER GLOBAL SOFTWARE SL) and XOne MDM, in compliance with the LSSICE.", labels: ["LSSICE", "GDPR", "LOPDGDD", "No cookies"] },
       blocks: [{ type: "doc", md: legalEn, note: "This is an English translation provided for convenience. In case of discrepancy, the Spanish version prevails." }],

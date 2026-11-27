@@ -1,12 +1,12 @@
 // Lote 2 · Menú «Productos». Textos reales de xone.es/{slug}/ y xone.es/en/{slug}/ (24-nov-2026).
 // Reescrituras propias (titulares de sección, frases de apertura): ver CONTENT_MAP.md › «Páginas · lote 2».
-import type { Page } from "./types";
+import { G, type Page } from "./types";
 
 export const productos: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   xonecode: {
     es: {
-      group: 1,
+      group: G.productos,
       seo: { title: "XOneCode: la IA, en cada paso de tus proyectos XOne | XOne", description: "Agentes de IA especializados en XOne, integrados con los mejores modelos de IA, sistema de tareas con Autopilot, servidores MCP y skills para programar con cualquier asistente." },
       hero: { title: "XOneCode: la IA, en cada paso de", accent: "tus proyectos XOne", lead: "Agentes de IA especializados en XOne, integrados con los mejores modelos de IA, sistema de tareas con Autopilot, servidores MCP y skills para programar con cualquier asistente.", labels: ["XOneCode", "Autopilot", "MCP", "Skills"], secondary: { label: "Ver la plataforma", slug: "que-es-xone" } },
       blocks: [
@@ -34,7 +34,7 @@ export const productos: Record<string, Page> = {
       ],
     },
     en: {
-      group: 1,
+      group: G.productos,
       seo: { title: "XOneCode: AI at every step of your XOne projects | XOne", description: "AI agents specialized in XOne, integrated with the best AI models, a task system with Autopilot, MCP servers and skills to code with any assistant." },
       hero: { title: "XOneCode: AI at every step of", accent: "your XOne projects", lead: "AI agents specialized in XOne, integrated with the best AI models, a task system with Autopilot, MCP servers and skills to code with any assistant.", labels: ["XOneCode", "Autopilot", "MCP", "Skills"], secondary: { label: "See the platform", slug: "que-es-xone" } },
       blocks: [
@@ -66,7 +66,7 @@ export const productos: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   "nueva-mxdp": {
     es: {
-      group: 1,
+      group: G.emm,
       seo: { title: "Plataforma de desarrollo multiexperiencia (MXDP) | XOne", description: "XOne se ha convertido en una plataforma de desarrollo multiexperiencia que aplica inteligencia artificial y nuevas formas de interactuar con las apps móviles." },
       hero: { title: "Plataforma de desarrollo", accent: "multiexperiencia (MXDP)", lead: "XOne se ha convertido en una plataforma de desarrollo multiexperiencia que aplica inteligencia artificial y nuevas formas de interactuar con las apps móviles.", labels: ["MXDP", "IA", "IoT", "PWA"], secondary: { label: "Ver la marketectura", slug: "marketectura" } },
       blocks: [
@@ -92,7 +92,7 @@ export const productos: Record<string, Page> = {
       ],
     },
     en: {
-      group: 1,
+      group: G.emm,
       seo: { title: "Multiexperience development platform (MXDP) | XOne", description: "XOne has become a multiexperience development platform that applies artificial intelligence and new ways of interacting with mobile apps." },
       hero: { title: "Multiexperience development", accent: "platform (MXDP)", lead: "XOne has become a multiexperience development platform that applies artificial intelligence and new ways of interacting with mobile apps.", labels: ["MXDP", "AI", "IoT", "PWA"], secondary: { label: "See the marketecture", slug: "marketectura" } },
       blocks: [
@@ -121,7 +121,7 @@ export const productos: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   "herramientas-rapidas-de-desarrollo-xonecloud": {
     es: {
-      group: 1,
+      group: G.emm,
       seo: { title: "XOneCloud, herramientas de desarrollo rápido | XOne", description: "XOne ofrece un enfoque multimodal para el desarrollo de apps móviles nativas, con herramientas de desarrollo rápido y servicios de back-end móviles." },
       hero: { title: "XOneCloud, herramientas de", accent: "desarrollo rápido", lead: "XOne ofrece un enfoque multimodal para el desarrollo de apps móviles nativas, con herramientas de desarrollo rápido y servicios de back-end móviles.", labels: ["Cloud", "Studio", "Push", "Offline"], secondary: { label: "XOne Android Developer Framework", slug: "frameworkandroid" } },
       blocks: [
@@ -141,7 +141,7 @@ export const productos: Record<string, Page> = {
       ],
     },
     en: {
-      group: 1,
+      group: G.emm,
       seo: { title: "XOneCloud, rapid development tools | XOne", description: "XOne offers a multimodal approach to native mobile app development, with rapid development tools and mobile back-end services." },
       hero: { title: "XOneCloud,", accent: "rapid development tools", lead: "XOne offers a multimodal approach to native mobile app development, with rapid development tools and mobile back-end services.", labels: ["Cloud", "Studio", "Push", "Offline"], secondary: { label: "XOne Android Developer Framework", slug: "frameworkandroid" } },
       blocks: [
@@ -165,7 +165,7 @@ export const productos: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   "replica-de-datos-y-documentacion-xone": {
     es: {
-      group: 1,
+      group: G.emm,
       seo: { title: "Sistema inteligente de comunicaciones y réplica | XOne", description: "El sistema de comunicaciones de XOne, basado en machine learning, permite que las apps móviles funcionen con independencia de los enlaces de comunicación." },
       hero: { title: "Sistema inteligente de", accent: "comunicaciones", lead: "El sistema de comunicaciones de XOne, basado en machine learning, permite que las apps móviles funcionen con independencia de los enlaces de comunicación.", labels: ["Online", "Offline", "Push", "Sync"], secondary: { label: "Ver el bus de integración", slug: "bus-integracion-esb-enterprise-service-bus" } },
       blocks: [
@@ -192,7 +192,7 @@ export const productos: Record<string, Page> = {
       ],
     },
     en: {
-      group: 1,
+      group: G.emm,
       seo: { title: "Intelligent communications and replication system | XOne", description: "XOne's machine learning-based communications system lets mobile apps work independently of the availability of communication links." },
       hero: { title: "Intelligent", accent: "communications system", lead: "XOne's machine learning-based communications system lets mobile apps work independently of the availability of communication links.", labels: ["Online", "Offline", "Push", "Sync"], secondary: { label: "See the integration bus", slug: "bus-integracion-esb-enterprise-service-bus" } },
       blocks: [
@@ -222,7 +222,7 @@ export const productos: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   ciberseguridad: {
     es: {
-      group: 1,
+      group: G.emm,
       seo: { title: "Ciberseguridad | XOne", description: "XOne adopta una política de seguridad avanzada para establecer, supervisar y mantener perímetros seguros de acceso a redes, aplicaciones, dispositivos y datos." },
       hero: { title: "Ciberseguridad", accent: "de extremo a extremo", lead: "XOne adopta una política de seguridad avanzada para establecer, supervisar y mantener perímetros seguros de acceso a redes, aplicaciones, dispositivos y datos.", labels: ["ENS", "ISO 27001", "IDS", "DMZ"], secondary: { label: "Consulta nuestras certificaciones", slug: "certificaciones" } },
       blocks: [
@@ -251,7 +251,7 @@ export const productos: Record<string, Page> = {
       ],
     },
     en: {
-      group: 1,
+      group: G.emm,
       seo: { title: "Cybersecurity | XOne", description: "XOne applies an advanced security policy to establish, monitor and maintain secure access perimeters for networks, applications, devices and data." },
       hero: { title: "End-to-end", accent: "cybersecurity", lead: "XOne applies an advanced security policy to establish, monitor and maintain secure access perimeters for networks, applications, devices and data.", labels: ["ENS", "ISO 27001", "IDS", "DMZ"], secondary: { label: "See our certifications", slug: "certificaciones" } },
       blocks: [
@@ -283,7 +283,7 @@ export const productos: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   "bus-integracion-esb-enterprise-service-bus": {
     es: {
-      group: 1,
+      group: G.emm,
       seo: { title: "Bus de integración (ESB) | XOne", description: "El bus de integración XOne interconecta con el sistema del cliente y permite dotar de movilidad a prácticamente cualquier sistema con escasos recursos." },
       hero: { title: "Bus de integración", accent: "(ESB)", lead: "El bus de integración XOne interconecta con el sistema del cliente y permite dotar de movilidad a prácticamente cualquier sistema con escasos recursos.", labels: ["ESB", "XML", "Push", "API"], secondary: { label: "Ver tipos de integración", slug: "tipos-de-integracion" } },
       blocks: [
@@ -312,7 +312,7 @@ export const productos: Record<string, Page> = {
       ],
     },
     en: {
-      group: 1,
+      group: G.emm,
       seo: { title: "Enterprise Service Bus (ESB) | XOne", description: "The XOne integration bus connects with the customer's system and makes it possible to mobilize virtually any system with minimal resources." },
       hero: { title: "Enterprise Service", accent: "Bus (ESB)", lead: "The XOne integration bus connects with the customer's system and makes it possible to mobilize virtually any system with minimal resources.", labels: ["ESB", "XML", "Push", "API"], secondary: { label: "See integration types", slug: "tipos-de-integracion" } },
       blocks: [
@@ -344,7 +344,7 @@ export const productos: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   "cloud-vs-on-premise-xone": {
     es: {
-      group: 1,
+      group: G.emm,
       seo: { title: "Infraestructura cloud y on-premise | XOne", description: "XOne permite el desarrollo rápido de una amplia gama de apps y soluciones corporativas, con infraestructura en local o como servicio SaaS en la nube." },
       hero: { title: "Infraestructura", accent: "cloud y on-premise", lead: "XOne permite el desarrollo rápido de una amplia gama de apps y soluciones corporativas, con infraestructura en local o como servicio SaaS en la nube.", labels: ["Cloud", "SaaS", "On-premise", "Híbrido"], secondary: { label: "Ver servicios de hosting", slug: "servicios-y-soporte" } },
       blocks: [
@@ -359,7 +359,7 @@ export const productos: Record<string, Page> = {
       ],
     },
     en: {
-      group: 1,
+      group: G.emm,
       seo: { title: "Cloud and on-premise infrastructure | XOne", description: "XOne enables rapid development of a wide range of enterprise apps and solutions, with on-premise infrastructure or as a cloud SaaS service." },
       hero: { title: "Cloud and on-premise", accent: "infrastructure", lead: "XOne enables rapid development of a wide range of enterprise apps and solutions, with on-premise infrastructure or as a cloud SaaS service.", labels: ["Cloud", "SaaS", "On-premise", "Hybrid"], secondary: { label: "See hosting services", slug: "servicios-y-soporte" } },
       blocks: [
@@ -378,7 +378,7 @@ export const productos: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   "sistema-de-actualizaciones-xone": {
     es: {
-      group: 1,
+      group: G.emm,
       seo: { title: "Sistema de actualizaciones (XOne Live) | XOne", description: "XOne Live es el componente web que recibe las peticiones de los dispositivos, las valida y gestiona el envío de las actualizaciones desde el servidor." },
       hero: { title: "Sistema de actualizaciones", accent: "(XOne Live)", lead: "XOne Live es el componente web que recibe las peticiones de los dispositivos, las valida y gestiona el envío de las actualizaciones desde el servidor.", labels: ["Live", "IMEI", "UUID", "OTA"], secondary: { label: "Ver la réplica de datos", slug: "replica-de-datos-y-documentacion-xone" } },
       blocks: [
@@ -393,7 +393,7 @@ export const productos: Record<string, Page> = {
       ],
     },
     en: {
-      group: 1,
+      group: G.emm,
       seo: { title: "Update system (XOne Live) | XOne", description: "XOne Live is the web component that receives requests from devices, validates them and manages the delivery of updates from the server." },
       hero: { title: "Update system", accent: "(XOne Live)", lead: "XOne Live is the web component that receives requests from devices, validates them and manages the delivery of updates from the server.", labels: ["Live", "IMEI", "UUID", "OTA"], secondary: { label: "See data replication", slug: "replica-de-datos-y-documentacion-xone" } },
       blocks: [
@@ -411,7 +411,7 @@ export const productos: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   "multiplataforma-xone": {
     es: {
-      group: 1,
+      group: G.emm,
       seo: { title: "Multiplataforma | XOne", description: "La plataforma de desarrollo multiexperiencia XOne opera en diferentes sistemas operativos con el mismo código, y sus desarrollos se ejecutan sin cambios." },
       hero: { title: "Multiplataforma:", accent: "un solo código", lead: "La plataforma de desarrollo multiexperiencia XOne opera en diferentes sistemas operativos con el mismo código, y sus desarrollos se ejecutan sin cambios.", labels: ["Android", "iOS", "Windows", "Web"], secondary: { label: "Ver dispositivos homologados", slug: "dispositivos-homologados" } },
       blocks: [
@@ -427,7 +427,7 @@ export const productos: Record<string, Page> = {
       ],
     },
     en: {
-      group: 1,
+      group: G.emm,
       seo: { title: "Cross-platform | XOne", description: "The XOne multiexperience development platform runs on different operating systems with the same code, and its apps run without changes." },
       hero: { title: "Cross-platform:", accent: "a single codebase", lead: "The XOne multiexperience development platform runs on different operating systems with the same code, and its apps run without changes.", labels: ["Android", "iOS", "Windows", "Web"], secondary: { label: "See certified devices", slug: "dispositivos-homologados" } },
       blocks: [
@@ -447,7 +447,7 @@ export const productos: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   "sistema-de-monitorizacion-con-ia": {
     es: {
-      group: 1,
+      group: G.emm,
       seo: { title: "Sistema de monitorización con IA | XOne", description: "XOne Monitor comprueba que ciertas funciones del servidor funcionan correctamente y emplea machine learning para predecir caídas de servicio y fallos." },
       hero: { title: "Monitorización", accent: "con IA", lead: "XOne Monitor comprueba que ciertas funciones del servidor funcionan correctamente y emplea machine learning para predecir caídas de servicio y fallos.", labels: ["Monitor", "ML", "Logs", "Alertas"], secondary: { label: "Ver ciberseguridad", slug: "ciberseguridad" } },
       blocks: [
@@ -462,7 +462,7 @@ export const productos: Record<string, Page> = {
       ],
     },
     en: {
-      group: 1,
+      group: G.emm,
       seo: { title: "AI-powered monitoring system | XOne", description: "XOne Monitor checks that certain server functions are working correctly and uses machine learning to predict service outages and failures." },
       hero: { title: "AI-powered", accent: "monitoring", lead: "XOne Monitor checks that certain server functions are working correctly and uses machine learning to predict service outages and failures.", labels: ["Monitor", "ML", "Logs", "Alerts"], secondary: { label: "See cybersecurity", slug: "ciberseguridad" } },
       blocks: [
@@ -480,7 +480,7 @@ export const productos: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   "notificaciones-push-xone": {
     es: {
-      group: 1,
+      group: G.emm,
       seo: { title: "Notificaciones push | XOne", description: "En los dispositivos sin tecnología push nativa del fabricante o del operador, la plataforma XOne coloca un servicio propio de escucha mediante conexión IP." },
       hero: { title: "Notificaciones", accent: "push", lead: "En los dispositivos sin tecnología push nativa del fabricante o del operador, la plataforma XOne coloca un servicio propio de escucha mediante conexión IP.", labels: ["Push", "Alarmas", "Eventos", "Réplica"], secondary: { label: "Ver la réplica de datos", slug: "replica-de-datos-y-documentacion-xone" } },
       blocks: [
@@ -496,7 +496,7 @@ export const productos: Record<string, Page> = {
       ],
     },
     en: {
-      group: 1,
+      group: G.emm,
       seo: { title: "Push notifications | XOne", description: "On devices without native push technology from the manufacturer or carrier, the XOne platform installs its own listening service over an IP connection." },
       hero: { title: "Push", accent: "notifications", lead: "On devices without native push technology from the manufacturer or carrier, the XOne platform installs its own listening service over an IP connection.", labels: ["Push", "Alarms", "Events", "Replication"], secondary: { label: "See data replication", slug: "replica-de-datos-y-documentacion-xone" } },
       blocks: [
@@ -516,7 +516,7 @@ export const productos: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   xoneassist: {
     es: {
-      group: 1,
+      group: G.emm,
       seo: { title: "XOneAssist | XOne", description: "XOneAssist es un tutor virtual para crear apps innovadoras que da soporte a los desarrolladores, aumenta su productividad y reduce el tiempo y el coste." },
       hero: { title: "XOneAssist,", accent: "tu tutor virtual", lead: "XOneAssist es un tutor virtual para crear apps innovadoras que da soporte a los desarrolladores, aumenta su productividad y reduce el tiempo y el coste.", labels: ["IA", "NLP", "Voz", "Bots"], secondary: { label: "Conoce XOneAssist", slug: "presentandoxoneassist" } },
       blocks: [
@@ -532,7 +532,7 @@ export const productos: Record<string, Page> = {
       ],
     },
     en: {
-      group: 1,
+      group: G.emm,
       seo: { title: "XOneAssist | XOne", description: "XOneAssist is a virtual tutor for building innovative apps that supports developers, boosts their productivity and reduces time and cost." },
       hero: { title: "XOneAssist,", accent: "your virtual tutor", lead: "XOneAssist is a virtual tutor for building innovative apps that supports developers, boosts their productivity and reduces time and cost.", labels: ["AI", "NLP", "Voice", "Bots"], secondary: { label: "Discover XOneAssist", slug: "presentandoxoneassist" } },
       blocks: [
@@ -551,7 +551,7 @@ export const productos: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   "gestion-de-movilidad-empresarial-xone": {
     es: {
-      group: 1,
+      group: G.emm,
       seo: { title: "Gestión de movilidad empresarial (EMM) | XOne", description: "XOne aporta una solución integral de gestión de movilidad empresarial (EMM) para habilitar el uso de los dispositivos móviles de los empleados en la empresa." },
       hero: { title: "Gestión de movilidad", accent: "empresarial (EMM)", lead: "XOne aporta una solución integral de gestión de movilidad empresarial (EMM) para habilitar el uso de los dispositivos móviles de los empleados en la empresa.", labels: ["EMM", "MDM", "MAM", "BYOD"], secondary: { label: "Ver ciberseguridad", slug: "ciberseguridad" } },
       blocks: [
@@ -587,7 +587,7 @@ export const productos: Record<string, Page> = {
       ],
     },
     en: {
-      group: 1,
+      group: G.emm,
       seo: { title: "Enterprise Mobility Management (EMM) | XOne", description: "XOne provides a comprehensive enterprise mobility management (EMM) solution to enable the use of employees' mobile devices in the company." },
       hero: { title: "Enterprise Mobility", accent: "Management (EMM)", lead: "XOne provides a comprehensive enterprise mobility management (EMM) solution to enable the use of employees' mobile devices in the company.", labels: ["EMM", "MDM", "MAM", "BYOD"], secondary: { label: "See cybersecurity", slug: "ciberseguridad" } },
       blocks: [

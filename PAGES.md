@@ -7,6 +7,18 @@ Estado: ✅ hecha · ⏳ lote en curso · — pendiente
 
 **Cómo añadir páginas** (cada lote): contenido en `src/content/pages/<grupo>.ts` (ES + EN con la misma forma, tipos en `types.ts`), registrar el objeto en `src/content/pages/index.ts` y el slug en `src/content/pages/slugs.ts`. Los enlaces a slugs aún no construidos apuntan a xone.es automáticamente.
 
+## Tanda ASDD (nov-2026) ✅ · menú nuevo del documento de visión
+| Página | Slug |
+|---|---|
+| ASDD | `asdd` |
+| XOne EMM | `xone-emm` |
+| NappAI | `nappai` |
+| NappAI Voice | `nappai-voice` |
+| Casos de uso (listado, reescrito) | `casos-de-uso-home` |
+| 11 casos de uso | `casos-de-uso-home/{gestion-inteligente-de-avisos, parte-por-voz-en-campo, …}` (catálogo en `src/content/usos.ts`) |
+
+Las páginas de los lotes 1–5 siguen vivas pero fuera del menú (salvo XOne, XOneCode, Casos de éxito y Empresa). El grupo de cada página es una clave (`G.*` en `types.ts`), no una posición del menú.
+
 ## Lote 0 · Base
 | Página | ES | EN |
 |---|---|---|

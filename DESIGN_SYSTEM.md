@@ -6,6 +6,8 @@ Sistema de diseño de la nueva web de XOne. Estructura, espaciado y jerarquía t
 - Tailwind v4: `src/styles/theme.css` (`@theme inline`). La paleta, radios, sombras y fuentes por defecto de Tailwind están **desactivadas**: sólo existen utilidades de tokens.
 - Componentes: `src/components/ui/`. Styleguide: `/styleguide.html`. Homepage: `/`.
 
+> **Tema:** la web se publica **solo en oscuro** (`<html data-theme="dark">` en `index.html`, sin botón de tema en el header). Los tokens del tema claro se conservan intactos por si se vuelve a activar: basta con quitar el atributo o poner `data-theme="light"`, y con volver a poner `<ThemeToggle />` en el `Navbar`. El styleguide mantiene el botón para revisar ambos temas.
+
 ## 1. Principios
 
 1. **Rejilla visible, contenido en celdas.** Contenedor de 1112px con raíles verticales y celdas separadas por líneas de 1px (`.xo-rails`, `.xo-cells`). Es el ritmo de la referencia.
@@ -207,7 +209,7 @@ Todo respeta `prefers-reduced-motion` (dibujo estático, sin rotación ni auto-a
 | `Tabs` | pill · underline | seleccionado, hover, foco; teclado ←/→/Home/End | `tabs.*` |
 | `CodeBlock` | título, `[ .lang ]`, números de línea | copiar → "Copiado", foco en `<pre>` | `codeblock.*`, `code.*` |
 | `Navbar` | `menus` (grupos con icono, título y descripción), `featured` (XOneCode), `stories` + `cases` (caso de éxito por menú), `wiki`, `secondary` (EN), `cta`, toggle de tema | Escritorio: panel a ancho de contenedor en 3 columnas (2 de enlaces + «Destacado»), se abre al pasar el ratón (90 ms) o con clic/Enter, Esc cierra y devuelve el foco al disparador, velo sobre la página. Móvil (<996px): acordeón a pantalla completa con bloqueo de scroll | `navbar.*`, `signal.*` |
-| `Footer` | tagline, 4 columnas, aside, legal | hover enlaces | `footer.*` |
+| `Footer` | 3 bandas: marca (frase + CTA + DotMatrix) · confianza (certificaciones), contacto y presencia · enlaces como filas de la rejilla (columnas igualadas con filas vacías) · barra legal en celdas (la 1.ª ocupa 2 columnas) | hover de fila con flecha | `footer.*`, `contact.*` |
 | extra: `SectionIndex`, `Eyebrow`, `SectionHeading`, `Section`, `Icon`, `Logo`, `ThemeToggle` | | | |
 
 **Anatomía de sección** (patrón de la referencia): `SectionIndex` (fila mono 56px) → cabecera centrada (eyebrow + h2 con palabra de acento + subtítulo) con 64–96px de aire → rejilla `.xo-cells` de 2–5 columnas.

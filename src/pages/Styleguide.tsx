@@ -272,7 +272,7 @@ export function Styleguide() {
             <div className="overflow-hidden rounded-lg border border-line-faint">
               <Navbar links={[{ label: "Plataforma", href: "#" }, { label: "Productos", href: "#p" }, { label: "Soluciones", href: "#s" }]} cta={{ label: "Contacto", href: "#c" }} secondary={{ label: "EN", href: "#en" }} />
               <SectionIndex n={1} total={7} label="Por qué XOne" />
-              <Footer tagline="Plataforma de desarrollo multiexperiencia." columns={[{ title: "Plataforma", links: [{ label: "Qué es XOne", href: "#1" }] }, { title: "Empresa", links: [{ label: "Sobre nosotros", href: "#2" }] }]} legal={<span>© 2026 Computer Global Software, S.L.</span>} />
+              <Footer statement={{ title: "La plataforma donde los agentes", accent: "hacen avanzar tu operación." }} cta={{ label: "Solicitar una demo", href: "#0" }} columns={[{ title: "Soluciones", links: [{ label: "ASDD", href: "#1" }] }, { title: "Empresa", links: [{ label: "Sobre nosotros", href: "#2" }] }]} legal={[<span key="c">© 2026 Computer Global Software, S.L.</span>]} />
             </div>
           </Block>
         </main>

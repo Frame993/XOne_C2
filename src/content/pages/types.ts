@@ -40,9 +40,18 @@ export type Block =
   /** Diagrama de la marketectura: 4 cuadrantes alrededor del núcleo, flanqueados por soluciones y sectores. */
   | (Head & { type: "diagram"; center: string; quadrants: { title: string; items: string[] }[]; left: { title: string; items: string[] }; right: { title: string; items: string[] } });
 
+/** Grupo al que pertenece cada página (miga de pan y «sigue explorando»). Los grupos viven en `groups` (site.es.ts / site.en.ts);
+ *  solo algunos se muestran en el menú (`nav.menus`). Los antiguos (plataforma, productos XOne, soluciones XOne, comunidad, recursos) siguen
+ *  existiendo para que sus páginas conserven migas y relacionados aunque ya no estén en el menú. */
+export const G = {
+  soluciones: "soluciones", productos: "productos", usos: "casos-de-uso", empresa: "empresa",
+  plataforma: "plataforma", emm: "productos-xone", solucionesXone: "soluciones-xone", comunidad: "comunidad", recursos: "recursos",
+} as const;
+export type GroupKey = (typeof G)[keyof typeof G];
+
 export type PageDoc = {
-  /** Índice del grupo del menú al que pertenece (para miga de pan y «sigue explorando»). */
-  group: number;
+  /** Grupo al que pertenece (miga de pan y «sigue explorando»). Usar `G.<grupo>`. */
+  group: GroupKey;
   seo: { title: string; description: string };
   hero: { title: string; accent?: string; lead: string; labels?: [string, string, string, string]; secondary?: PageLink; /** `false` quita el botón de contacto (p. ej. en la propia página de contacto) */ primary?: false };
   /** `false` quita el CTA final. */

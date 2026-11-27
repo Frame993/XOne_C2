@@ -1,6 +1,6 @@
 // Lote 5 · Menú «Recursos» (el listado de noticias y cada noticia tienen plantilla propia: src/pages/News.tsx).
 // Textos reales de xone.es/{slug}/ y /en/ (25-nov-2026). Titulares de sección propios: ver CONTENT_MAP.md › «Páginas · lote 5».
-import type { Page } from "./types";
+import { G, type Page } from "./types";
 
 const M = (f: string) => `https://xone.es/media/${f}`;
 const YT = (id: string) => `https://www.youtube.com/watch?v=${id}`;
@@ -47,7 +47,7 @@ export const recursos: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   documentacionxone: {
     es: {
-      group: 4,
+      group: G.recursos,
       seo: { title: "Presentaciones y vídeos de XOne | XOne", description: "Echa un vistazo a nuestras presentaciones sobre soluciones, programación, funcionalidades, seguridad y capacidades técnicas de la plataforma XOne." },
       hero: { title: "Presentaciones y", accent: "vídeos de XOne", lead: "Echa un vistazo a nuestras presentaciones sobre soluciones, programación, funcionalidades, seguridad y capacidades técnicas de la plataforma XOne.", labels: ["PDF", "Vídeos", "Tutoriales", "Wiki"], secondary: { label: "Abrir la XOne Wiki", href: "https://xoneisp.com/xonedocs/" } },
       blocks: [
@@ -57,7 +57,7 @@ export const recursos: Record<string, Page> = {
       ],
     },
     en: {
-      group: 4,
+      group: G.recursos,
       seo: { title: "XOne presentations and videos | XOne", description: "Take a look at our presentations on the solutions, programming, features, security and technical capabilities of the XOne platform." },
       hero: { title: "XOne presentations", accent: "and videos", lead: "Take a look at our presentations on the solutions, programming, features, security and technical capabilities of the XOne platform.", labels: ["PDF", "Videos", "Tutorials", "Wiki"], secondary: { label: "Open the XOne Wiki", href: "https://xoneisp.com/xonedocs/" } },
       blocks: [
@@ -71,7 +71,7 @@ export const recursos: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   "premios-y-reconocimientos": {
     es: {
-      group: 4,
+      group: G.recursos,
       seo: { title: "Premios y reconocimientos | XOne", description: "La constante evolución de XOne ha permitido incorporar nuevas herramientas, servicios y tecnologías que la han hecho una de las plataformas mejor valoradas." },
       hero: { title: "Premios y", accent: "reconocimientos", lead: "La constante evolución de XOne ha permitido incorporar nuevas herramientas, servicios y tecnologías que la han hecho una de las plataformas mejor valoradas.", labels: ["Gartner", "Movilforum", "KPMG", "AEXIT"], secondary: { label: "Ver noticias", slug: "noticias" } },
       blocks: [
@@ -87,7 +87,7 @@ export const recursos: Record<string, Page> = {
       ],
     },
     en: {
-      group: 4,
+      group: G.recursos,
       seo: { title: "Awards and recognition | XOne", description: "XOne's constant evolution has brought in new tools, services and technologies that have made it one of the most highly rated platforms." },
       hero: { title: "Awards and", accent: "recognition", lead: "XOne's constant evolution has brought in new tools, services and technologies that have made it one of the most highly rated platforms.", labels: ["Gartner", "Movilforum", "KPMG", "AEXIT"], secondary: { label: "See news", slug: "noticias" } },
       blocks: [
@@ -107,7 +107,7 @@ export const recursos: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   "colaboraciones-id": {
     es: {
-      group: 4,
+      group: G.recursos,
       seo: { title: "Colaboraciones I+D+i | XOne", description: "Proyecto MAS4WIN: investigación de las condiciones de operación y vida útil en la energía eólica mediante un sistema predictivo basado en digitalización." },
       hero: { title: "Colaboraciones", accent: "I+D+i", lead: "Proyecto MAS4WIN: investigación de las condiciones de operación y vida útil en la energía eólica mediante un sistema predictivo basado en digitalización.", labels: ["MAS4WIN", "Ingeteam", "FEDER", "Eólica"], secondary: { label: "Ver el documento del proyecto (PDF)", href: M("Publicidad-WEB_v1.pdf") } },
       blocks: [
@@ -125,7 +125,7 @@ export const recursos: Record<string, Page> = {
       ],
     },
     en: {
-      group: 4,
+      group: G.recursos,
       seo: { title: "R&D&I collaborations | XOne", description: "MAS4WIN project: research into operating conditions and service life in wind energy using a predictive system based on digitalization." },
       hero: { title: "R&D&I", accent: "collaborations", lead: "MAS4WIN project: research into operating conditions and service life in wind energy using a predictive system based on digitalization.", labels: ["MAS4WIN", "Ingeteam", "ERDF", "Wind"], secondary: { label: "View the project document (PDF)", href: M("Publicidad-WEB_v1.pdf") } },
       blocks: [
@@ -147,13 +147,13 @@ export const recursos: Record<string, Page> = {
   /* ------------------------------------------------------------------ */
   noticias: {
     es: {
-      group: 4,
+      group: G.recursos,
       seo: { title: "Noticias | XOne", description: "Novedades, eventos, reconocimientos y casos de éxito de XOne." },
       hero: { title: "Noticias", accent: "de XOne", lead: "Novedades, eventos, reconocimientos y casos de éxito de XOne.", labels: ["Eventos", "Gartner", "Clientes", "I+D+i"], secondary: { label: "Premios y reconocimientos", slug: "premios-y-reconocimientos" } },
       blocks: [{ type: "news", index: "Archivo", eyebrow: "Todas las noticias", title: "Más de siete años", accent: "contando XOne" }],
     },
     en: {
-      group: 4,
+      group: G.recursos,
       seo: { title: "News | XOne", description: "XOne news, events, recognition and success stories." },
       hero: { title: "XOne", accent: "news", lead: "XOne news, events, recognition and success stories.", labels: ["Events", "Gartner", "Customers", "R&D&I"], secondary: { label: "Awards and recognition", slug: "premios-y-reconocimientos" } },
       blocks: [{ type: "news", index: "Archive", eyebrow: "All the news", title: "More than seven years", accent: "of XOne stories" }],
