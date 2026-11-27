@@ -103,7 +103,7 @@ const semanticColor = {
   "accent.solid-fg": ["color.neutral.0", "color.neutral.0"],
   "fx.cell": ["color.neutral.900", "color.neutral.0"],
   "fx.glyph": ["color.cyan.500", "color.cyan.400"],
-  "fx.matrix": ["color.neutral.300", "color.neutral.600"],
+  "fx.matrix": ["color.cyan.300", "color.cyan.700"], // arte de caracteres (DotMatrix): azul de marca en toda la web (nov-2026)
   "accent.subtle": ["color.cyan.50", "color.cyan.950"],
   "signal.bg": ["color.cyan.650", "color.cyan.650"],
   "signal.fg": ["color.neutral.0", "color.neutral.0"],

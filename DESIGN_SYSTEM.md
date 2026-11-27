@@ -52,7 +52,7 @@ Escalas generadas en OKLCH con luminosidad objetivo por paso y el color de marca
 | `accent.fg` | neutral.950 | neutral.950 | Texto oscuro sobre cian 500 (6.9:1), para chips/indicadores |
 | `accent.solid / -hover / -active` | cyan.650 `#007E9E` / 700 / 800 | igual | **Fondo del botón primario con texto blanco** |
 | `accent.solid-fg` | blanco | blanco | Texto del botón primario (4.69:1 ✅ AA) |
-| `fx.cell / fx.glyph / fx.matrix` | petrol.700 / cyan.500 / petrol.300 | cyan.300 / cyan.400 / petrol.700 | Rejilla animada, glifos, arte de caracteres |
+| `fx.cell / fx.glyph / fx.matrix` | neutral.900 / cyan.500 / **cyan.300** | neutral.0 / cyan.400 / **cyan.700** | Rejilla animada, glifos, arte de caracteres (`fx.matrix` es azul de marca desde nov-2026; antes gris) |
 | `accent.subtle / subtle-fg / border` | cyan.50/800/200 | cyan.950/200/800 | Badges, tarjeta highlight, iconos |
 | `brand.secondary / -hover / -fg` | petrol.700/800, blanco | petrol.400/300, neutral.950 | Botón secundario, banner |
 | `brand.wordmark / symbol` | petrol.700 / cyan.500 | blanco / cyan.500 | Logo |
@@ -175,7 +175,7 @@ Medido en firecrawl.dev: canvas de celdas en el hero, arte ASCII con `illuminate
 | Pieza | Qué hace | Tokens |
 |---|---|---|
 | `GridCanvas` | Rejilla de celdas de 100px (radio 8, 1px de separación) **contenida**: contenedor + 1 columna por lado (13 × 101 = 1314px, como la referencia), sólo filas completas (el hero ajusta su altura a múltiplos de 101px) y bloque central fusionado donde va el contenido. Sólo ≥996px. Celdas laterales que se iluminan y glifos abstractos | `fx.cell`, `fx.glyph`, `border.*` |
-| `DotMatrix` | Arte de caracteres animado y abstracto (` .·:-=+x*#`): `blob` (masa orgánica que respira junto a titulares y en FAQ), `field` (onda tenue; en la banda de señal en blanco y con máscara hacia el centro). 12–16 fps, se pausa fuera de pantalla. **Es el único recurso animado junto a titulares**: nada de glifos de píxel ni símbolos en las rejillas | `fx.matrix` |
+| `DotMatrix` | Arte de caracteres animado y abstracto. **Color:** azul de marca (`fx.matrix` = cyan.700 en oscuro) en toda la web; solo sobre bandas azules (banda de señal) va en blanco (`colorVar="--xo-color-neutral-0"`). No se cambia el color por página (el token ya da el tono). **Glifos** (de tenue a intenso): ` .·:-=+xoneXONE` — signos para lo tenue y las letras del nombre de la marca en las zonas densas. Modos: `blob` (masa orgánica que respira junto a titulares y en FAQ), `field` (onda tenue; en la banda de señal en blanco y con máscara hacia el centro). 12–16 fps, se pausa fuera de pantalla. **Es el único recurso animado junto a titulares**: nada de glifos de píxel ni símbolos en las rejillas | `fx.matrix` |
 | — | **No usar la X del logo animada**: el motion es siempre abstracto; el logo sólo aparece estático | |
 | `GridSpacer` | Fila vacía entre secciones con `FullLine` arriba/abajo y uniones | `border.faint` |
 | CTA · `GridCanvas mirror` | Sincronización: las celdas laterales se iluminan con un relleno tenue, en espejo a ambos lados. **Sin glifos ni símbolos** | `fx.cell` |

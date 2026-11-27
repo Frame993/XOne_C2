@@ -9,7 +9,8 @@ import { setupCanvas, useInView, useReducedMotion, useTokenColors, withAlpha } f
  *  - "fountain": montículo de puntos que burbujea.
  *  - "signal": columnas de puntos que suben y bajan como barras de cobertura/sincronización (concepto XONE para la CTA).
  */
-const CHARS = " .·:-=+x*#";
+// Escala de densidad: signos para lo tenue y, en lo intenso, las letras del nombre (x·o·n·e → X·O·N·E).
+const CHARS = " .·:-=+xoneXONE";
 export function DotMatrix({ mode = "field", className, cellW = 9, cellH = 12, fps = 12, colorVar = "--xo-color-fx-matrix" }: { mode?: "blob" | "field" | "fountain" | "signal"; className?: string; cellW?: number; cellH?: number; fps?: number; colorVar?: string }) {
   const ref = useRef<HTMLCanvasElement>(null);
   const [wrap, inView] = useInView<HTMLDivElement>();

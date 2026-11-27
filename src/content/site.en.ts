@@ -10,7 +10,7 @@ import { usos, usoSlug } from "./usos";
 const X = "https://xone.es";
 
 // [PENDING] event date and registration link (contact page for now). Remove after the event.
-export const announcement = { badge: "Event", text: "We present XOne's new chapter in Valencia · Coming soon", cta: "Book your place", href: link("contacto") };
+export const announcement = { badge: "Event", text: "We present XOne's new chapter in Valencia · Coming soon", cta: "Explore", href: link("evento-valencia") };
 
 /** Todos los grupos de páginas: los visibles en el menú y los antiguos (fuera del menú, pero con migas y relacionados). */
 export const groups: Record<GroupKey | "casos-de-exito", NavMenu> = {
@@ -141,6 +141,23 @@ export const recognitions = [
   "ENS · medium category", "ISO/IEC 27001:2022", "Gartner · MXDP Magic Quadrant 2020 and 2021", "Movilforum Telefónica · best success story 2011 and 2012", "El Confidencial KPMG award",
 ];
 
+/** Event page (/en/evento-valencia/). No content yet: only the announcement from the vision document (sections 1 and 12.10). */
+export const eventPage = {
+  seo: { title: "Event in Valencia · XOne", description: "We present XOne's new chapter in Valencia. Coming soon." },
+  eyebrow: "Relaunch event · Valencia",
+  badge: "Coming soon",
+  title: "We present XOne's new chapter",
+  accent: "in Valencia.",
+  topic: "Agent Self-Driven Development Platform",
+  meanwhile: { eyebrow: "In the meantime", title: "Discover what", accent: "we will present" },
+  links: [
+    { label: "ASDD", text: "The new way of working with agents.", href: link("asdd") },
+    { label: "Use cases", text: "Eleven solutions, from the call to the street.", href: link("casos-de-uso-home") },
+    { label: "Request a demo", text: "We show you how it works with your process.", href: link("contacto") },
+  ],
+  mail: "or email us at",
+};
+
 export const contact = {
   // closing block on the Home and every page (vision document, section 12.11)
   title: "Start with",
@@ -224,7 +241,7 @@ export const home = {
     ],
   },
   // [PENDING] event date and link; remove after the event
-  event: { badge: "Coming soon", title: "We present XOne's new chapter in Valencia.", cta: { label: "Book your place", href: link("contacto") } },
+  event: { badge: "Coming soon", title: "We present XOne's new chapter in Valencia.", cta: { label: "Explore", href: link("evento-valencia") } },
   // FAQ: translation of the ES answers (docs/vision-asdd.md)
   faq: {
     eyebrow: "Before you start", title: "Frequently asked", accent: "questions", subtitle: "The essentials about ASDD and XOne.",

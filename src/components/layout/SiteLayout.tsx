@@ -73,13 +73,14 @@ export function CTA() {
 }
 
 /** Marco común de todas las páginas: anuncio, header, contenido y footer. */
-export function SiteLayout({ title, description, children }: { title: string; description?: string; children: ReactNode }) {
+/** `announcement={false}` oculta la barra superior (p. ej. en la propia página del evento al que enlaza). */
+export function SiteLayout({ title, description, announcement = true, children }: { title: string; description?: string; announcement?: boolean; children: ReactNode }) {
   useHead(title, description);
   return (
     <>
       <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-surface focus:p-3">{t("Saltar al contenido", "Skip to content")}</a>
       <PageRails />
-      <Announcement />
+      {announcement && <Announcement />}
       <Navbar menus={C.nav.menus} cta={C.nav.cta} secondary={C.nav.secondary} wiki={C.nav.wiki} featured={C.nav.featured} stories={C.nav.stories} cases={C.cases} />
       <main id="main">{children}</main>
       {/* fila índice del pie, como las de cada sección */}

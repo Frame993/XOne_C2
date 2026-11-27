@@ -214,7 +214,7 @@
   --xo-color-accent-solid-fg: var(--xo-color-neutral-0);
   --xo-color-fx-cell: var(--xo-color-neutral-900);
   --xo-color-fx-glyph: var(--xo-color-cyan-500);
-  --xo-color-fx-matrix: var(--xo-color-neutral-300);
+  --xo-color-fx-matrix: var(--xo-color-cyan-300);
   --xo-color-accent-subtle: var(--xo-color-cyan-50);
   --xo-color-signal-bg: var(--xo-color-cyan-650);
   --xo-color-signal-fg: var(--xo-color-neutral-0);
@@ -284,7 +284,7 @@
   --xo-color-accent-solid-fg: var(--xo-color-neutral-0);
   --xo-color-fx-cell: var(--xo-color-neutral-0);
   --xo-color-fx-glyph: var(--xo-color-cyan-400);
-  --xo-color-fx-matrix: var(--xo-color-neutral-600);
+  --xo-color-fx-matrix: var(--xo-color-cyan-700);
   --xo-color-accent-subtle: var(--xo-color-cyan-950);
   --xo-color-signal-bg: var(--xo-color-cyan-650);
   --xo-color-signal-fg: var(--xo-color-neutral-0);
@@ -354,7 +354,7 @@
     --xo-color-accent-solid-fg: var(--xo-color-neutral-0);
     --xo-color-fx-cell: var(--xo-color-neutral-0);
     --xo-color-fx-glyph: var(--xo-color-cyan-400);
-    --xo-color-fx-matrix: var(--xo-color-neutral-600);
+    --xo-color-fx-matrix: var(--xo-color-cyan-700);
     --xo-color-accent-subtle: var(--xo-color-cyan-950);
     --xo-color-signal-bg: var(--xo-color-cyan-650);
     --xo-color-signal-fg: var(--xo-color-neutral-0);

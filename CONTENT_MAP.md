@@ -16,7 +16,7 @@ Fuentes: documento de visión [docs/vision-asdd.md](docs/vision-asdd.md) y las 1
 - Hero acortado tras revisar a la competencia (OutSystems, Mendix, Praxedo, Retell, ServiceTitan: titulares de 4–9 palabras, subtítulo de una frase): titular alternativo 3 del apartado 12.2 («La plataforma donde los agentes hacen avanzar tu operación») + frase del apartado 5 como subtítulo. La barra superior pasa a anunciar el evento de Valencia (como OutSystems con su World Tour).
 
 **[PENDIENTE] — preguntas para el cliente:**
-- Evento de Valencia: fecha y enlace. «Reservar plaza» lleva de momento a /contacto/.
+- Evento de Valencia: fecha, lugar, agenda y enlace de inscripción. La barra superior y el botón «Explorar» (el documento de visión decía «Reservar plaza»; cambiado en nov-2026) llevan a /evento-valencia/ (página propia: rejilla oscura con el bloque central en azul, con «Próximamente» y enlaces a ASDD, casos de uso y demo). Cuando llegue el contenido se completa en `eventPage` (site.es.ts / site.en.ts).
 - Paso «Mejorar» del ciclo: validar con producto (aviso del propio documento, apartado 4).
 - NappAI en infraestructura propia del cliente y modelos de IA: «a validar con producto» → no publicado.
 - Qué otros productos de la suite NappAI se nombran (apartado 5).

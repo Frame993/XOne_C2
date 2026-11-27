@@ -6,4 +6,4 @@ import * as en from "./site.en";
 
 const C: typeof es = locale === "en" ? en : es;
 
-export const { announcement, groups, nav, hero, clients, cases, testimonials, recognitions, contact, footer, home } = C;
+export const { announcement, groups, nav, hero, clients, cases, testimonials, recognitions, contact, footer, home, eventPage } = C;

@@ -27,7 +27,7 @@ A esa forma de trabajar la llamamos **Agent Self-Driven Development Platform (AS
 | Para clientes actuales | Lo que ya funciona sigue funcionando, y ahora puede sumar agentes. | Visión 10 |
 | Diferencial | De la conversación a la calle, y de la calle a la conversación. | Visión 6 |
 | Cierre o CTA | Empieza por un caso de uso. Te enseñamos cómo funciona con tu proceso. · Botón: **Solicitar una demo** | Visión 12.11 |
-| Evento | Presentamos la nueva etapa de XOne en Valencia. · Botón: **Reservar plaza** (fecha y enlace `[PENDIENTE]`) | Visión 12.10 |
+| Evento | Presentamos la nueva etapa de XOne en Valencia. · Botón: **Explorar** (lleva a la página del evento; fecha y enlace `[PENDIENTE]`) | Visión 12.10 |
 
 El inglés de cada frase ya está en `src/content/site.en.ts`. Úsalo en lugar de traducir de nuevo, para que la web y las piezas digan lo mismo.
 
@@ -126,7 +126,9 @@ Siguen las reglas de [estudio-firecrawl.md](estudio-firecrawl.md):
 1. **La ilustración demuestra la frase que la acompaña.** Es una ventana, un móvil o una lista en alambre con textos reales, no un dibujo genérico.
 2. Gris de línea y **un** acento solo en lo que cambia.
 3. Nada de nodos, ondas, robots, cerebros ni imágenes de stock de «IA».
-4. El arte de caracteres (`·:-=+x*#`) es un fondo tenue: nunca va detrás del texto.
+4. El arte de caracteres es un fondo tenue: nunca va detrás del texto.
+   - **Color:** azul de marca, `#006E8B` sobre oscuro (`#8DD5F0` sobre claro). Sobre fondo azul, en blanco.
+   - **Glifos**, de tenue a intenso: `.·:-=+` y, en las zonas densas, las letras del nombre `x o n e X O N E`.
 5. Las escenas del ciclo y del bucle de la web (`src/components/fx/AsddScenes.tsx`) son la referencia. Para una pieza estática, haz captura de su estado final.
 
 ### Logo
@@ -159,7 +161,7 @@ Antes de entregar una pieza o un texto:
 - [ ] No hay cifras de resultados ni promesas sobre «Mejorar».
 - [ ] Pone «NappAI Voice» y nombra los productos, no «la IA».
 - [ ] Hay un solo acento de color, y texto blanco solo sobre `#007E9E` o el fondo oscuro.
-- [ ] Tiene 3 niveles de texto como máximo y el CTA empieza por verbo («Solicitar una demo», «Reservar plaza»).
+- [ ] Tiene 3 niveles de texto como máximo y el CTA empieza por verbo («Solicitar una demo», «Explorar»).
 - [ ] Si hay versión en inglés, dice lo mismo que la española.
 
 Barrido de términos prohibidos en el código:

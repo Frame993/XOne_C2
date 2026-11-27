@@ -1,7 +1,11 @@
 import { BUILT_NEWS } from "../news/meta";
 
 /** Slugs de las páginas ya construidas (se amplía en cada lote). Los enlaces a slugs que no estén aquí van a xone.es. */
+/** Páginas con diseño propio (no usan la plantilla ni están en PAGES). */
+export const SPECIAL_SLUGS = ["evento-valencia"];
+
 export const BUILT_SLUGS = [
+  ...SPECIAL_SLUGS,
   // Lote 1 · Plataforma
   "que-es-xone",
   "marketectura",

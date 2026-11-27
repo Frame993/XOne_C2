@@ -9,7 +9,7 @@ import { usos, usoSlug } from "./usos";
 const X = "https://xone.es";
 
 // [PENDIENTE] fecha y enlace de inscripción del evento (de momento, a contacto). Se retira tras el evento.
-export const announcement = { badge: "Evento", text: "Presentamos la nueva etapa de XOne en Valencia · Próximamente", cta: "Reservar plaza", href: link("contacto") };
+export const announcement = { badge: "Evento", text: "Presentamos la nueva etapa de XOne en Valencia · Próximamente", cta: "Explorar", href: link("evento-valencia") };
 
 /** Todos los grupos de páginas: los visibles en el menú y los antiguos (fuera del menú, pero con migas y relacionados). */
 export const groups: Record<GroupKey | "casos-de-exito", NavMenu> = {
@@ -142,6 +142,23 @@ export const recognitions = [
   "ENS · categoría media", "ISO/IEC 27001:2022", "Gartner · Cuadrante Mágico MXDP 2020 y 2021", "Movilforum Telefónica · mejor caso de éxito 2011 y 2012", "Premio El Confidencial KPMG",
 ];
 
+/** Página del evento (/evento-valencia/). Sin contenido aún: solo el anuncio del documento de visión (apartados 1 y 12.10). */
+export const eventPage = {
+  seo: { title: "Evento en Valencia · XOne", description: "Presentamos la nueva etapa de XOne en Valencia. Próximamente." },
+  eyebrow: "Evento de relanzamiento · Valencia",
+  badge: "Próximamente",
+  title: "Presentamos la nueva etapa de XOne",
+  accent: "en Valencia.",
+  topic: "Agent Self-Driven Development Platform",
+  meanwhile: { eyebrow: "Mientras tanto", title: "Descubre lo que", accent: "vamos a presentar" },
+  links: [
+    { label: "ASDD", text: "La nueva forma de trabajar con agentes.", href: link("asdd") },
+    { label: "Casos de uso", text: "Once soluciones, de la llamada a la calle.", href: link("casos-de-uso-home") },
+    { label: "Solicitar una demo", text: "Te enseñamos cómo funciona con tu proceso.", href: link("contacto") },
+  ],
+  mail: "o escríbenos a",
+};
+
 export const contact = {
   // cierre de la Home y de todas las páginas (documento de visión, apartado 12.11)
   title: "Empieza por",
@@ -226,7 +243,7 @@ export const home = {
     ],
   },
   // [PENDIENTE] fecha y enlace del evento; se retira tras el evento
-  event: { badge: "Próximamente", title: "Presentamos la nueva etapa de XOne en Valencia.", cta: { label: "Reservar plaza", href: link("contacto") } },
+  event: { badge: "Próximamente", title: "Presentamos la nueva etapa de XOne en Valencia.", cta: { label: "Explorar", href: link("evento-valencia") } },
   // FAQ: preguntas redactadas por nosotros; respuestas literales de docs/vision-asdd.md (apdo. entre corchetes)
   faq: {
     eyebrow: "Antes de empezar", title: "Preguntas", accent: "frecuentes", subtitle: "Lo esencial sobre ASDD y XOne.",

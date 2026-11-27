@@ -6,12 +6,14 @@ import { PAGES } from "./content/pages";
 import { Home } from "./pages/Home";
 import { ContentPage } from "./pages/ContentPage";
 import { NotFound } from "./pages/NotFound";
+import { EventPage } from "./pages/EventPage";
 import { BUILT_NEWS } from "./content/news/meta";
 import { articleDoc } from "./pages/blocks/News";
 
-/* Enrutado por URL: `/` y `/en/` → home; `/slug/` y `/en/slug/` → página de contenido o noticia; el resto → 404. */
+/* Enrutado por URL: `/` y `/en/` → home; `/evento-valencia/` → página del evento (diseño propio); `/slug/` y `/en/slug/` → página de contenido o noticia; el resto → 404. */
 function App() {
   if (currentSlug === "") return <Home />;
+  if (currentSlug === "evento-valencia") return <EventPage />;
   const page = PAGES[currentSlug];
   if (page) return <ContentPage key={currentSlug} doc={page[locale]} />;
   if (BUILT_NEWS.includes(currentSlug)) return <ContentPage key={currentSlug} doc={articleDoc(currentSlug)} />;
