@@ -13,7 +13,7 @@ Sistema de diseño de la nueva web de XOne. Estructura, espaciado y jerarquía t
 1. **Rejilla visible, contenido en celdas.** Contenedor de 1112px con raíles verticales y celdas separadas por líneas de 1px (`.xo-rails`, `.xo-cells`). Es el ritmo de la referencia.
 2. **Técnico, no frío.** Etiquetas en mono (`[ 01 / 07 ] » PLATAFORMA`), datos concretos, frases cortas. El color cálido de la referencia se sustituye por el cian del logo.
 3. **Un único acento sobre grises puros.** El cian `#00AED9` es la única nota de color (titulares, CTA, enlaces, glifos, SignalBand). El petróleo `#155D82` queda sólo en el wordmark del logo.
-4. **Ángulos del logo.** Radios contenidos (6px botones, 12px tarjetas), iconos con trazo recto y uniones en inglete, chevrones `»` y la X del logo como separadores.
+4. **Ángulos del logo.** Radios contenidos (6px botones, 8px elementos internos, 12px tarjetas y marcos), iconos con trazo recto y uniones en inglete, chevrones `»` como separadores. La X del logo **no** se usa como adorno (ni en etiquetas ni animada).
 5. **Accesible por defecto.** Todos los pares de texto de los tokens cumplen WCAG AA en claro y oscuro; foco visible con `focus.ring`; `prefers-reduced-motion` anula animaciones.
 
 ## 2. Tokens — 3 capas
@@ -93,16 +93,18 @@ Informe completo: `tokens/contrast-report.md` (33 pares, todos ✅).
 - **Eyebrow**: el ángulo o promesa de la sección (Módulos de la plataforma, Casos de éxito, Acompañamiento experto, Antes de empezar).
 - **Titular**: el mensaje. Si el eyebrow ya dice "Casos de éxito", el titular no vuelve a decirlo.
 
-| Sección | Índice | Eyebrow | Titular |
+| Sección (Home actual) | Índice | Eyebrow | Titular |
 |---|---|---|---|
-| 01 | Ventajas | Por qué XOne | Una plataforma, experiencias ilimitadas |
-| 02 | Cómo funciona | XOne + IA | La IA, en cada paso de tus proyectos |
-| 03 | Productos | Módulos de la plataforma | Todo lo que necesitas para movilizar tu negocio |
-| 04 | Clientes | Casos de éxito | Movilidad real en sectores exigentes |
-| 05 | Comunidad | Testimonios | Lo que dicen nuestros clientes |
-| 06 | Servicios | Acompañamiento experto | De la implantación simple a la solución a medida |
-| CTA | — | Contacto | ¿Hablamos de tu proyecto? |
-| 07 | FAQ | Antes de empezar | Preguntas frecuentes |
+| 01 | Qué es ASDD | Qué es ASDD | Una plataforma donde agentes de IA propios… |
+| 02 | El ciclo ASDD | El ciclo ASDD | Entender, construir, operar y mejorar… |
+| 03 | Las cuatro piezas | Las cuatro piezas | NappAI Voice escucha, NappAI piensa… |
+| 04 | El bucle cerrado | El bucle cerrado | De la conversación a la calle… |
+| 05–07 | Dos soluciones · Casos de uso · Por qué XOne | (ídem) | ver `home` en `site.es.ts` |
+| 08 | Clientes | Casos de éxito | Clientes en producción |
+| 09 | Opiniones | Testimonios | Lo que dicen nuestros clientes |
+| CTA | — | Contacto | Empieza por un caso de uso |
+| 10 | FAQ | Antes de empezar | Preguntas frecuentes |
+| Pie | Pie de página (sin número) | — | — |
 
 **Titulares responsive:** `type-title-sm md:type-title-md lg:type-title` (32 → 40 → 52). Subtítulo: `type-body md:type-lead`.
 
@@ -183,7 +185,7 @@ Medido en firecrawl.dev: canvas de celdas en el hero, arte ASCII con `illuminate
 | `Marquee` | Logos y testimonios en celdas, pausa al hover | — |
 | `AutoSteps` | Pasos con barra de progreso que avanza sola (pausa con hover/foco) | `easing.standard` |
 | `AIShowcase` | Patrón "use cases" de la referencia: pestañas verticales de 300px siempre visibles (icono, título, descripción; la activa tintada con progreso vertical en el borde) + demo con contenido concreto (estado con puntos animados, tabla con contadores que suben, panel flotante que se escribe) + franja inferior con XOneCode | `accent-subtle`, `shadow.float` |
-| `HeroConsole` | Tarjeta del hero: escribe "Movilizamos <sector>", selector de plataformas y botón a contacto. Sin imágenes de producto | `shadow.float` |
+| `HeroConsole` | Tarjeta del hero: escribe «Caso de uso · <nombre>» con los 11 casos y pestañas del ciclo (Entender · Construir · Operar · Mejorar). Sin imágenes de producto | `shadow.float` |
 | Ilustraciones | Panel de **alto fijo (240px), a sangre y pegado abajo** de la celda, separado del texto por una línea → alineado en toda la fila aunque el texto ocupe más o menos líneas. Escenas en bucle: `PlatformsIllo` (un paquete viaja del editor a cada plataforma, que queda "compilada"), `SecurityIllo` (radar con barrido + registro de eventos que se valida), `OfflineIllo` (cae la cobertura, los cambios se encolan y se envían al volver), `IntegrationIllo` (eventos de ERP/CRM/BD pasan por el bus y aparecen en la app). Se pausan fuera de pantalla | tokens semánticos |
 | Tabs | Indicador que se desliza con resorte | `easing.spring`, `duration.spring` |
 | Button primario | Sombra interior + halo que crece en hover, flecha que avanza | `shadow.accent(-hover)` |
@@ -209,8 +211,11 @@ Todo respeta `prefers-reduced-motion` (dibujo estático, sin rotación ni auto-a
 | `Tabs` | pill · underline | seleccionado, hover, foco; teclado ←/→/Home/End | `tabs.*` |
 | `CodeBlock` | título, `[ .lang ]`, números de línea | copiar → "Copiado", foco en `<pre>` | `codeblock.*`, `code.*` |
 | `Navbar` | `menus` (grupos con icono, título y descripción), `featured` (XOneCode), `stories` + `cases` (caso de éxito por menú), `wiki`, `secondary` (EN), `cta`, toggle de tema | Escritorio: panel a ancho de contenedor en 3 columnas (2 de enlaces + «Destacado»), se abre al pasar el ratón (90 ms) o con clic/Enter, Esc cierra y devuelve el foco al disparador, velo sobre la página. Móvil (<996px): acordeón a pantalla completa con bloqueo de scroll | `navbar.*`, `signal.*` |
-| `Footer` | 3 bandas: marca (frase + CTA + DotMatrix) · confianza (certificaciones), contacto y presencia · enlaces como filas de la rejilla (columnas igualadas con filas vacías) · barra legal en celdas (la 1.ª ocupa 2 columnas) | hover de fila con flecha | `footer.*`, `contact.*` |
-| extra: `SectionIndex`, `Eyebrow`, `SectionHeading`, `Section`, `Icon`, `Logo`, `ThemeToggle` | | | |
+| `Footer` | Precedido por una fila índice «Pie de página» (`SectionIndex` sin número) y con su propia línea superior a todo el ancho. 3 bandas: **una sola celda** con marca (frase + CTA + DotMatrix) a la izquierda y contacto (teléfono, email, dirección) alineado a la derecha en escritorio · enlaces como filas de la rejilla (columnas igualadas con filas vacías) · barra legal en celdas (la 1.ª ocupa 2 columnas) | hover de fila con flecha | `footer.*`, `contact.*` |
+| `IconTile` | sm 32 · md 40 · lg 48; tono accent · neutral | siempre cuadrado (`shrink-0`), radio md (lg en 48) | `accent-subtle`, `line` |
+| `SectionIndex` | con número (`n`, `total`) o solo etiqueta (pie) | — | `border.faint` |
+| `Eyebrow` | píldora con texto en mono mayúsculas, **sin logo** | — | `surface`, `line` |
+| extra: `SectionHeading`, `Section`, `Icon`, `Logo`, `ThemeToggle` (solo styleguide) | | | |
 
 **Anatomía de sección** (patrón de la referencia): `SectionIndex` (fila mono 56px) → cabecera centrada (eyebrow + h2 con palabra de acento + subtítulo) con 64–96px de aire → rejilla `.xo-cells` de 2–5 columnas.
 
@@ -285,7 +290,7 @@ npm run build
 | `cells` | Rejilla de celdas «etiqueta + **Frase destacada.** texto» (2, 3 o 4 columnas), con icono, número y enlace | Capacidades, servicios |
 | `rows` | Filas: número y título a la izquierda, párrafos, lista, nota destacada y enlace a la derecha | Contenido largo |
 | `chips` | Lista corta en celdas con marca (`numbered` → 01, 02… para pasos); cierra la última fila con celdas vacías | Capacidades, principios, pasos |
-| `logos` | Muro de logotipos en celdas (gris con acento al pasar; `color` para logos que deben verse tal cual, como FEDER) | Clientes, socios, partners, financiación |
+| `logos` | Muro de logotipos en celdas (siempre en gris; al pasar sube la opacidad y aparece el subrayado de acento, **sin recuperar el color**, porque con `invert` los colores salen mal; `color` para logos que deben verse tal cual, como FEDER) | Clientes, socios, partners, financiación |
 | `testimonials` | Opiniones completas: titular, cita y firma | Opiniones de clientes |
 | `doc` | Documento largo en markdown mínimo (`src/content/docs/*.md`, `Prose`) con índice lateral fijo | Aviso legal, política de seguridad |
 | `news` | Listado de noticias: destacada + filtro por año + rejilla de tarjetas (imagen, fecha, título) | Noticias |
@@ -313,3 +318,28 @@ Ilustraciones vectoriales animadas que **explican** un concepto de la página (n
 Registro `SCENES`: platforms, security, offline, integration (home) + push, update, monitor, pipeline, broker, onprem, cloud, fleet, agents, chat, sentiment, carshare, scan, route.
 
 Reglas: viewBox 560×240 · sólo tokens (`--xo-color-*`) · `aria-hidden` · textos con `t()` · bucle con `useLoop` (se para fuera de pantalla) · con reduced-motion muestran su estado final estático · nada de glifos/símbolos animados en rejillas · nunca combinar una animación CSS de `transform` con un `transform` posicionado en el mismo `<g>` (anidar dos grupos).
+
+## Escenas ASDD (estándar actual · `src/components/fx/AsddScenes.tsx`)
+
+Sustituyen a las escenas SVG en el ciclo y el bucle de la Home y son **el modelo para cualquier ilustración nueva** (motivo y análisis: `docs/estudio-firecrawl.md`).
+
+| Regla | Detalle |
+|---|---|
+| Una escena = una frase | Demuestra literalmente el texto de su tarjeta; los textos internos salen de ese contenido |
+| Vocabulario | `Win` (ventana en alambre con 3 puntos y título), `Phone`, filas, `Chip`, `Btn`, `Bar`, `Bubble`. Nada de nodos, buses, ondas ni pictogramas |
+| Radios | Marco 12px (`rounded-lg`) · todo lo de dentro 8px (`rounded-md`) · barras y puntos `pill` |
+| Tipo | Sans 12–14px; mono solo en contadores |
+| Color | Línea y texto en gris; un acento (`accent`, `accent-subtle`) solo en lo que cambia |
+| Composición | A sangre: el marco entra desde arriba (inset 24/40px) y se corta por abajo con fundido (`Stage`) |
+| Movimiento | `useSequence(n)`: un paso cada ~750ms al entrar en pantalla, reposo y repetición; transiciones de 300ms `easing.out`; reduced-motion → estado final |
+| Móvil | La pieza secundaria se oculta (`hidden sm:block`) antes que apretar |
+
+## Patrones de la Home reutilizables
+
+| Patrón | Componente | Notas |
+|---|---|---|
+| Tarjeta de paso | `Cycle` | `IconTile` + título en `type-label` + número mono · `CardLead` · filas «etiqueta \| valor» en `type-body-sm` (sin mono) · escena; partes alineadas por fila con `grid-rows-subgrid` |
+| Opinión destacada | `Testimonials` | Cita grande (`type-title-sm`) que rota cada 8s + lista de empresas con barra de acento y progreso; clic elige, pausa con hover/fuera de pantalla/reduced-motion |
+| Logos en reposo | `Cases` · `useLogoFlips` | Hasta 3 a la vez, nunca en celdas vecinas (ni diagonal), 3,5–5,5s visibles, 14s de descanso por celda, ritmo irregular; fundido cruzado de 1s con desenfoque; se para con hover |
+| FAQ | `FAQ` | Título a la izquierda + `<details>` a la derecha; respuestas literales con fuente |
+| CTA enmarcado | `CTA` (SiteLayout) | `GridCanvas centerCols={7}`: 2 columnas decorativas por lado; texto hasta 680px; etiquetas de esquina = pasos del ciclo |
